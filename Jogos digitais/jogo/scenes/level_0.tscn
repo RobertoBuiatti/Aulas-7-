@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bljbxnjql32hc"]
+
+[ext_resource type="Script" path="res://scenes/level_0.gd" id="1_yurem"]
+[ext_resource type="Texture2D" uid="uid://7fl4wra0mv1o" path="res://assets/Main Characters/player.png" id="2_ijjnq"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="2_joket"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kat57"]
+radius = 7.0
+height = 18.0
+
+[node name="Level_0" type="Node2D"]
+script = ExtResource("1_yurem")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(240, 152)
+script = ExtResource("2_joket")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("2_ijjnq")
+
+[node name="Body" type="CollisionShape2D" parent="Player"]
+position = Vector2(1, 4)
+shape = SubResource("CapsuleShape2D_kat57")
