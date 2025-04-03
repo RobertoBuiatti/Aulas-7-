@@ -1,0 +1,1 @@
+Na minha opnião o prewitt_f_Cinza ficou com uma melhor detecção das bordas e ondulações e detalhes dentre todos 
