@@ -2,7 +2,7 @@ from PIL import Image, ImageFilter, ImageChops
 import math
 
 #colorida
-img = Image.open(r'C:\Users\08401822602\Desktop\7-periodo\Aulas-7-\Computação Grafica\Filtro de detecçao de bordas\cat.jpg')
+img = Image.open(r'C:\Users\08401822602\Desktop\7-periodo\Aulas-7-\Computação Grafica\Filtro de detecçao de bordas\bandeira.jpg')
 save_path = r'C:\Users\08401822602\Desktop\7-periodo\Aulas-7-\Computação Grafica\Filtro de detecçao de bordas'
 
 
@@ -48,7 +48,7 @@ prewitt_f.save(f'{save_path}\\prewitt_f.jpg')
 
 
 #escala de cinza
-img = Image.open(r'C:\Users\08401822602\Desktop\7-periodo\Aulas-7-\Computação Grafica\Filtro de detecçao de bordas\cat.jpg').convert('L')
+img = Image.open(r'C:\Users\08401822602\Desktop\7-periodo\Aulas-7-\Computação Grafica\Filtro de detecçao de bordas\bandeira.jpg').convert('L')
 save_path = r'C:\Users\08401822602\Desktop\7-periodo\Aulas-7-\Computação Grafica\Filtro de detecçao de bordas'
 
 
