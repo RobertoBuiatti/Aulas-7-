@@ -1,7 +1,7 @@
 extends CharacterBody2D
 @onready var Sprite_2d: Sprite2D = $Sprite2D
 @onready var anim: AnimationPlayer = $Anim
-
+@onready var respawn_point: Vector2 = global_position
 
 var SPEED = 300
 var GRAVITY = 980
@@ -9,6 +9,7 @@ var JUMP_VELOCITY = -400
 var jumps = 0
 var max_jumps = 1
 var double_jump = false
+
 
 func _ready():
 	pass
@@ -47,6 +48,19 @@ func _process(delta: float) -> void:
 	if is_on_floor():
 		jumps = 0
 	else:
-		anim.play("jump")
+		if velocity.y < 0:
+			anim.play("jump")
+		else:
+			anim.play("fall")
+		
 	move_and_slide()
 	
+	
+	if global_position.y > 1000:
+		respawn()
+		
+		
+#		função de respawn
+func respawn()->void:
+	global_position = respawn_point
+	velocity = Vector2.ZERO
