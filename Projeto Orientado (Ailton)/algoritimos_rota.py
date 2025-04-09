@@ -9,45 +9,20 @@ import os
 import requests
 import json
 
-# === ENDEREÇOS ===
-ENDERECOS = [
-    "Rua 12, 234 - Ituiutaba, MG",
-    "Rua 14, 567 - Ituiutaba, MG",
-    "Avenida 19, 890 - Ituiutaba, MG",
-    "Rua 20, 432 - Ituiutaba, MG",
-    "Rua 22, 765 - Ituiutaba, MG",
-    "Avenida 25, 109 - Ituiutaba, MG",
-    "Rua 26, 543 - Ituiutaba, MG",
-    "Rua 28, 876 - Ituiutaba, MG",
-    "Avenida 30, 210 - Ituiutaba, MG",
-    "Rua 32, 654 - Ituiutaba, MG",
-    "Rua 33, 987 - Ituiutaba, MG",
-    "Avenida 35, 321 - Ituiutaba, MG",
-    "Rua 36, 765 - Ituiutaba, MG",
-    "Rua 38, 098 - Ituiutaba, MG",
-    "Avenida 40, 432 - Ituiutaba, MG",
-    "Rua 42, 876 - Ituiutaba, MG",
-    "Rua 43, 109 - Ituiutaba, MG",
-    "Avenida 45, 543 - Ituiutaba, MG",
-    "Rua 46, 987 - Ituiutaba, MG",
-    "Rua 48, 210 - Ituiutaba, MG",
-    "Avenida 50, 654 - Ituiutaba, MG",
-    "Rua 52, 987 - Ituiutaba, MG",
-    "Rua 54, 321 - Ituiutaba, MG",
-    "Avenida 55, 765 - Ituiutaba, MG",
-    "Rua 56, 098 - Ituiutaba, MG",
-    "Rua 58, 432 - Ituiutaba, MG",
-    "Avenida 60, 876 - Ituiutaba, MG",
-    "Rua 62, 109 - Ituiutaba, MG",
-    "Rua 64, 543 - Ituiutaba, MG",
-    "Avenida 65, 987 - Ituiutaba, MG",
-    "Rua 66, 210 - Ituiutaba, MG",
-    "Rua 68, 654 - Ituiutaba, MG",
-    "Avenida 70, 987 - Ituiutaba, MG",
-    "Rua 72, 321 - Ituiutaba, MG",
-    "Rua 74, 765 - Ituiutaba, MG"
-]
-PONTO_INICIAL = "Rodoviária, 100 - Ituiutaba, MG"
+# Carrega os endereços do arquivo JSON
+def carregar_enderecos():
+    """Carrega os endereços do arquivo JSON."""
+    try:
+        caminho = os.path.join('Projeto Orientado (Ailton)', 'Endereços.json')
+        with open(caminho, 'r', encoding='utf-8') as f:
+            dados = json.load(f)
+            return dados['enderecos'], dados['ponto_inicial']
+    except Exception as e:
+        print(f"❌ Erro ao carregar endereços: {str(e)}")
+        return [], ""
+
+# Carrega os endereços e ponto inicial
+ENDERECOS, PONTO_INICIAL = carregar_enderecos()
 
 # Coordenadas aproximadas de Ituiutaba, MG
 ITUIUTABA_LAT = -18.9706
@@ -58,8 +33,10 @@ COORDENADAS_CONHECIDAS = {
     "Rodoviária, 100 - Ituiutaba, MG": (-18.9782, -49.4621)  # Coordenadas aproximadas da rodoviária
 }
 
-# API keys - Substitua por suas chaves reais
-OPENCAGE_API_KEY = "SUA_CHAVE_OPENCAGE_AQUI"  # Obtenha em https://opencagedata.com/
+# Configurações de geocodificação
+MAX_RETRIES = 3
+RETRY_DELAY = 2  # segundos entre tentativas
+NOMINATIM_TIMEOUT = 30
 
 def salvar_cache_coordenadas(coordenadas, arquivo="coordenadas_cache.txt"):
     """Salva coordenadas geocodificadas em um arquivo de cache."""
@@ -86,57 +63,46 @@ def carregar_cache_coordenadas(arquivo="coordenadas_cache.txt"):
 
 def gerar_coordenada_sintetica(endereco):
     """Gera uma coordenada sintética para um endereço baseado em padrões de ruas."""
-    # Extrai número da rua/avenida
+    # Extrai número da rua/avenida e numeração da casa
     partes = endereco.split(",")[0].split()
     try:
-        # Tenta extrair o número da rua/avenida (ex: Rua 12 -> 12)
+        # Extrai número da rua (ex: Rua 12 -> 12)
         num_rua = int(''.join(filter(str.isdigit, partes[1])))
-        # Calcula deslocamento baseado no número da rua
-        lat_offset = (num_rua % 30) * 0.0003
-        lon_offset = (num_rua % 20) * 0.0005
+        
+        # Extrai número da casa
+        num_casa = int(''.join(filter(str.isdigit, partes[2])))
+        
+        # Calcula deslocamentos mais precisos baseados na numeração da rua e casa
+        lat_offset = (num_rua / 100) * 0.001  # Deslocamento maior para ruas mais distantes
+        lon_offset = (num_casa / 1000) * 0.001  # Deslocamento proporcional ao número da casa
+        
+        # Ajusta direção do deslocamento baseado em padrões comuns de cidade
+        if num_rua % 2 == 0:  # Ruas pares
+            lat_offset = abs(lat_offset)
+        else:  # Ruas ímpares
+            lat_offset = -abs(lat_offset)
+            
+        if num_casa % 2 == 0:  # Números pares
+            lon_offset = abs(lon_offset)
+        else:  # Números ímpares
+            lon_offset = -abs(lon_offset)
+            
     except (IndexError, ValueError):
-        # Se não conseguir extrair um número, usa valor aleatório
-        lat_offset = random.uniform(-0.008, 0.008)
-        lon_offset = random.uniform(-0.008, 0.008)
+        # Fallback para caso não consiga extrair os números
+        lat_offset = random.uniform(-0.005, 0.005)
+        lon_offset = random.uniform(-0.005, 0.005)
     
-    # Adiciona aleatoriedade mas mantém padrão de grade
-    lat_offset += random.uniform(-0.0005, 0.0005)
-    lon_offset += random.uniform(-0.0005, 0.0005)
+    # Adiciona pequena variação aleatória para evitar pontos alinhados
+    lat_offset += random.uniform(-0.0001, 0.0001)
+    lon_offset += random.uniform(-0.0001, 0.0001)
     
-    # Se for avenida, desloca em uma direção diferente
+    # Ajusta deslocamento baseado no tipo de via
     if "Avenida" in endereco:
-        return ITUIUTABA_LAT + lat_offset, ITUIUTABA_LON - lon_offset
+        # Avenidas geralmente são maiores e mais espaçadas
+        return ITUIUTABA_LAT + (lat_offset * 1.5), ITUIUTABA_LON + (lon_offset * 1.5)
     else:
-        return ITUIUTABA_LAT - lat_offset, ITUIUTABA_LON + lon_offset
-
-def geocodificar_com_opencage(endereco):
-    """Geocodifica um endereço usando OpenCage API."""
-    try:
-        base_url = "https://api.opencagedata.com/geocode/v1/json"
-        params = {
-            'q': endereco,
-            'key': OPENCAGE_API_KEY,
-            'language': 'pt-BR',
-            'countrycode': 'br',
-            'limit': 1,
-            # Limitar busca próximo a Ituiutaba
-            'bounds': f"{ITUIUTABA_LON-0.2},{ITUIUTABA_LAT-0.2},{ITUIUTABA_LON+0.2},{ITUIUTABA_LAT+0.2}"
-        }
-        
-        response = requests.get(base_url, params=params)
-        data = response.json()
-        
-        if response.status_code == 200 and data.get('results'):
-            resultado = data['results'][0]
-            lat = resultado['geometry']['lat']
-            lon = resultado['geometry']['lng']
-            return lat, lon
-        else:
-            print(f"⚠️ OpenCage falhou: {data.get('status', {}).get('message', 'Erro desconhecido')}")
-            return None
-    except Exception as e:
-        print(f"⚠️ Erro no OpenCage: {str(e)}")
-        return None
+        # Ruas normais
+        return ITUIUTABA_LAT + lat_offset, ITUIUTABA_LON + lon_offset
 
 def geocodificar_com_photon(endereco):
     """Geocodifica um endereço usando Photon API (baseado em OpenStreetMap)."""
@@ -167,108 +133,104 @@ def geocodificar_com_photon(endereco):
 
 def tentar_geocodificar(endereco, max_tentativas=5):
     """Tenta geocodificar um endereço com múltiplos serviços."""
+    def validar_coordenadas(lat, lon):
+        """Valida se as coordenadas estão dentro de uma área razoável ao redor de Ituiutaba."""
+        return -19.5 <= lat <= -18.5 and -50.0 <= lon <= -49.0
+
+    def formatar_endereco(end):
+        """Formata o endereço para melhor precisão na busca."""
+        end = end.replace(" - ", ", ")
+        if "Ituiutaba" not in end:
+            end += ", Ituiutaba, MG"
+        if "Brasil" not in end:
+            end += ", Brasil"
+        return end
+
     # Verifica se o endereço está nas coordenadas conhecidas
     if endereco in COORDENADAS_CONHECIDAS:
-        print(f"📍 Usando coordenada conhecida para: {endereco}")
-        return COORDENADAS_CONHECIDAS[endereco]
+        coords = COORDENADAS_CONHECIDAS[endereco]
+        if validar_coordenadas(coords[0], coords[1]):
+            print(f"📍 Usando coordenada conhecida para: {endereco}")
+            return coords
+        print("⚠️ Coordenada conhecida inválida, tentando geocodificar...")
     
-    # Prepara os geocodificadores
+    # Configura o geocodificador Nominatim
     nominatim = Nominatim(
         user_agent="otimizador_roberto_v3",
-        timeout=20
+        timeout=NOMINATIM_TIMEOUT
     )
-    
+
+    # Configura o geocodificador Photon
     photon = Photon(
         user_agent="otimizador_roberto_v3",
-        timeout=20
+        timeout=NOMINATIM_TIMEOUT
     )
     
-    for tentativa in range(max_tentativas):
-        # Pausa entre tentativas para evitar limitações de taxa
-        time.sleep(1 + tentativa)
-        
-        # Preparar endereço de busca baseado na tentativa atual
-        if tentativa == 0:
-            # Primeira tentativa: endereço formatado padrão
-            endereco_busca = endereco.replace(" - ", ", ")
-        elif tentativa == 1:
-            # Segunda tentativa: formato simplificado
-            partes = endereco.split(" - ")
-            endereco_busca = f"{partes[0]}, Ituiutaba, Minas Gerais, Brasil"
-        elif tentativa == 2:
-            # Terceira tentativa: apenas o nome da rua/avenida
-            rua = endereco.split(",")[0].strip()
-            endereco_busca = f"{rua}, Ituiutaba, MG, Brasil"
-        elif tentativa == 3:
-            # Quarta tentativa: formato ainda mais genérico
-            if "Rua" in endereco or "Avenida" in endereco:
-                partes = endereco.split(",")[0].split()
-                if len(partes) >= 2:
-                    via_tipo = partes[0]  # Rua/Avenida
-                    via_num = partes[1]   # número da rua
-                    endereco_busca = f"{via_tipo} {via_num}, Ituiutaba, Minas Gerais"
-                else:
-                    endereco_busca = f"Centro, Ituiutaba, MG"
-            else:
-                endereco_busca = f"Centro, Ituiutaba, MG"
-        else:
-            # Última tentativa: busca muito genérica
-            endereco_busca = "Ituiutaba, Minas Gerais, Brasil"
-
-        print(f"🔍 Tentativa {tentativa + 1} - {endereco_busca}")
-        
-        # Tenta primeiro com Nominatim
-        try:
-            print("🔍 Tentando com Nominatim...")
-            location = nominatim.geocode(
-                endereco_busca,
-                exactly_one=True,
-                country_codes="BR",
-                language="pt-BR",
-                timeout=20,
-                # Área de busca aproximada
-                bounded=True,
-                viewbox=((ITUIUTABA_LON - 0.2, ITUIUTABA_LAT - 0.2),
-                        (ITUIUTABA_LON + 0.2, ITUIUTABA_LAT + 0.2))
-            )
-            
-            if location:
-                print("✅ Nominatim encontrou resultado!")
-                return location.latitude, location.longitude
-                
-        except Exception as e:
-            print(f"⚠️ Nominatim falhou: {str(e)}")
-        
-        # Se Nominatim falhar, tenta com OpenCage
-        print("🔍 Tentando com OpenCage...")
-        resultado_opencage = geocodificar_com_opencage(endereco_busca)
-        if resultado_opencage:
-            print("✅ OpenCage encontrou resultado!")
-            return resultado_opencage
-        
-        # Se OpenCage falhar, tenta com Photon
-        print("🔍 Tentando com Photon...")
-        try:
-            location = photon.geocode(
-                endereco_busca,
-                exactly_one=True,
-                language="pt",
-                timeout=20
-            )
-            
-            if location:
-                print("✅ Photon encontrou resultado!")
-                return location.latitude, location.longitude
-                
-        except Exception as e:
-            print(f"⚠️ Photon via geopy falhou: {str(e)}")
-        
-        # Se geocodificador por geopy falhar, tenta API direta do Photon
-        resultado_photon_api = geocodificar_com_photon(endereco_busca)
-        if resultado_photon_api:
-            print("✅ API Photon encontrou resultado!")
-            return resultado_photon_api
+    # Formata o endereço para busca
+    endereco_formatado = formatar_endereco(endereco)
     
+    try:
+        for tentativa in range(max_tentativas):
+            print(f"🔍 Tentativa {tentativa + 1} de {max_tentativas}...")
+            
+            # Ajusta o formato do endereço baseado na tentativa
+            if tentativa == 1:
+                # Remove o número da casa
+                partes = endereco_formatado.split(",")
+                endereco_busca = ",".join([" ".join(partes[0].split()[0:2])] + partes[1:])
+            elif tentativa == 2:
+                # Usa apenas rua/avenida e cidade
+                endereco_busca = f"{endereco_formatado.split(',')[0]}, Ituiutaba, MG, Brasil"
+            else:
+                endereco_busca = endereco_formatado
+
+            try:
+                # Tenta com Nominatim
+                location = nominatim.geocode(
+                    endereco_busca,
+                    exactly_one=True,
+                    country_codes="BR",
+                    language="pt-BR",
+                    timeout=NOMINATIM_TIMEOUT,
+                    bounded=True,
+                    viewbox=((ITUIUTABA_LON - 0.1, ITUIUTABA_LAT - 0.1),
+                            (ITUIUTABA_LON + 0.1, ITUIUTABA_LAT + 0.1))
+                )
+                
+                if location and validar_coordenadas(location.latitude, location.longitude):
+                    print(f"✅ Nominatim encontrou resultado válido!")
+                    return location.latitude, location.longitude
+
+                # Se Nominatim falhar, tenta com Photon
+                print("🔄 Tentando com Photon...")
+                location = photon.geocode(
+                    endereco_busca,
+                    exactly_one=True,
+                    language="pt"
+                )
+                
+                if location and validar_coordenadas(location.latitude, location.longitude):
+                    print("✅ Photon encontrou resultado válido!")
+                    return location.latitude, location.longitude
+
+                # Se geopy falhar, tenta API direta do Photon
+                resultado = geocodificar_com_photon(endereco_busca)
+                if resultado and validar_coordenadas(resultado[0], resultado[1]):
+                    print("✅ API Photon encontrou resultado válido!")
+                    return resultado
+
+            except Exception as e:
+                print(f"⚠️ Erro na tentativa {tentativa + 1}: {str(e)}")
+
+            # Espera antes da próxima tentativa
+            if tentativa < max_tentativas - 1:
+                delay = RETRY_DELAY * (tentativa + 1)
+                print(f"😴 Aguardando {delay} segundos antes da próxima tentativa...")
+                time.sleep(delay)
+
+    except Exception as e:
+        print(f"⚠️ Erro crítico na geocodificação: {str(e)}")
+
     # Se todas as tentativas falharam, gera coordenada sintética
     print(f"⚠️ Todos os geocodificadores falharam. Usando coordenada sintética para: {endereco}")
     return gerar_coordenada_sintetica(endereco)
@@ -280,6 +242,12 @@ def geocodificar_enderecos():
     # Tenta carregar cache primeiro
     coordenadas = carregar_cache_coordenadas()
     
+    # Adiciona coordenadas conhecidas ao cache
+    for endereco, coord in COORDENADAS_CONHECIDAS.items():
+        if endereco not in coordenadas:
+            coordenadas[endereco] = coord
+            print(f"📍 Adicionado endereço conhecido ao cache: {endereco}")
+    
     # Verifica quais endereços ainda precisam ser geocodificados
     todos_enderecos = [PONTO_INICIAL] + ENDERECOS
     enderecos_faltantes = [e for e in todos_enderecos if e not in coordenadas]
@@ -287,18 +255,34 @@ def geocodificar_enderecos():
     if enderecos_faltantes:
         print(f"🔍 Geocodificando {len(enderecos_faltantes)} endereços faltantes...")
         
+        falhas = []
         for i, endereco in enumerate(enderecos_faltantes, 1):
             print(f"\n🏃 Processando endereço {i}/{len(enderecos_faltantes)}: {endereco}")
             
-            resultado = tentar_geocodificar(endereco)
-            coordenadas[endereco] = resultado
+            try:
+                resultado = tentar_geocodificar(endereco)
+                if resultado:
+                    coordenadas[endereco] = resultado
+                    print(f"✅ Sucesso! Coordenadas: {resultado}")
+                else:
+                    print(f"⚠️ Não foi possível geocodificar: {endereco}")
+                    falhas.append(endereco)
+            except Exception as e:
+                print(f"❌ Erro ao geocodificar {endereco}: {str(e)}")
+                falhas.append(endereco)
             
-            # Salva o cache a cada 5 endereços para não perder progresso
-            if i % 5 == 0:
+            # Salva o cache mais frequentemente para não perder progresso
+            if i % 3 == 0 or i == len(enderecos_faltantes):
                 salvar_cache_coordenadas(coordenadas)
         
-        # Salva o cache final
-        salvar_cache_coordenadas(coordenadas)
+        # Relatório final
+        if falhas:
+            print(f"\n⚠️ {len(falhas)} endereços não puderam ser geocodificados:")
+            for endereco in falhas:
+                print(f"   - {endereco}")
+        else:
+            print("\n✅ Todos os endereços foram geocodificados com sucesso!")
+            
     else:
         print("✅ Todos os endereços já estão no cache!")
             
@@ -312,10 +296,9 @@ def gerar_grafo(enderecos: List[str], coordenadas: Dict) -> nx.Graph:
     """Gera um grafo com as distâncias entre todos os pontos."""
     G = nx.Graph()
     for i, origem in enumerate(enderecos):
-        for j, destino in enumerate(enderecos):
-            if i != j:
-                dist = distancia_km(origem, destino, coordenadas)
-                G.add_edge(origem, destino, weight=dist)
+        for j, destino in enumerate(enderecos[i+1:], i+1):
+            dist = distancia_km(origem, destino, coordenadas)
+            G.add_edge(origem, destino, weight=dist)
     return G
 
 def vizinho_mais_proximo(inicio: str, locais: List[str], coordenadas: Dict) -> Tuple[List[str], float]:
@@ -341,12 +324,12 @@ def vizinho_mais_proximo(inicio: str, locais: List[str], coordenadas: Dict) -> T
 def dijkstra(grafo: nx.Graph, inicio: str, locais: List[str]) -> Tuple[List[str], float]:
     """
     Algoritmo otimizado de Dijkstra para encontrar o caminho mais curto que conecta um conjunto de pontos.
-
+    
     Args:
         grafo (nx.Graph): Grafo ponderado com os pontos e arestas.
         inicio (str): O ponto de partida.
         locais (List[str]): Lista de pontos que devem ser visitados.
-
+    
     Returns:
         Tuple[List[str], float]: Uma tupla com a lista do caminho percorrido e a distância total.
     """
@@ -375,256 +358,146 @@ def dijkstra(grafo: nx.Graph, inicio: str, locais: List[str]) -> Tuple[List[str]
             proximo = min(menores_distancias, key=menores_distancias.get)
 
             # Atualiza o caminho, a distância total e o nó atual
-            caminho.append(proximo)
             total += menores_distancias[proximo]
+            caminho.append(proximo)
             nao_visitados.remove(proximo)
             atual = proximo
 
-        except nx.NetworkXNoPath:
-            print(f"⚠️ Não há caminho entre {atual} e os pontos restantes.")
+        except Exception as e:
+            print(f"⚠️ Erro durante o cálculo do caminho: {str(e)}")
             break
 
     print(f"⏱️ Tempo de execução: {time.time() - start_time:.2f} segundos")
     return caminho, total
 
-def a_star(grafo: nx.Graph, inicio: str, locais: List[str], coordenadas: Dict) -> Tuple[List[str], float]:
-    """Algoritmo A* para encontrar caminhos."""
-    print("\n⭐ Calculando rota por A*...")
-    start_time = time.time()
+def branch_and_bound(inicio: str, locais: List[str], coordenadas: Dict) -> Tuple[List[str], float]:
+    """
+    Algoritmo Branch and Bound para encontrar o caminho mais curto.
     
-    def heuristica(a: str, b: str) -> float:
-        """Função heurística para A*: distância em linha reta."""
-        return distancia_km(a, b, coordenadas)
+    Args:
+        inicio (str): O ponto de partida.
+        locais (List[str]): Lista de locais a serem visitados.
+        coordenadas (Dict): Dicionário com as coordenadas de cada local.
     
-    caminho = [inicio]
-    atual = inicio
-    total = 0
-    visitados = set([inicio])
-    nao_visitados = set(locais)
-
-    while nao_visitados:
-        menores = {}
-        for destino in nao_visitados:
-            try:
-                distancia = nx.astar_path_length(grafo, atual, destino, 
-                                                heuristic=lambda u, v: heuristica(u, v),
-                                                weight='weight')
-                menores[destino] = distancia
-            except nx.NetworkXNoPath:
-                continue
-        
-        if not menores:
-            print("⚠️ Não foi possível encontrar caminhos para todos os pontos.")
-            break
-            
-        proximo = min(menores, key=menores.get)
-        caminho.append(proximo)
-        total += menores[proximo]
-        visitados.add(proximo)
-        nao_visitados.remove(proximo)
-        atual = proximo
-
-    print(f"⏱️ Tempo de execução: {time.time() - start_time:.2f} segundos")
-    return caminho, total
-
-def branch_and_bound(inicio: str, locais: List[str], coordenadas: Dict, limite_vertices=10) -> Tuple[List[str], float]:
-    """Algoritmo Branch and Bound para o problema do caixeiro viajante."""
+    Returns:
+        Tuple[List[str], float]: Uma tupla com a lista do caminho e a distância total.
+    """
     print("\n🌳 Calculando rota por Branch and Bound...")
     start_time = time.time()
-    
-    # Se o número de locais for grande, usa apenas um subconjunto
-    if len(locais) > limite_vertices:
-        print(f"⚠️ Número de locais ({len(locais)}) excede o limite para branch and bound ({limite_vertices}).")
-        print(f"Usando apenas os primeiros {limite_vertices} locais.")
-        locais_subset = locais[:limite_vertices]
-    else:
-        locais_subset = locais
-    
-    n = len(locais_subset)
-    todos_vertices = [inicio] + locais_subset
-    melhor_custo = float('inf')
+
+    todos_locais = set(locais)
     melhor_rota = None
-    nos_visitados = 0
-    
+    melhor_distancia = float('inf')
+
     def calcular_limite_inferior(rota_atual: List[str], nao_visitados: set) -> float:
-        """Calcula um limite inferior para o custo restante."""
+        """Calcula um limite inferior para a distância total da rota."""
         if not nao_visitados:
             return 0
-            
-        # Estimativa otimista: menor aresta conectando cada vértice não visitado
-        estimativa = 0
-        for v in nao_visitados:
-            menor_aresta = min(distancia_km(v, outro, coordenadas) 
-                              for outro in todos_vertices if outro != v)
-            estimativa += menor_aresta / 2  # Divide por 2 para evitar contar arestas duplicadas
         
-        return estimativa
+        # Soma a menor aresta saindo de cada nó não visitado
+        soma = 0
+        for local in nao_visitados:
+            menor_dist = min(distancia_km(local, outro, coordenadas) 
+                           for outro in nao_visitados.union({rota_atual[-1]}) 
+                           if outro != local)
+            soma += menor_dist
+        return soma
 
     def branch_and_bound_rec(custo_atual: float, rota_atual: List[str], visitados: set):
-        nonlocal melhor_custo, melhor_rota, nos_visitados
-        nos_visitados += 1
+        """Função recursiva do Branch and Bound."""
+        nonlocal melhor_rota, melhor_distancia
         
-        # Se todos os vértices foram visitados
-        if len(visitados) == n + 1:
-            if custo_atual < melhor_custo:
-                melhor_custo = custo_atual
+        # Verifica se todos os pontos foram visitados
+        if len(visitados) == len(todos_locais):
+            if custo_atual < melhor_distancia:
+                melhor_distancia = custo_atual
                 melhor_rota = rota_atual[:]
             return
-            
-        # Calcula limite inferior
-        nao_visitados = set(todos_vertices) - visitados
-        limite = custo_atual + calcular_limite_inferior(rota_atual, nao_visitados)
         
-        if limite >= melhor_custo:
-            return  # Poda o ramo
-            
-        # Tenta cada vértice não visitado como próximo na rota
+        # Poda se o custo atual já é maior que o melhor encontrado
+        if custo_atual >= melhor_distancia:
+            return
+        
+        # Calcula limite inferior
+        limite = custo_atual + calcular_limite_inferior(rota_atual, todos_locais - visitados)
+        if limite >= melhor_distancia:
+            return
+        
+        # Explora os próximos pontos possíveis
         atual = rota_atual[-1]
-        for proximo in todos_vertices:
-            if proximo not in visitados:
-                novo_custo = custo_atual + distancia_km(atual, proximo, coordenadas)
-                
-                # Poda se o custo parcial já excede o melhor
-                if novo_custo < melhor_custo:
-                    branch_and_bound_rec(novo_custo, rota_atual + [proximo], visitados | {proximo})
+        for proximo in todos_locais - visitados:
+            dist = distancia_km(atual, proximo, coordenadas)
+            branch_and_bound_rec(
+                custo_atual + dist,
+                rota_atual + [proximo],
+                visitados | {proximo}
+            )
 
-    # Inicia a recursão
+    # Inicia a busca
     branch_and_bound_rec(0, [inicio], {inicio})
     
-    # Se usamos um subconjunto, completa a rota usando vizinho mais próximo
-    if len(locais_subset) < len(locais):
-        print(f"🔄 Completando a rota para os {len(locais) - len(locais_subset)} locais restantes usando vizinho mais próximo...")
-        
-        locais_restantes = [loc for loc in locais if loc not in locais_subset]
-        atual = melhor_rota[-1]
-        
-        while locais_restantes:
-            proximo = min(locais_restantes, key=lambda x: distancia_km(atual, x, coordenadas))
-            melhor_rota.append(proximo)
-            melhor_custo += distancia_km(atual, proximo, coordenadas)
-            locais_restantes.remove(proximo)
-            atual = proximo
-    
-    print(f"⏱️ Tempo de execução: {time.time() - start_time:.2f} segundos (nós visitados: {nos_visitados})")
-    return melhor_rota, melhor_custo
+    if melhor_rota is None:
+        print("⚠️ Não foi possível encontrar uma rota válida")
+        return [], 0
+
+    print(f"⏱️ Tempo de execução: {time.time() - start_time:.2f} segundos")
+    return melhor_rota, melhor_distancia
 
 def main():
-    """Função principal para execução dos algoritmos."""
-    print("\n🚀 OTIMIZADOR DE ROTAS - ITUIUTABA, MG")
-    print("=" * 50)
-    
+    """Função principal que executa e compara os algoritmos."""
     try:
-        # Converte endereços em coordenadas
+        print("🚀 Iniciando otimização de rotas...")
+        
+        def imprimir_rota(rota: List[str], titulo: str):
+            """Imprime uma rota formatada."""
+            print(f"\n=== {titulo} ===")
+            for i, endereco in enumerate(rota):
+                print(f"{i+1}. {endereco}")
+
+        # Geocodifica todos os endereços
         coordenadas = geocodificar_enderecos()
         
-        # Gera grafo
-        todos_enderecos = [PONTO_INICIAL] + ENDERECOS
-        print(f"\n📊 Gerando grafo com {len(todos_enderecos)} pontos...")
-        grafo = gerar_grafo(todos_enderecos, coordenadas)
+        if not coordenadas:
+            print("❌ Não foi possível obter as coordenadas dos endereços")
+            return
         
-        print("\n=== 🚗 Calculando rotas... ===")
+        # Remove o ponto inicial da lista de endereços para evitar duplicação
+        locais = [e for e in ENDERECOS if e != PONTO_INICIAL]
         
-        # Para melhor performance, limita o número de locais para branch and bound
-        limite_bb = 10  # Limite para branch and bound
+        # Gera o grafo com as distâncias
+        grafo = gerar_grafo([PONTO_INICIAL] + locais, coordenadas)
         
-        # Executa algoritmos
-        def imprimir_rota(rota: List[str], titulo: str):
-            """Função auxiliar para imprimir rota detalhada"""
-            print(f"\nRota {titulo}:")
-            for i, ponto in enumerate(rota):
-                if i == 0:
-                    print(f"Início: {ponto}")
-                else:
-                    print(f"{i}. {ponto}")
-
-        print("\n=== 🔄 Executando Vizinho Mais Próximo ===")
-        rota_vmp, dist_vmp = vizinho_mais_proximo(PONTO_INICIAL, ENDERECOS[:], coordenadas)
-        print(f"Distância total: {dist_vmp:.2f} km")
-        imprimir_rota(rota_vmp, "Vizinho Mais Próximo")
-
-        print("\n=== 📍 Executando Dijkstra ===")
-        rota_dij, dist_dij = dijkstra(grafo, PONTO_INICIAL, ENDERECOS[:])
-        print(f"Distância total: {dist_dij:.2f} km")
-        imprimir_rota(rota_dij, "Dijkstra")
-
-        print("\n=== ⭐ Executando A* ===")
-        rota_ast, dist_ast = a_star(grafo, PONTO_INICIAL, ENDERECOS[:], coordenadas)
-        print(f"Distância total: {dist_ast:.2f} km")
-        imprimir_rota(rota_ast, "A*")
-
-        # Branch and Bound só executa se houver 5 ou menos endereços
-        if len(ENDERECOS) <= 5:
-            print("\n=== 🌳 Executando Branch and Bound ===")
-            rota_bb, dist_bb = branch_and_bound(PONTO_INICIAL, ENDERECOS[:], coordenadas, limite_bb)
-            print(f"Distância total: {dist_bb:.2f} km")
-            imprimir_rota(rota_bb, "Branch and Bound")
-        else:
-            print("\n⚠️ Branch and Bound não executado: número de endereços ({}) > 5".format(len(ENDERECOS)))
-            rota_bb, dist_bb = None, float('inf')
-
-        # Imprime resultados
-        print("\n=== 📊 Resultados ===")
+        # Executa os algoritmos
+        rota_vmp, dist_vmp = vizinho_mais_proximo(PONTO_INICIAL, locais, coordenadas)
+        rota_dij, dist_dij = dijkstra(grafo, PONTO_INICIAL, locais)
+        rota_bb, dist_bb = branch_and_bound(PONTO_INICIAL, locais, coordenadas)
         
-        print("\n🔁 Vizinho Mais Próximo:")
-        print(f"- {rota_vmp[0]}")
-        for i, r in enumerate(rota_vmp[1:], 1):
-            print(f"{i}. {r}")
-        print(f"Distância total: {dist_vmp:.2f} km\n")
-
-        print("📍 Dijkstra:")
-        print(f"- {rota_dij[0]}")
-        for i, r in enumerate(rota_dij[1:], 1):
-            print(f"{i}. {r}")
-        print(f"Distância total: {dist_dij:.2f} km\n")
-
-        print("⭐ A*:")
-        print(f"- {rota_ast[0]}")
-        for i, r in enumerate(rota_ast[1:], 1):
-            print(f"{i}. {r}")
-        print(f"Distância total: {dist_ast:.2f} km\n")
+        # Imprime os resultados
+        print("\n🎯 Resultados:")
+        print(f"\nVizinho Mais Próximo:")
+        imprimir_rota(rota_vmp, "Rota")
+        print(f"📏 Distância total: {dist_vmp:.2f} km")
         
-        if rota_bb is not None:
-            print("🌳 Branch and Bound:")
-            print(f"- {rota_bb[0]}")
-            for i, r in enumerate(rota_bb[1:], 1):
-                print(f"{i}. {r}")
-            print(f"Distância total: {dist_bb:.2f} km\n")
-        else:
-            print("🌳 Branch and Bound: Não executado (muitos endereços)\n")
+        print(f"\nDijkstra:")
+        imprimir_rota(rota_dij, "Rota")
+        print(f"📏 Distância total: {dist_dij:.2f} km")
         
-        # Compara resultados
-        print("=== 📈 Comparação ===")
-        # Calcula melhor distância apenas com algoritmos executados
-        algoritmos_executados = [dist_vmp, dist_dij, dist_ast]
-        if rota_bb is not None:
-            algoritmos_executados.append(dist_bb)
+        print(f"\nBranch and Bound:")
+        imprimir_rota(rota_bb, "Rota")
+        print(f"📏 Distância total: {dist_bb:.2f} km")
         
-        melhor_dist = min(algoritmos_executados)
+        # Compara os resultados
+        print("\n📊 Comparação:")
+        resultados = [
+            ("Vizinho Mais Próximo", dist_vmp),
+            ("Dijkstra", dist_dij),
+            ("Branch and Bound", dist_bb)
+        ]
+        melhor = min(resultados, key=lambda x: x[1])
+        print(f"🏆 Melhor algoritmo: {melhor[0]} com {melhor[1]:.2f} km")
         
-        def calc_diferenca(dist):
-            return ((dist - melhor_dist) / melhor_dist) * 100 if melhor_dist > 0 else 0
-            
-        print(f"\nDiferença percentual em relação à melhor solução:")
-        print(f"Vizinho Mais Próximo: {calc_diferenca(dist_vmp):.2f}%")
-        print(f"Dijkstra: {calc_diferenca(dist_dij):.2f}%")
-        print(f"A*: {calc_diferenca(dist_ast):.2f}%")
-        print(f"Branch and Bound: {calc_diferenca(dist_bb):.2f}%")
-        
-        # Identifica o melhor algoritmo
-        algoritmos = {
-            "Vizinho Mais Próximo": dist_vmp,
-            "Dijkstra": dist_dij,
-            "A*": dist_ast
-        }
-        if rota_bb is not None:
-            algoritmos["Branch and Bound"] = dist_bb
-        melhor_algoritmo = min(algoritmos.items(), key=lambda x: x[1])[0]
-        print(f"\n🏆 Melhor algoritmo: {melhor_algoritmo} com distância de {melhor_dist:.2f} km")
-
     except Exception as e:
         print(f"❌ Erro durante a execução: {str(e)}")
-        import traceback
-        traceback.print_exc()
 
 if __name__ == "__main__":
     main()
