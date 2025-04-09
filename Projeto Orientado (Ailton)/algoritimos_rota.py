@@ -339,35 +339,50 @@ def vizinho_mais_proximo(inicio: str, locais: List[str], coordenadas: Dict) -> T
     return rota, distancia_total
 
 def dijkstra(grafo: nx.Graph, inicio: str, locais: List[str]) -> Tuple[List[str], float]:
-    """Algoritmo de Dijkstra para encontrar caminhos."""
+    """
+    Algoritmo otimizado de Dijkstra para encontrar o caminho mais curto que conecta um conjunto de pontos.
+
+    Args:
+        grafo (nx.Graph): Grafo ponderado com os pontos e arestas.
+        inicio (str): O ponto de partida.
+        locais (List[str]): Lista de pontos que devem ser visitados.
+
+    Returns:
+        Tuple[List[str], float]: Uma tupla com a lista do caminho percorrido e a distância total.
+    """
     print("\n📍 Calculando rota por Dijkstra...")
     start_time = time.time()
-    
+
+    # Inicialização
     caminho = [inicio]
-    atual = inicio
     total = 0
-    visitados = set([inicio])
     nao_visitados = set(locais)
+    atual = inicio
 
     while nao_visitados:
-        menores = {}
-        for destino in nao_visitados:
-            try:
-                distancia = nx.dijkstra_path_length(grafo, atual, destino, weight='weight')
-                menores[destino] = distancia
-            except nx.NetworkXNoPath:
-                continue
-        
-        if not menores:
-            print("⚠️ Não foi possível encontrar caminhos para todos os pontos.")
+        try:
+            # Calcula as distâncias de 'atual' para todos os outros nós usando Dijkstra
+            distancias, _ = nx.single_source_dijkstra(grafo, atual, weight='weight')
+
+            # Filtra os nós não visitados e verifica o mais próximo
+            menores_distancias = {no: distancias[no] for no in nao_visitados if no in distancias}
+
+            if not menores_distancias:
+                print("⚠️ Não foi possível encontrar caminhos para todos os pontos.")
+                break
+
+            # Escolhe o próximo nó com a menor distância
+            proximo = min(menores_distancias, key=menores_distancias.get)
+
+            # Atualiza o caminho, a distância total e o nó atual
+            caminho.append(proximo)
+            total += menores_distancias[proximo]
+            nao_visitados.remove(proximo)
+            atual = proximo
+
+        except nx.NetworkXNoPath:
+            print(f"⚠️ Não há caminho entre {atual} e os pontos restantes.")
             break
-            
-        proximo = min(menores, key=menores.get)
-        caminho.append(proximo)
-        total += menores[proximo]
-        visitados.add(proximo)
-        nao_visitados.remove(proximo)
-        atual = proximo
 
     print(f"⏱️ Tempo de execução: {time.time() - start_time:.2f} segundos")
     return caminho, total
