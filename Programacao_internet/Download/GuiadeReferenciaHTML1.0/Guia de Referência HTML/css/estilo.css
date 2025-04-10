@@ -1,0 +1,151 @@
+/* CSS */
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	color: #333333;
+	background-color: #333333;
+}
+
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+h1 {
+	font-size: 30px;
+	font-weight: normal;
+	padding-bottom: 10px;
+	margin-top: 30px;
+	border-bottom: 2px solid #52A3CC;
+}
+
+#menu {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	background-color: #006699;
+	color: #ffffff;
+	box-shadow: 0px 3px 10px #000000;
+}
+#menu .left {
+	float: left;
+	margin: 10px 20px;
+	font: normal 28px Impact;
+	color: #FFFFFF;
+	text-shadow: 3px 3px 10px #000000;
+}
+#menu .right {
+	float: right;
+	margin: 15px 20px;
+}
+
+#main {
+	margin: 10px;
+	padding: 20px;
+	background-color: #FFFFFF;
+	border: 2px solid #808080;
+}
+
+#rodape {
+	padding: 15px;
+	margin-top: 50px;
+	text-align: center;
+	color: #333;
+	background: linear-gradient(#FFFFFF, #EFEFEF);
+}
+#rodape a {
+	color: #006699;
+	text-decoration: none;
+}
+
+div.tag {
+	clear: both;
+	margin-top: 10px;
+}
+div.tag div.cab {
+	margin: 10px 0px;
+	padding: 5px;
+	cursor: pointer;
+}
+div.tag div.cab:hover{
+	background-color: #F8F8F8;
+}
+div.tag div.cab span.nome {
+	float: left;
+	width: 150px;
+	font-size: 17px;
+	font-weight: bold;
+	display: block;
+}
+div.tag div.cab span.descricao {
+	font-size: 17px;
+	display: block;
+}
+div.tag div.info {
+	clear: both;
+	display: none;
+	margin-left: 50px;
+	border-bottom: 1px dotted #52A3CC;
+}
+
+code {
+	background-color: F5F5F5;
+	border: 1px solid #D0D0D0;
+	border-radius: 5px;
+	margin: 10px 10px 10px 0px;
+	padding: 5px 15px;
+	display: block;
+	clear: both;
+}
+
+samp {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: #B2F0B2; /*E0F5FF;*/
+	border: 1px solid #008F00; /*#52A3CC;*/
+	border-radius: 5px;
+	margin: 10px 10px 10px 0px;
+	padding: 5px 15px;
+	display: block;
+	clear: both;
+}
+
+table.atributos {
+	width: 100%;
+}
+table.atributos th {
+	padding: 5px;
+	color: #FFFFFF;
+	background-color: #297ACC;
+}
+table.atributos tr:nth-child(odd) {
+	background-color: #EBF5FF;
+}
+table.atributos td:first-child {
+	width: 100px;
+	font-style: italic;
+}
+table.atributos td {
+	padding: 5px;
+	vertical-align: top;
+}
+
+span.exemplo {
+	display: block;
+	width: 16px;
+	height: 16px;
+	background: url(../imagens/script_code_red.png) no-repeat;
+	cursor: pointer;
+	float: right;
+}
+
+samp a.feminino {
+	color: #FF66CC;
+}
+samp a.masculino {
+	color: #3399FF;
+}
+

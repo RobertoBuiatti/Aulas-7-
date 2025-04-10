@@ -1,0 +1,140 @@
+/* 
+Seletores
+TAG -> tag{}
+ID -> #elemento{}
+CLASS ->  .grupo{}
+*/
+
+body{
+    background-color: #e0e7ee;
+    font-family: "PT Serif", serif;
+    padding: 20px;
+}
+
+.interrompe-float{
+    clear: both;
+}
+
+.site{
+    width: 1000px;
+    margin: 0 auto; /* Centraliza o conteúdo */
+}
+
+.card-filme{
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.filme-topo{
+    background: linear-gradient(to bottom, rgba(52, 73, 94, 0.2), transparent );
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.filme-titulo{
+    font-family: "PT Serif", serif;
+    size: 40px;
+    color: #2c3e50;
+} 
+
+.filme-titulo span{
+    color: #7f8c8d;
+    font-weight: 30;  /* Espessura */
+}
+
+.poster{
+    width: 300px;
+    float: left;
+}
+
+.poster img{
+    width: 300px;
+    border-radius: 10px;
+    transition: transform 0.5s ease; 
+}
+
+.poster img:hover{
+    transform: scale(1.05);
+}
+
+.filme-info{
+    float: left;
+    margin-left: 30px;
+}
+
+.avaliacao{
+
+}
+
+.estrelas{
+
+}
+
+.estrelas img{
+    width: 24px;
+    margin-right: 5px;
+}
+
+.estrelas span{
+    font-weight: 700;
+    font-size: 20px;
+    color: #f39c12;
+    margin-left: 10px;
+}
+
+/* Gêneros */
+.generos{
+    margin-bottom: 25px;
+}
+
+.genero{
+    display: inline-block;
+    border: 1px solid #333;
+    background-color: rgba(52, 73, 94, 0.2);
+    border-radius: 20px;
+    margin-right: 10px;
+    padding: 5px 15px; /* Espaçamento interno: vertical horizontal */
+}
+
+/* Streamings */
+
+.botao-trailer{
+    display: inline-block;
+    background-color: #2c3e50;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Deslocamento Horizontal, Delocamento Vertical e Tamanho Cor */
+    transition: background-color 0.3s ease;
+}
+
+.botao-trailer:hover{
+    background-color: #0080ff;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+}
+
+.botao-trailer span{
+    margin-right: 10px;
+}
+
+.streaming{
+    margin-top: 40px;
+}
+
+.streaming-icone{
+    margin-right: 25px;
+}
+
+.streaming-icone img{
+    width: 70px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.streaming-icone img:hover{
+    transform: scale(1.15);
+}

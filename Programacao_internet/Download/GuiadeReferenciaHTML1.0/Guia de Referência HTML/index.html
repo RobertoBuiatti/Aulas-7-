@@ -1,0 +1,1291 @@
+<html>
+<link href="css/estilo.css" rel="stylesheet" type="text/css">
+<body>
+	<meta charset="utf-8">
+	<title>Guia de Referência HTML e CSS</title>
+	<link href="css/estilo.css" rel="stylesheet">
+	<script src="js/jquery-1.11.0.min.js"></script>
+	<script src="js/scripts.js"></script>
+</head>
+<body>
+
+<div id="menu">
+	<div class="left">Guia de referência HTML</div>
+    <div class="right">
+    	Ir para: 
+        <select id="selMenu">
+        	<option value="0">-- Selecione... --</option>
+        	<option value="texto">Formatação de texto</option>
+        	<option value="links">Links e Imagens</option>
+        	<option value="listas">Listas</option>
+        	<option value="tabelas">Tabelas</option>
+        	<option value="formularios">Formulários</option>
+        	<option value="divs">Divisões e layouts</option>
+        	<option value="atributos">Atributos seletores</option>
+        </select>
+    </div>
+</div>
+
+<div id="main">
+	
+    <a name="texto">&nbsp;</a>
+	<h1>Formatação de texto</h1>
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">BR</span>
+			<span class="descricao">Quebra de linha</span>
+		</div>
+		<div class="info">
+			<code>
+				Primeira Linha &lt;br&gt;<br>
+				Segunda Linha &lt;br&gt;&lt;br&gt;<br><br>
+				Quarta Linha &lt;br&gt;
+			</code>
+			<samp>
+				Primeira Linha<br>
+				Segunda Linha<br><br>
+				Quarta Linha
+			</samp>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">B</span>
+			<span class="descricao">Formata o texto em negrito</span>
+		</div>
+		<div class="info">
+			<code>
+				Parte deste texto está em &lt;b&gt;negrito&lt;/b&gt;
+			</code>
+			<samp>
+				Parte deste texto está em <b>negrito</b>
+			</samp>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">I</span>
+			<span class="descricao">Formata o texto em itálico</span>
+		</div>
+		<div class="info">
+			<code>
+				Parte deste texto está em &lt;b&gt;itálico&lt;/b&gt;
+			</code>
+			<samp>
+				Parte deste texto está em <i>itálico</i>
+			</samp>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">U</span>
+			<span class="descricao">Formata o texto em sublinhado</span>
+		</div>
+		<div class="info">
+			<code>
+				Parte deste texto está &lt;b&gt;sublinhado&lt;/b&gt;
+			</code>
+			<samp>
+				Parte deste texto está <u>sublinhado</u>
+			</samp>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">S</span>
+			<span class="descricao">Formata o texto para tachado</span>
+		</div>
+		<div class="info">
+			<code>
+				Parte deste texto está &lt;s&gt;tachado&lt;/s&gt;
+			</code>
+			<samp>
+				Parte deste texto está <s>tachado</s>
+			</samp>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">SUP</span>
+			<span class="descricao">Formata o texto para sobrescrito</span>
+		</div>
+		<div class="info">
+			<code>
+				Expressão matemática: x&lt;sup&gt;2&lt;/sup&gt;
+			</code>
+			<samp>
+				Expressão matemática: x<sup>2</sup>
+			</samp>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">SUB</span>
+			<span class="descricao">Formata o texto em subescrito</span>
+		</div>
+		<div class="info">
+			<code>
+				Expressão matemática: x&lt;sub&gt;2&lt;/sub&gt;
+			</code>
+			<samp>
+				Expressão matemática: x<sub>2</sub>
+			</samp>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">P</span>
+			<span class="descricao">Define um parágrafo</span>
+		</div>
+		<div class="info">
+			<table class="atributos">
+            	<tr>
+                	<th>Atributo</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr>
+                	<td>ALIGN</td>
+                    <td>O alinhamento do texto.<br>Valores: left | right | center | justify, respectivamente: esquerda | direita | centro | justificado.</td>
+                </tr>
+            </table>
+			<code>
+				&lt;p&gt;Phasellus ac risus vel lacus molestie pretium. Nulla rutrum vel lorem quis tempor. Integer fermentum dui eu nisl ultricies tincidunt. Nunc sagittis augue molestie consequat congue. Etiam nec luctus mauris, et consectetur erat. Cras a sodales felis. In pharetra gravida suscipit. Aenean in luctus arcu. Nunc arcu arcu, adipiscing sit amet scelerisque vitae, condimentum sed ligula. Sed molestie arcu nunc.
+				&lt;/p&gt;<br><br>
+				&lt;p align="justify"&gt;Nullam hendrerit urna sit amet risus ultrices, cursus sodales justo dictum. Morbi ac euismod nisi, nec tincidunt arcu. Praesent fringilla sapien massa, eu ultricies mi mattis ut. Suspendisse venenatis purus massa. Aenean aliquam at libero et convallis. Vivamus quis felis vel sem varius pharetra sit amet et magna. Praesent egestas diam eu consectetur ultrices. Aliquam ut odio id diam laoreet dictum. Nulla et dolor vel magna dignissim faucibus in a velit. Nunc ac gravida orci, nec porta nibh. Duis vulputate id neque sed auctor.
+				&lt;/p&gt;
+			</code>
+			<samp>
+				<p>Phasellus ac risus vel lacus molestie pretium. Nulla rutrum vel lorem quis tempor. Integer fermentum dui eu nisl ultricies tincidunt. Nunc sagittis augue molestie consequat congue. Etiam nec luctus mauris, et consectetur erat. Cras a sodales felis. In pharetra gravida suscipit. Aenean in luctus arcu. Nunc arcu arcu, adipiscing sit amet scelerisque vitae, condimentum sed ligula. Sed molestie arcu nunc.
+				</p>
+				<p align="justify">Nullam hendrerit urna sit amet risus ultrices, cursus sodales justo dictum. Morbi ac euismod nisi, nec tincidunt arcu. Praesent fringilla sapien massa, eu ultricies mi mattis ut. Suspendisse venenatis purus massa. Aenean aliquam at libero et convallis. Vivamus quis felis vel sem varius pharetra sit amet et magna. Praesent egestas diam eu consectetur ultrices. Aliquam ut odio id diam laoreet dictum. Nulla et dolor vel magna dignissim faucibus in a velit. Nunc ac gravida orci, nec porta nibh. Duis vulputate id neque sed auctor.
+				</p>
+			</samp>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">H1...H6</span>
+			<span class="descricao">Define títulos e subtítulos</span>
+		</div>
+		<div class="info">
+			<code>
+				x&lt;h1&gt;Título da Página&lt;/h1&gt;<br>
+				x&lt;h2&gt;Subtítulo da Página&lt;/h2&gt;<br>
+				x&lt;h3&gt;Nome do Autor e Data&lt;/h3&gt;
+			</code>
+			<samp>
+				<h1>Título da Página</h1>
+                <h2>Subtítulo da Página</h2>
+                <h3>Nome do Autor e Data</h3>
+			</samp>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">BLOCKQUOTE</span>
+			<span class="descricao">Define uma citação</span>
+		</div>
+		<div class="info">
+			<table class="atributos">
+            	<tr>
+                	<th>Atributo</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr>
+                	<td>CITE</td>
+                    <td>A URL de onde a citação foi tirada</td>
+                </tr>
+            </table>
+			<code>
+				&lt;p&gt;Abaixo uma citação:&lt;/p&gt;<br>
+                &lt;blockquote cite="http://www.worldwildlife.org/who/index.html"&gt;<br>
+				&lt;p&gt;For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.&lt;/p&gt;<br>
+				&lt;/blockquote&gt;
+			</code>
+			<samp>
+				<p>Abaixo uma citação:</p>
+                <blockquote cite="http://www.worldwildlife.org/who/index.html">
+                	<p>For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.</p>
+                </blockquote>
+			</samp>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">PRE</span>
+			<span class="descricao">Insere um texto pré-formatado, exatamente como foi digitado.</span>
+		</div>
+		<div class="info">
+			Com a tag PRE todos os espaços em branco e as quebras de linhas inseridas no texto serão respeitadas, não sendo necessário o uso de outras TAGS HTML para aplicar o mesmo efeito.
+			<code>
+				&lt;pre&gt;
+<pre>
+E  E9  E    A9 A9(13) A9    D9                           
+Quem um dia irá dizer que existe razão     
+        E     E9      E  
+nas coisas feitas pelo coração
+</pre>
+				&lt;/pre&gt;
+			</code>
+			<samp>
+<pre>
+E  E9  E    A9 A9(13) A9    D9                           
+Quem um dia irá dizer que existe razão     
+        E     E9      E  
+nas coisas feitas pelo coração
+</pre>
+			</samp>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">HR</span>
+			<span class="descricao">Insere uma linha vertical</span>
+		</div>
+		<div class="info">
+			Utilizada para separar um conteúdo de uma página.
+			<code>
+				Área do texto<br>
+                &lt;hr&gt;<br>
+				Outra área de texto
+			</code>
+			<samp>
+				Área do texto
+                <hr>
+				Outra área de texto
+			</samp>
+		</div>
+	</div>
+    
+    
+    <a name="links">&nbsp;</a>
+    <h1>Links e Imagens</h1>
+    
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">A</span>
+			<span class="descricao">Insere um link</span>
+		</div>
+		<div class="info">
+			<table class="atributos">
+            	<tr>
+                	<th>Atributo</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr>
+                	<td>HREF</td>
+                    <td>Endereço completo da página ou do site.<br>Caso deseje linkar um outro site, inicie o endereço com <i>"http://"</i>.<br>Se o destino for a mesma página basta colocar <i>"#nomedaseção"</i>.</td>
+                </tr>
+                <tr>
+                	<td>TARGET</td>
+                    <td>Para abrir a página em uma nova Aba/Guia/Janela utilize este atributo com o valor <i>"_blank"</i>.</td>
+                </tr>
+                <tr>
+                	<td>TITLE</td>
+                    <td>Texto exibido após alguns segundos caso o mouse seja posicionado sobre este elemento.</td>
+                </tr>
+                <tr>
+                	<td>NAME</td>
+                    <td>Torna o elemento uma seção para ser combinado com um link, utilizando o # e o nome da seção.</td>
+                </tr>
+            </table>
+            <code>
+				&lt;a href="index.html"&gt;Ir para uma página&lt;/a&gt;<br>
+				&lt;a href="http://www.google.com" target="_blank" title="Abrir em uma nova Aba"&gt;Ir para o Google&lt;/a&gt;<br><br>
+                
+				&lt;a name="exemplo"&gt;Esta é uma seção chamada "exemplo"&lt;/a&gt;<br>
+				&lt;a href="#exemplo"&gt;Ir para a seção "exemplo"&lt;/a&gt;
+            </code>
+			<samp>
+				<a href="index.html">Ir para uma página</a><br>
+				<a href="http://www.google.com" target="_blank" title="Abrir em uma nova Aba">Ir para o Google</a><br><br>
+                
+				<a name="exemplo">Esta é uma seção chamada "exemplo"</a><br>
+				<a href="#exemplo">Ir para a seção "exemplo"</a>
+			</samp>
+		</div>
+	</div>
+    
+    <div class="tag">
+		<div class="cab">
+			<span class="nome">IMG</span>
+			<span class="descricao">Insere uma imagem</span>
+		</div>
+		<div class="info">
+			<table class="atributos">
+            	<tr>
+                	<th>Atributo</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr>
+                	<td>SRC</td>
+                    <td><b>(Obrigatório)</b> Endereço completo da imagem, com caminho e extensão.</td>
+                </tr>
+                <tr>
+                	<td>WIDTH</td>
+                    <td>Largura da imagem.<br>Pode ser informado com valores exatos como "200" ou proporcionais, como "50%".</td>
+                </tr>
+                <tr>
+                	<td>HEIGHT</td>
+                    <td>Largura da imagem.<br>Pode ser informado com valores exatos como "200" ou proporcionais, como "50%".<br>Informando ambas Largura e Altura, a imagem terá a dimensão exata informada, informando apenas uma das duas a imagem mudará de tamanho proporcionalmente (recomendado).</td>
+                </tr>
+                <tr>
+                	<td>ALT</td>
+                    <td>Texto alternativo caso a imagem não seja exibida.<br>Também utilizado para acessibilidade.</td>
+                </tr>
+                <tr>
+                	<td>ALIGN</td>
+                    <td>Caso deseje inserir texto ao lado da imagem, utilize este atributo para posicionar a Imagem em relação ao Texto.<br>Valores: left | right</td>
+                </tr>
+                <tr>
+                	<td>TITLE</td>
+                    <td>Texto exibido após alguns segundos caso o mouse seja posicionado sobre este elemento.</td>
+                </tr>
+            </table>
+            <code>
+				&lt;img src="fotos/cachorro.jpg" width="150" alt="Cachorro" align="left"&gt;<br>
+                Phasellus ac risus vel lacus molestie pretium. Nulla rutrum vel lorem quis tempor. Integer fermentum dui eu nisl ultricies tincidunt. Nunc sagittis augue molestie consequat congue. Etiam nec luctus mauris, et consectetur erat. Cras a sodales felis. In pharetra gravida suscipit. Aenean in luctus arcu. Nunc arcu arcu, adipiscing sit amet scelerisque vitae, condimentum sed ligula. Sed molestie arcu nunc.
+			</code>
+			<samp>
+				<img src="fotos/cachorro.jpg" width="150" alt="Cachorro" align="left">
+                Phasellus ac risus vel lacus molestie pretium. Nulla rutrum vel lorem quis tempor. Integer fermentum dui eu nisl ultricies tincidunt. Nunc sagittis augue molestie consequat congue. Etiam nec luctus mauris, et consectetur erat. Cras a sodales felis. In pharetra gravida suscipit. Aenean in luctus arcu. Nunc arcu arcu, adipiscing sit amet scelerisque vitae, condimentum sed ligula. Sed molestie arcu nunc.
+				<div style="clear: both;"></div>
+			</samp>
+		</div>
+	</div>
+    
+    
+    <a name="listas">&nbsp;</a>
+    <h1>Listas</h1>
+    
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">UL</span>
+			<span class="descricao">Insere uma lista não ordenada</span>
+		</div>
+		<div class="info">
+			<code>
+				&lt;ul&gt;<br>
+                &nbsp;&nbsp; &lt;li&gt;Gato&lt;/li&gt;<br>
+                &nbsp;&nbsp; &lt;li&gt;Cachorro&lt;/li&gt;<br>
+                &nbsp;&nbsp; &lt;li&gt;Pássado&lt;/li&gt;<br>
+				&lt;/ul&gt;
+			</code>
+			<samp>
+				<ul>
+                	<li>Gato</li><li>Cachorro</li><li>Pássaro</li>
+                </ul>
+			</samp>
+		</div>
+	</div>
+    
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">OL</span>
+			<span class="descricao">Insere uma lista ordenada</span>
+		</div>
+		<div class="info">
+        	<table class="atributos">
+            	<tr>
+                	<th>Atributo</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr>
+                	<td>TYPE</td>
+                    <td>Modifica o tipo de ordenação.<br>Valores: 1 | A | a | I | i , sendo respectivamente: Numérico, Alfanumérico maiúsculo, Alfanumérico minúsculo, Numérico Romano maiúsculo, Numérico Romano minúsculo.</td>
+                </tr>
+                <tr>
+                	<td>START</td>
+                    <td>O valor inicial da contagem da lista.</td>
+                </tr>
+            </table>
+			<code>
+				&lt;ol&gt;<br>
+                &nbsp;&nbsp; &lt;li&gt;Gato&lt;/li&gt;<br>
+                &nbsp;&nbsp; &lt;li&gt;Cachorro&lt;/li&gt;<br>
+                &nbsp;&nbsp; &lt;li&gt;Pássado&lt;/li&gt;<br>
+				&lt;/ol&gt;
+			</code>
+			<samp>
+				<ol>
+                	<li>Gato</li><li>Cachorro</li><li>Pássaro</li>
+                </ol>
+			</samp>
+		</div>
+	</div>
+    
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">LI</span>
+			<span class="descricao">Insere um item em uma lista ordenada ou não ordenada</span>
+		</div>
+		<div class="info">
+			<code>
+				&lt;ul&gt;<br>
+                &nbsp;&nbsp; &lt;li&gt;Gato&lt;/li&gt;<br>
+                &nbsp;&nbsp; &lt;li&gt;Cachorro&lt;/li&gt;<br>
+                &nbsp;&nbsp; &lt;li&gt;Pássado&lt;/li&gt;<br>
+				&lt;/ul&gt;
+			</code>
+			<samp>
+				<ul>
+                	<li>Gato</li><li>Cachorro</li><li>Pássaro</li>
+                </ul>
+			</samp>
+		</div>
+	</div>
+    
+    
+    <a name="tabelas">&nbsp;</a>
+    <h1>Tabelas</h1>
+    
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">TABLE</span>
+			<span class="descricao">Insere uma tabela</span>
+		</div>
+		<div class="info">
+			<code>
+				&lt;table border="1"&gt;<br>
+                	&nbsp;&nbsp; &lt;tr&gt;<br>
+                    	&nbsp;&nbsp;&nbsp;&nbsp; &lt;th&gt;Animal&lt;/th&gt;<br>
+                    	&nbsp;&nbsp;&nbsp;&nbsp; &lt;th&gt;Classe&lt;/th&gt;<br>
+                    	&nbsp;&nbsp;&nbsp;&nbsp; &lt;th&gt;Peso&lt;/th&gt;<br>
+                    &nbsp;&nbsp; &lt;/tr&gt;<br>
+                    &nbsp;&nbsp; &lt;tr&gt;<br>
+                    	&nbsp;&nbsp;&nbsp;&nbsp; &lt;td width="150"&gt;Cachorro&lt;/td&gt;<br>
+                    	&nbsp;&nbsp;&nbsp;&nbsp; &lt;td width="150"&gt;Mamífero&lt;/td&gt;<br>
+                    	&nbsp;&nbsp;&nbsp;&nbsp; &lt;td width="100"&gt;7 kg&lt;/td&gt;<br>
+                    &nbsp;&nbsp; &lt;/tr&gt;<br>
+                    &nbsp;&nbsp; &lt;tr&gt;<br>
+                    	&nbsp;&nbsp;&nbsp;&nbsp; &lt;td&gt;Gato&lt;/td&gt;<br>
+                    	&nbsp;&nbsp;&nbsp;&nbsp; &lt;td&gt;Mamífero&lt;/td&gt;<br>
+                    	&nbsp;&nbsp;&nbsp;&nbsp; &lt;td&gt;3 Kg&lt;/td&gt;<br>
+                    &nbsp;&nbsp; &lt;/tr&gt;<br>
+                    &nbsp;&nbsp; &lt;tr&gt;<br>
+                    	&nbsp;&nbsp;&nbsp;&nbsp; &lt;td colspan="3"&gt;*Valores meramente ilustrativos&lt;/td&gt;<br>
+                    &nbsp;&nbsp; &lt;/tr&gt;<br>
+                &lt;/table&gt;
+			</code>
+			<samp>
+				<table border="1">
+                	<tr>
+                    	<th>Animal</th>
+                    	<th>Classe</th>
+                    	<th>Peso</th>
+                    </tr>
+                    <tr>
+                    	<td width="150">Cachorro</td>
+                    	<td width="150">Mamífero</td>
+                    	<td width="100">7 kg</td>
+                    </tr>
+                    <tr>
+                    	<td>Gato</td>
+                    	<td>Mamífero</td>
+                    	<td>3 Kg</td>
+                    </tr>
+                    <tr>
+                    	<td colspan="3">*Valores meramente ilustrativos</td>
+                    </tr>
+                </table>
+			</samp>
+		</div>
+	</div>
+    
+    <div class="tag">
+		<div class="cab">
+			<span class="nome">TR</span>
+			<span class="descricao">Insere uma linha a uma tabela</span>
+		</div>
+		<div class="info">
+			<code>
+				Ver a tag TABLE para exemplo.
+            </code>
+		</div>
+	</div>
+    
+    <div class="tag">
+		<div class="cab">
+			<span class="nome">TH</span>
+			<span class="descricao">Insere uma célula de cabeçalho a uma tabela (uma coluna)</span>
+		</div>
+		<div class="info">
+        	<table class="atributos">
+            	<tr>
+                	<th>Atributo</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr>
+                	<td>WIDTH</td>
+                    <td>Largura da coluna em pixels ou %.</td>
+                </tr>
+            </table>
+        	<code>
+				Ver a tag TABLE para exemplo.
+            </code>
+		</div>
+	</div>
+    
+    <div class="tag">
+		<div class="cab">
+			<span class="nome">TD</span>
+			<span class="descricao">Insere uma célula de dados a uma tabela (uma coluna)</span>
+		</div>
+		<div class="info">
+			<table class="atributos">
+            	<tr>
+                	<th>Atributo</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr>
+                	<td>WIDTH</td>
+                    <td>Largura da coluna em pixels ou %.</td>
+                </tr>
+                <tr>
+                	<td>COLSPAN</td>
+                    <td>Mescla duas ou mais colunas de uma tabela.</td>
+                </tr>
+                <tr>
+                	<td>ROWSPAN</td>
+                    <td>Mescla duas ou mais linhas de uma tabela.</td>
+                </tr>
+            </table>
+            <code>
+				Ver a tag TABLE para exemplo.
+            </code>
+		</div>
+	</div>
+    
+    
+    <a name="formularios">&nbsp;</a>
+    <h1>Formulários</h1>
+    
+    <div class="tag">
+		<div class="cab">
+			<span class="nome">FORM</span>
+			<span class="descricao">Insere um formulário na página</span>
+		</div>
+		<div class="info">
+			<table class="atributos">
+            	<tr>
+                	<th>Atributo</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr>
+                	<td>ACTION</td>
+                    <td><b>(Obrigatório)</b> A URL da página que receberá os dados enviados pelo formulário.</td>
+                </tr>
+                <tr>
+                	<td>METHOD</td>
+                    <td>
+                    	<b>(Recomendado)</b> A forma como os dados serão transmitidos.<br>
+                        Valores:<br>
+                        GET: os dados são enviados pela barra de endereços, no formato de QUERY STRING. <i>(Padrão)</i><br>
+                        POST: os dados são enviados "por baixo dos panos", sem serem visualizados imediatamente pelo usuário.
+                    </td>
+                </tr>
+            </table>
+            <code>
+				Informe seus dados para entrar:<br>
+                &lt;form action="entrar.php" method="post"&gt;<br>
+                &nbsp;&nbsp; Usuário: &lt;input type="text" name="usuario"&gt;<br>
+                &nbsp;&nbsp; Senha: &lt;input type="password" name="senha"&gt;<br>
+                &nbsp;&nbsp; &lt;input type="submit" value="Enviar"&gt;<br>
+                &lt;/form&gt;
+            </code>
+            <samp>
+            	Informe seus dados para entrar:<br>
+                <form action="entrar.php" method="post"><br>
+                Usuário: <input type="text" name="usuario"><br>
+                Senha: <input type="password" name="senha"><br>
+                <input type="submit" value="Enviar"><br>
+                </form>
+            </samp>
+        </div>
+    </div>
+    
+    <div class="tag">
+		<div class="cab">
+			<span class="nome">INPUT</span>
+			<span class="descricao">Insere um campo de preenchimento</span>
+		</div>
+		<div class="info">
+			<table class="atributos">
+            	<tr>
+                	<th>Atributo</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr>
+                	<td>TYPE</td>
+                    <td><b>(Obrigatório)</b> O tipo de campo que será utilizado.<br>Valores possíveis: <i>ver listagem abaixo</i>.</td>
+                </tr>
+                <tr>
+                	<td>NAME</td>
+                    <td><b>(Recomendado)</b> Nome do campo.</td>
+                </tr>
+                <tr>
+                	<td>VALUE</td>
+                    <td>Valor do campo quando já preenchido.</td>
+                </tr>
+                <tr>
+                	<td>CHECKED</td>
+                    <td>Define se uma opção estará marcada.<br>Funciona nos seguintes TYPE: <i>checkbox, radio</i>.</td>
+                </tr>
+                <tr>
+                	<td>DISABLED</td>
+                    <td>Define se um campo estará habilitado para preenchimento.<br>Se desabilitado, a informação não será enviada no formulário.</td>
+                </tr>
+                <tr>
+                	<td>MAXLENGTH</td>
+                    <td>Define o número máximo de caracteres que um campo deve aceitar.</td>
+                </tr>
+                <tr>
+                	<td>SIZE</td>
+                    <td>Define o tamanho de um campo, em caracteres.<br>Prefira utilizar CSS para definir sua largura.</td>
+                </tr>
+                <tr>
+                	<td>SRC</td>
+                    <td>Endereço da imagem a ser exibida.<br>Somente para TYPE: <i>image</i>.</td>
+                </tr>
+            </table>
+            <code>
+				Campo de texto com vazio: <br>
+                &lt;input type="text" name="usuario"&gt; <br><br>
+                Campo de texto já preenchido: <br>
+                &lt;input type="text" name="cidade" value="Ituiutaba"&gt; <br><br>
+                Campo de texto com limite de caracteres: <br>
+                &lt;input type="text" name="cep" maxlength="3""&gt; <br><br>
+                Campo de texto desabilitado: <br>
+                &lt;input type="text" name="cidade" value="Ituiutaba" disabled&gt; <br><br>
+                Campo já selecionado: <br>
+                &lt;input type="checkbox" name="termos" value="sim" checked&gt; Sim, aceito os termos
+            </code>
+            <samp>
+            	Campo de texto com vazio: <br>
+                <input type="text" name="usuario"> <br>
+                Campo de texto já preenchido: <br>
+                <input type="text" name="cidade" value="Ituiutaba"> <br>
+                Campo de texto com limite de caracteres: <br>
+                <input type="text" name="cep" maxlength="5"> <br>
+                Campo de texto desabilitado: <br>
+                <input type="text" name="cidade" value="Ituiutaba" disabled> <br>
+                Campo já selecionado: <br>
+                <input type="checkbox" name="termos" value="sim" checked> Sim, aceito os termos
+            </samp>
+            Abaixo, os possíveis valores do atributo TYPE:
+            <table class="atributos">
+            	<tr>
+                	<th>Type</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr>
+                	<td>TEXT</td>
+                    <td>Campo de texto de uma linha.</td>
+                </tr>
+                <tr>
+                	<td>PASSWORD</td>
+                    <td>Campo de senha.</td>
+                </tr>
+                <tr>
+                	<td>CHECKBOX</td>
+                    <td>
+                    	Campo de seleção múltipla.<br>Recomenda-se utilizar junto com a tag LABEL.
+                        <code class="hide">
+                        	Disponibilidade:<br>
+                            &lt;input type="checkbox" name="manha" value="manha"&gt; Manhã<br>
+                            &lt;input type="checkbox" name="tarde" value="tarde"&gt; Tarde<br>
+                            &lt;input type="checkbox" name="noite" value="noite"&gt; Noite
+                        </code>
+                        <samp>
+                        	Disponibilidade:<br>
+                            <input type="checkbox" name="manha" value="manha"> Manhã<br>
+                            <input type="checkbox" name="tarde" value="tarde"> Tarde<br>
+                            <input type="checkbox" name="noite" value="noite"> Noite
+                        </samp>
+                    </td>
+                </tr>
+                <tr>
+                	<td>RADIO</td>
+                    <td>
+                    	Campo de seleção única (entre um grupo).<br>Todos os elementos que possuírem o mesmo atributo <b>name</b> pertencem ao mesmo grupo.<br>Recomenda-se utilizar junto com a tag LABEL.
+                        <code class="hide">
+                        	Disponibilidade:<br>
+                            &lt;input type="radio" name="disponibilidade" value="manha"&gt; Manhã<br>
+                            &lt;input type="radio" name="disponibilidade" value="tarde"&gt; Tarde<br>
+                            &lt;input type="radio" name="disponibilidade" value="noite"&gt; Noite
+                        </code>
+                        <samp>
+                        	Disponibilidade:<br>
+                            <input type="radio" name="disponibilidade" value="manha"> Manhã<br>
+                            <input type="radio" name="disponibilidade" value="tarde"> Tarde<br>
+                            <input type="radio" name="disponibilidade" value="noite"> Noite
+                        </samp></td>
+                </tr>
+                <tr>
+                	<td>FILE</td>
+                    <td>
+                    	Campo para envio/upload de arquivos.
+                        <code class="hide">
+                        	Selecione um arquivo: 
+                            &lt;input type="file" name="foto"&gt;
+                        </code>
+                        <samp>
+                        	Selecione um arquivo:
+                            <input type="file" name="foto">
+                        </samp>
+                    </td>
+                </tr>
+                <tr>
+                	<td>HIDDEN</td>
+                    <td>
+                    	Campo para envio invisível.<br>
+                        Utilizado quando se deseja enviar uma informação por um formulário, mas não é necessário que o usuário preencha esta informação.<br>
+                        Por exemplo, deseja-se alterar o nome de um cliente existente, no entanto não é necessário que o usuário informe o ID deste cliente, apenas os dados a serem alterados.
+                        <code class="hide">
+                        	Informe os novos dados:<br>
+                            &lt;input type="hidden" name="id" value="235"&gt;<br>
+                            Nome: &lt;input type="text" name="nome" value="Daniel Pimentel"&gt;<br>
+                            E-mail: &lt;input type="text" name="email" value="danielpimentel@iftm.edu.br"&gt;<br>
+                            &lt;input type="submit" value="Enviar"&gt;
+                        </code>
+                        <samp>
+                        	<b>Informe os novos dados:</b><br>
+                            <input type="hidden" name="id" value="235">
+                            Nome: <input type="text" name="nome" value="Daniel Pimentel"><br>
+                            E-mail: <input type="text" name="email" value="danielpimentel@iftm.edu.br"><br>
+                            <input type="submit" value="Enviar">
+                        </samp>
+                    </td>
+                </tr>
+                <tr>
+                	<td>BUTTON</td>
+                    <td>
+                    	Insere um botão.<br>Utilizaremos Javascript para criar ações ao botão.
+                        <code class="hide">
+                        	&lt;input type="button" id="btn" value="Clique em mim" onclick="javascript:alert('Fui clicado!');"&gt;
+                        </code>
+                        <samp>
+                        	<input type="button" id="btn" value="Clique em mim" onClick="javascript:alert('Fui clicado!');">
+                        </samp>
+                    </td>
+                </tr>
+                <tr>
+                	<td>RESET</td>
+                    <td>
+                    	Insere um botão que limpa os campos do formulário ou retornam seus valores para o padrão.
+                        <code class="hide">
+                        	Informe os novos dados:<br>
+                            &lt;form&gt;
+                            Nome: &lt;input type="text" name="nome" value="Daniel Pimentel"&gt;<br>
+                            E-mail: &lt;input type="text" name="email" value="danielpimentel@iftm.edu.br"&gt;<br>
+                            &lt;input type="reset" value="Limpar"&gt;
+                            &lt;/form&gt;
+                        </code>
+                        <samp>
+                        	<b>Informe os novos dados:</b><br>
+                            <form>
+                            Nome: <input type="text" name="nome"><br>
+                            E-mail: <input type="text" name="email"><br>
+                            <input type="reset" value="Limpar">
+                            </form>
+                        </samp>
+                    </td>
+                </tr>
+                <tr>
+                	<td>SUBMIT</td>
+                    <td>
+                    	Insere um botão que envia o formulário para seu destino, especificado pelo atributo ACTION.
+                        <code class="hide">
+                        	Informe os dados:<br>
+                            &lt;form action="grava.php"&gt;
+                            Nome: &lt;input type="text" name="nome"&gt;<br>
+                            E-mail: &lt;input type="text" name="email"&gt;<br>
+                            &lt;input type="submit" value="Enviar"&gt;
+                            &lt;/form&gt;
+                        </code>
+                        <samp>
+                        	<b>Informe os novos dados:</b><br>
+                            <form action="grava.php">
+                            Nome: <input type="text" name="nome"><br>
+                            E-mail: <input type="text" name="email"><br>
+                            <input type="submit" value="Enviar">
+                            </form>
+                        </samp>
+                    </td>
+                </tr>
+                <tr>
+                	<td>IMAGE</td>
+                    <td>
+                    	Insere uma imagem que envia o formulário para seu destino (semelhante a SUBMIT).
+                        <code class="hide">
+                        	Informe os dados:<br>
+                            &lt;form action="grava.php"&gt;
+                            Nome: &lt;input type="text" name="nome"&gt;<br>
+                            E-mail: &lt;input type="text" name="email"&gt;<br>
+                            &lt;input type="image" src="imagens/botao_enviar.png"&gt;
+                            &lt;/form&gt;
+                        </code>
+                        <samp>
+                        	<b>Informe os dados:</b><br>
+                            <form action="grava.php">
+                            Nome: <input type="text" name="nome"><br>
+                            E-mail: <input type="text" name="email"><br>
+                            <input type="image" src="imagens/botao_enviar.png">
+                            </form>
+                        </samp>
+                    </td>
+                </tr>
+            </table>
+		</div>
+	</div>
+    
+    <div class="tag">
+		<div class="cab">
+			<span class="nome">TEXTAREA</span>
+			<span class="descricao">Insere um campo de texto de múltiplas linhas</span>
+		</div>
+		<div class="info">
+        	<table class="atributos">
+            	<tr>
+                	<th>Atributo</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr>
+                	<td>ROWS</td>
+                    <td>Número de linhas visíveis do campo.</td>
+                </tr>
+                <tr>
+                	<td>COLS</td>
+                    <td>Número de caracteres visíveis por linha do campo.<br>Recomenda-se utilizar CSS para definir a largura do textarea.</td>
+                </tr>
+            </table>
+			<code>
+				Textarea vazio:<br>
+                &lt;textarea name="mensagem" rows="3" cols="30"&gt;&lt;/textarea&gt;<br><br>
+                Textarea já preenchido:<br>
+                &lt;textarea name="texto" rows="3" cols="30"&gt;Texto já carregado dentro do textarea.&lt;/textarea&gt;
+			</code>
+			<samp>
+				Textarea vazio:<br>
+                <textarea name="mensagem" rows="3" cols="30"></textarea><br><br>
+                Textarea já preenchido:<br>
+                <textarea name="texto" rows="3" cols="30">Texto já carregado dentro do textarea.</textarea>
+			</samp>
+		</div>
+	</div>
+    
+    <div class="tag">
+		<div class="cab">
+			<span class="nome">SELECT</span>
+			<span class="descricao">Insere uma caixa e seleção</span>
+		</div>
+		<div class="info">
+        	A tag OPTION deve ser utilizada juntamente com o SELECT.
+            <table class="atributos">
+            	<tr>
+                	<th>Atributo</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr>
+                	<td>NAME</td>
+                    <td><b>(Recomendado)</b> Nome do campo.</td>
+                </tr>
+                <tr>
+                	<td>MULTIPLE</td>
+                    <td>Permite que mais de um item seja selecionado simultaneamente na caixa de seleção.</td>
+                </tr>
+                <tr>
+                	<td>SIZE</td>
+                    <td>A quantidade de itens visíveis na caixa de seleção.</td>
+                </tr>
+            </table>
+			<code>
+				Caixa de seleção simples:<br>
+                &lt;select name="marcas"&gt;<br>
+                &nbsp;&nbsp; &lt;option value="chevrolet"&gt;Chevrolet&lt;/option&gt;<br>
+                &nbsp;&nbsp; &lt;option value="fiat"&gt;Fiat&lt;/option&gt;<br>
+                &nbsp;&nbsp; &lt;option value="hyundai"&gt;Hyundai&lt;/option&gt;<br>
+                &nbsp;&nbsp; &lt;option value="volkswagen"&gt;Volkswagen&lt;/option&gt;<br>
+				&lt;/select&gt;<br><br>
+                
+                Caixa de seleção com mais opções visíveis e uma opção já selecionada:<br>
+                &lt;select name="marcas" size="3" multiple&gt;<br>
+                &nbsp;&nbsp; &lt;option value="chevrolet"&gt;Chevrolet&lt;/option&gt;<br>
+                &nbsp;&nbsp; &lt;option value="fiat"&gt;Fiat&lt;/option&gt;<br>
+                &nbsp;&nbsp; &lt;option value="hyundai"&gt;Hyundai&lt;/option&gt;<br>
+                &nbsp;&nbsp; &lt;option value="volkswagen"&gt;Volkswagen&lt;/option&gt;<br>
+                &nbsp;&nbsp; &lt;option value="toyota"&gt;Toyota&lt;/option&gt;<br>
+				&lt;/select&gt;
+			</code>
+			<samp>
+				Caixa de seleção simples:<br>
+                <select name="marcas">
+                	<option value="chevrolet">Chevrolet</option>
+                	<option value="fiat">Fiat</option>
+                	<option value="hyundai">Hyundai</option>
+                	<option value="volkswagen">Volkswagen</option>
+				</select><br><br>
+                
+                Caixa de seleção com mais opções visíveis e uma opção já selecionada:<br>
+                <select name="marcas" size="4" multiple>
+                	<option value="chevrolet">Chevrolet</option>
+                	<option value="fiat" selected>Fiat</option>
+                	<option value="hyundai">Hyundai</option>
+                	<option value="toyota">Toyota</option>
+                	<option value="volkswagen">Volkswagen</option>
+				</select>
+			</samp>
+		</div>
+	</div>
+    
+    <div class="tag">
+		<div class="cab">
+			<span class="nome">OPTION</span>
+			<span class="descricao">Insere uma opção em uma caixa de seleção criada com SELECT</span>
+		</div>
+		<div class="info">
+        	<table class="atributos">
+            	<tr>
+                	<th>Atributo</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr>
+                	<td>VALUE</td>
+                    <td><b>(Obrigatório)</b> O valor que o formulário enviará para a págna de destino.<br>Lembrando que no formulário pode ser exibido "Minas Gerais" e o value pode ser "MG", sendo enviado apenas o "MG" para o destino.</td>
+                </tr>
+                <tr>
+                	<td>SELECTED</td>
+                    <td>Se incluído, deixa a opção em que foi utilizado o SELECT já seleiconado, por padrão.</td>
+                </tr>
+            </table>
+			<code>
+            	Ver a tag SELECT para exemplo.
+            </code>
+		</div>
+	</div>
+    
+    <div class="tag">
+		<div class="cab">
+			<span class="nome">OPTGROUP</span>
+			<span class="descricao">Insere um grupo de opções em uma caixa de seleção criada com o SELECT</span>
+		</div>
+		<div class="info">
+        	<table class="atributos">
+            	<tr>
+                	<th>Atributo</th>
+                    <th>Descrição</th>
+                </tr>
+                <tr>
+                	<td>LABEL</td>
+                    <td>O título do grupo, exibido na caixa de seleção.</td>
+                </tr>
+            </table>
+			<code>
+				&lt;select name="marcas"&gt;<br>
+                &nbsp;&nbsp; &lt;optgroup label="Carros"&gt;
+                &nbsp;&nbsp;&nbsp;&nbsp; &lt;option value="chevrolet"&gt;Chevrolet&lt;/option&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp; &lt;option value="fiat"&gt;Fiat&lt;/option&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp; &lt;option value="hyundai"&gt;Hyundai&lt;/option&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp; &lt;option value="volkswagen"&gt;Volkswagen&lt;/option&gt;<br>
+                &nbsp;&nbsp; &lt;/optgroup&gt;
+                &nbsp;&nbsp; &lt;optgroup label="Motos"&gt;
+                &nbsp;&nbsp;&nbsp;&nbsp; &lt;option value="honda"&gt;Honda&lt;/option&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp; &lt;option value="suzuki"&gt;Suzuki&lt;/option&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp; &lt;option value="yamaha"&gt;Yamaha&lt;/option&gt;<br>
+                &nbsp;&nbsp; &lt;/optgroup&gt;
+				&lt;/select&gt;
+			</code>
+			<samp>
+				<select name="marcas">
+                	<optgroup label="Carros">
+                        <option value="chevrolet">Chevrolet</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="hyundai">Hyundai</option>
+                        <option value="volkswagen">Volkswagen</option>
+                    </optgroup>
+                    <optgroup label="Motos">
+                        <option value="honda">Honda</option>
+                        <option value="suzuki">Suzuki</option>
+                        <option value="yamaha">Yamaha</option>
+                    </optgroup>
+				</select>
+			</samp>
+		</div>
+	</div>
+    
+    <div class="tag">
+		<div class="cab">
+			<span class="nome">LABEL</span>
+			<span class="descricao">Insere um texto ligado a um campo INPUT</span>
+		</div>
+		<div class="info">
+			Muito útil quando utilizado junto com RADIO e CHECKBOX, pois neste caso, o usuário não é 
+            obrigado a clicar no "quadradinho" para marcar, basta clicar no label.
+            <code>
+				&lt;label&gt;&lt;input type="radio" name="sexo" value="M"&gt; Masculino&lt;/label&gt;<br>
+                &lt;label&gt;&lt;input type="radio" name="sexo" value="F"&gt; Feminino&lt;/label&gt;
+			</code>
+			<samp>
+				<label><input type="radio" name="sexo" value="M"> Masculino</label><br>
+                <label><input type="radio" name="sexo" value="F"> Feminino</label>
+			</samp>
+		</div>
+	</div>
+    
+    <div class="tag">
+		<div class="cab">
+			<span class="nome">BUTTON</span>
+			<span class="descricao">Insere um botão</span>
+		</div>
+		<div class="info">
+        	É possível incluir textos e imagens dentro de um botão.
+			<code>
+				&lt;button&gt;<br>
+                &nbsp;&nbsp; &lt;img src="imagens/script_code.png"&gt; Clique para ver o código<br>
+                &lt;/button&gt;
+			</code>
+			<samp>
+				<button style="height: 30px;">
+                	<img src="imagens/script_code.png"> Clique para ver o código<br>
+                </button>
+			</samp>
+		</div>
+	</div>
+    
+    <div class="tag">
+		<div class="cab">
+			<span class="nome">FIELDSET</span>
+			<span class="descricao">Insere um retângulo que agrupa campos em um formulário</span>
+		</div>
+		<div class="info">
+			<code>
+				&lt;fieldset&gt;<br>
+                &nbsp;&nbsp; &lt;legend&gt;Endereço&lt;/legend&gt;
+                &nbsp;&nbsp; Rua: &lt;input type="text" name="rua"&gt;<br>
+                &nbsp;&nbsp; Bairro: &lt;input type="text" name="bairro"&gt;<br>
+                &nbsp;&nbsp; Cidade: &lt;input type="text" name="cidade"&gt;<br>
+                &lt;/fieldset&gt;
+			</code>
+			<samp>
+				<fieldset>
+                <legend>Endereço</legend>
+                Rua: <input type="text" name="rua"><br>
+                Bairro: <input type="text" name="bairro"><br>
+                Cidade: <input type="text" name="cidade">
+                </fieldset>
+			</samp>
+		</div>
+	</div>
+    
+    <div class="tag">
+		<div class="cab">
+			<span class="nome">LEGEND</span>
+			<span class="descricao">Insere um título a um grupo criado com o FIELDSET</span>
+		</div>
+		<div class="info">
+			<code>
+				Ver a tag FIELDSET para exemplo.
+			</code>
+		</div>
+	</div>
+	
+	
+	<a name="divs">&nbsp;</a>
+	<h1>Divisões e layout</h1>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">DIV</span>
+			<span class="descricao">Insere uma divisão em formato de bloco na página</span>
+		</div>
+		<div class="info">
+			<code>
+				&lt;div style="border: 1px solid #000000;"&gt;Primeira div&lt;/div&gt;<br>
+				&lt;div style="border: 1px solid #FF0000; margin-top: 5px;"&gt;Segunda div&lt;/div&gt;
+			</code>
+			<samp>
+				<div style="border: 1px solid #000000;">Primeira div</div>
+				<div style="border: 1px solid #FF0000; margin-top: 5px;">Segunda div</div>
+			</samp>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">SPAN</span>
+			<span class="descricao">Insere uma divisão que não é em formato de bloco na página</span>
+		</div>
+		<div class="info">
+			<code>
+				&lt;span style="border: 1px solid #000000;"&gt;Primeiro span&lt;/div&gt;<br>
+				&lt;span style="border: 1px solid #FF0000;"&gt;Segundo span&lt;/div&gt;
+			</code>
+			<samp>
+				<span style="border: 1px solid #000000;">Primeiro span</span>
+				<span style="border: 1px solid #FF0000;">Segundo span</span>
+			</samp>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">HEADER</span>
+			<span class="descricao">Tag semântica para cabeçahos</span>
+		</div>
+		<div class="info">
+			<p>Utilizado para o cabeçalho do site ou de uma notícia, dentro de um ARTICLE, por exemplo,
+			onde o HEADER poderia conter o título da notícia e sua data de publicação.</p>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">FOOTER</span>
+			<span class="descricao">Tag semântica para rodapés</span>
+		</div>
+		<div class="info">
+			<p>Utilizado para o rodapé do site ou de uma notícia, dentro de um ARTICLE, por exemplo, 
+			onde o FOOTER poderia conter as tags da notícia e uma lista de notícias semelhantes.</p>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">NAV</span>
+			<span class="descricao">Tag semântica para áreas de navegação</span>
+		</div>
+		<div class="info">
+			<p>Utilizado para inserir o menu do site ou qualquer outro tipo de barra de navegação.</p>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">SECTION</span>
+			<span class="descricao">Tag semântica para divisões visuais no site</span>
+		</div>
+		<div class="info">
+			<p>Utilizado para definir uma área do site que esteja separado de outra, por exemplo,
+			poderia se criar uma SECTION em uma galeria de imagens onde seria exibida as miniaturas
+			das fotos e uma outra SECTION para a área onde a foto maximizada seria exibida.</p>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">ARTICLE</span>
+			<span class="descricao">Tag semântica para conteúdo do site</span>
+		</div>
+		<div class="info">
+			<p>Utilizado para conter conteúdo auto-suficiente, ou seja, uma área de conteúdo que faça
+			sentido se mostrada fora do site.</p>
+			<p>Imagine que você possui um blog com 10 postagens por página, cada postagem deve ser um ARTICLE,
+			pois se você compartilhar somente o conteúdo da tag ARTICLE você estará compartilhando a postagem
+			toda, sem precisar do blog para que a postagem faça sentido.</p>
+			<p>Um ARTICLE também pode conter tags HEADER, FOOTER e SECTION, por exemplo, dentro dela.</p>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">ASIDE</span>
+			<span class="descricao">Tag semântica para barras laterais com conteúdo genérico</span>
+		</div>
+		<div class="info">
+			<p>Utilizado para criar uma área com propagandas, links para outros sites, links para matérias
+			do próprio site, promoções, etc.</p>
+		</div>
+	</div>
+	
+	
+	<a name="atributos">&nbsp;</a>
+	<h1>Atributos seletores</h1>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">ID</span>
+			<span class="descricao">Seletor único</span>
+		</div>
+		<div class="info">
+			<p>O atributo ID é utilizado para identificar um elemento de forma única, ou seja, nunca deve
+			haver mais de um elemento com o mesmo ID. Seria semelhante à chave primária, no Banco de Dados,
+			ou ao CPF das pessoas.</p>
+			<p>Utilizamos o ID quando precisamos pegar um elemento em específico, um botão específico que
+			realizaá uma ação quando clicado, por exemplo.</p>
+			<code>
+				&lt;button id="imprimir"&gt;Clique para imprimir&lt;/button&gt;<br>
+				&lt;button id="zoom"&gt;Clique para aumentar&lt;/button&gt;
+			</code>
+			<samp>
+				<button id="imprimir">Clique para imprimir</button><br>
+				<button id="zoom">Clique para aumentar</button>
+			</samp>
+		</div>
+	</div>
+	
+	<div class="tag">
+		<div class="cab">
+			<span class="nome">CLASS</span>
+			<span class="descricao">Seletor de grupo</span>
+		</div>
+		<div class="info">
+			<p>O atributo CLASS é utilizado para identificar que o elemento pertence a um grupo e se
+			comportará da mesma forma que outros membros do grupo.</p>
+			<p>Imagine que você quer que todo link que aponte para um produto Masculino possua a fonte Azul
+			e todo link pqra um profuto Feminino possua a fonte Rosa, você pode definir classes que vão
+			permitir que seus links pertençam a seus grupos específicos.</p>
+			<p>PS. Lembre-se que as classes informadas no CLASS serão contruídas em CSS.</p>
+			<code>
+				/* Código CSS */<br>
+				.feminino {<br>
+					&nbsp;&nbsp; color: #FF66CC;<br>
+				}<br>.masculino {<br>
+					&nbsp;&nbsp; color: #3399FF;<br>
+				}<br><br>
+				&lt;a href="#" class="feminino"&gt;Calcinhas&lt;/a&gt;<br>
+				&lt;a href="#" class="masculino"&gt;Cuecas&lt;/a&gt;<br>
+				&lt;a href="#" class="feminino"&gt;Sutiãs&lt;/a&gt;
+			</code>
+			<samp>
+				<a href="#" class="feminino">Calcinhas</a><br>
+				<a href="#" class="masculino">Cuecas</a><br>
+				<a href="#" class="feminino">Sutiãs</a>
+			</samp>
+		</div>
+	</div>
+	
+    
+	
+    <div id="rodape">
+    	IFTM - Instituto Federal do Triângulo Mineiro - Campus Ituutaba<br>
+        Professor <a href="mailto:danielpimentel@iftm.edu.br">Daniel Pimentel</a> - Versão 1.0
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
