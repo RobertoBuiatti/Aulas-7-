@@ -3,6 +3,10 @@ body {
   font-family: Roboto;
 }
 
+.interrompe-float{
+  clear: both;
+}
+
 .card-filme {
   background-color: #fff;
 }
@@ -24,10 +28,28 @@ body {
     width: 300px;
     border-radius: 8px;
     transition: border-radius 0.5s ease;
+    float: left;
   }
+
+  .poster img{
+    width: 300px;
+    border-radius: 8px;
+    transition: 0.5s ease;
+  }
+
+  .poster img:hover{
+    transform: scale(1.05);
+  }
+
   img:hover {
     border-radius: 50px;
   }
+}
+
+.filme-info{
+  float: left;
+  margin-left: 30px;
+
 }
 
 .avaliacao {
@@ -84,7 +106,22 @@ body {
     width: 70px;
     margin-right: 10px;
     transition: transform 0.3s ease;
-    img:hover {
-        transform: scale(1.15);
-    }
+}
+
+.site{
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.card-filme{
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0, 0.5);
+  box-shadow: 0 10px 30px rgba(0,0,0, 0.15);
+}
+
+.filme-topo{
+  background: linear-gradient(32deg, white,#a7afad);
+  padding: 20px;
+  border-radius: 12px;
 }
