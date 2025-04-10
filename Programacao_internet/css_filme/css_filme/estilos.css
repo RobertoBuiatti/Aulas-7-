@@ -1,0 +1,90 @@
+body {
+  background-color: #e0e7ee;
+  font-family: Roboto;
+}
+
+.card-filme {
+  background-color: #fff;
+}
+
+.filme-titulo {
+  font-family: Roboto;
+  size: 40px;
+  color: #2c3e50;
+}
+
+.filme-titulo span {
+  color: #7f8c8d;
+  font-weight: 300;
+}
+
+.poster {
+  width: 300px;
+  img {
+    width: 300px;
+    border-radius: 8px;
+    transition: border-radius 0.5s ease;
+  }
+  img:hover {
+    border-radius: 50px;
+  }
+}
+
+.avaliacao {
+
+}
+
+.estrelas {
+    img {
+        width: 24px;
+        margin-right: 5px;
+    }
+
+    span {
+        font-weight: 700;
+        font-size: 20px;
+        color: #f39c12;
+        margin-left: 10px;
+    }
+}
+
+.generos {
+
+}
+
+.genero {
+    display: inline-block;
+    border: 1px solid #333;
+    background-color: rgba(52, 72, 94, 0.2);
+    border-radius: 20px;
+    margin-right: 10px;
+    padding: 5px 15px;
+}
+
+.botao-trailer {
+    display: inline-block;
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 4px 6px rgba(0,0,0, 0.3);
+    transition: background-color 0.5s ease;
+    span {
+        margin-right: 10px;
+    }
+}
+
+.botao-trailer:hover {
+    background-color: #CC0000;
+}
+
+.straming-icone img{
+    width: 70px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+    img:hover {
+        transform: scale(1.15);
+    }
+}
