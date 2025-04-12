@@ -1,15 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://drgjckwexxcan"]
+[gd_scene load_steps=11 format=3 uid="uid://drgjckwexxcan"]
 
 [ext_resource type="Script" path="res://scenes/fruit_random.gd" id="1_y3m7l"]
 [ext_resource type="Texture2D" uid="uid://dmtw5atvvoj2w" path="res://assets/Items/Fruits/Apple.png" id="2_1cjk7"]
+[ext_resource type="Texture2D" uid="uid://rwc5o4fhmbx3" path="res://assets/Items/Fruits/Orange.png" id="2_lxuoy"]
+[ext_resource type="Texture2D" uid="uid://xloi874sqgko" path="res://assets/Items/Fruits/Bananas.png" id="3_aykpv"]
+[ext_resource type="Texture2D" uid="uid://4b4l70jwqdwd" path="res://assets/Items/Fruits/Collected.png" id="5_482ub"]
+[ext_resource type="Texture2D" uid="uid://3eljfnss6i48" path="res://assets/Items/Fruits/Kiwi.png" id="6_dblb4"]
+[ext_resource type="Texture2D" uid="uid://biepjd8cc2gbm" path="res://assets/Items/Fruits/Melon.png" id="7_xqmg3"]
+[ext_resource type="Texture2D" uid="uid://tq3krexicnmr" path="res://assets/Items/Fruits/Pineapple.png" id="9_0sd5j"]
+[ext_resource type="Texture2D" uid="uid://dn5sbgwua6dan" path="res://assets/Items/Fruits/Strawberry.png" id="10_frae2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yt6uy"]
 
 [node name="Fruit Random" type="Node2D"]
 script = ExtResource("1_y3m7l")
+list_fruits = Array[Texture2D]([ExtResource("2_1cjk7"), ExtResource("3_aykpv"), ExtResource("5_482ub"), ExtResource("6_dblb4"), ExtResource("7_xqmg3"), ExtResource("2_lxuoy"), ExtResource("9_0sd5j"), ExtResource("10_frae2")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_1cjk7")
+texture = ExtResource("2_lxuoy")
 hframes = 17
 
 [node name="Area2D" type="Area2D" parent="."]

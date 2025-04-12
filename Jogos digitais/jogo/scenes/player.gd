@@ -3,6 +3,9 @@ extends CharacterBody2D
 @onready var anim: AnimationPlayer = $Anim
 @onready var respawn_point: Vector2 = global_position
 
+@export var speed_player: float = 1.5
+
+
 var SPEED = 300
 var GRAVITY = 980
 var JUMP_VELOCITY = -400
@@ -21,7 +24,7 @@ func _process(delta: float) -> void:
 
 #movimento horizontal
 	var direction = Input.get_axis("walk_left", "walk_right")
-	velocity.x = direction * SPEED
+	velocity.x = direction * SPEED * speed_player
 	var jump = Input.is_action_just_pressed("jump")
 # pulo
 	#if Input.is_action_just_pressed("jump") and (is_on_floor() or double_jump == false):

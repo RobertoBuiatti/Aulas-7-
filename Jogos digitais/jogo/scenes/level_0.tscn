@@ -1,58 +1,12 @@
-[gd_scene load_steps=15 format=4 uid="uid://bljbxnjql32hc"]
+[gd_scene load_steps=8 format=4 uid="uid://bljbxnjql32hc"]
 
 [ext_resource type="Script" path="res://scenes/level_0.gd" id="1_yurem"]
 [ext_resource type="PackedScene" uid="uid://hloo3wx41y70" path="res://scenes/player.tscn" id="3_aiavm"]
 [ext_resource type="TileSet" uid="uid://7e3j2eajjwm5" path="res://tileset_level.tres" id="4_6c4ei"]
+[ext_resource type="PackedScene" uid="uid://drgjckwexxcan" path="res://scenes/fruit_random.tscn" id="5_qfw2q"]
 [ext_resource type="PackedScene" uid="uid://bnai3wrujwfqd" path="res://scenes/fruit.tscn" id="5_xi8df"]
-[ext_resource type="Script" path="res://scenes/fantasmaChao.gd" id="6_7etw3"]
+[ext_resource type="PackedScene" uid="uid://ea5y8euunu8h" path="res://scenes/galinha.tscn" id="6_jp2k1"]
 [ext_resource type="PackedScene" uid="uid://6b2wvtbnfkrg" path="res://scenes/fantasma_voando.tscn" id="7_2cour"]
-[ext_resource type="Texture2D" uid="uid://bnwuvn305pvqg" path="res://assets/Pixel Adventure 2 - Inimigos/Enemies/Ghost/Idle (44x30).png" id="7_r348q"]
-[ext_resource type="Script" path="res://scenes/fantasma_voando.gd" id="8_lofd6"]
-[ext_resource type="Script" path="res://scenes/galinha.gd" id="9_d6u0o"]
-[ext_resource type="Texture2D" uid="uid://c2kip8886daum" path="res://assets/Pixel Adventure 2 - Inimigos/Enemies/Chicken/Run (32x34).png" id="9_deesi"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_js87q"]
-radius = 14.0
-
-[sub_resource type="Animation" id="Animation_miqvb"]
-length = 0.001
-step = 0.0625
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_b3yjj"]
-resource_name = "andar"
-length = 0.875006
-loop_mode = 1
-step = 0.0625
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375, 0.5, 0.5625, 0.625, 0.6875, 0.75, 0.8125),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_if7lc"]
-_data = {
-"RESET": SubResource("Animation_miqvb"),
-"andar": SubResource("Animation_b3yjj")
-}
 
 [node name="Level_0" type="Node2D"]
 script = ExtResource("1_yurem")
@@ -70,152 +24,38 @@ navigation_enabled = false
 tile_set = ExtResource("4_6c4ei")
 
 [node name="Player" parent="." instance=ExtResource("3_aiavm")]
+position = Vector2(238, 157)
 
 [node name="Itens" type="Node2D" parent="."]
 
 [node name="Fruit" parent="Itens" instance=ExtResource("5_xi8df")]
 position = Vector2(340, 159)
 
+[node name="Fruit Random" parent="Itens" instance=ExtResource("5_qfw2q")]
+position = Vector2(419, 163)
+
+[node name="Fruit Random2" parent="Itens" instance=ExtResource("5_qfw2q")]
+position = Vector2(1117, 171)
+
 [node name="Enimy" type="Node2D" parent="."]
 
 [node name="fantasma" type="Node" parent="Enimy"]
 
-[node name="Fantasma" type="CharacterBody2D" parent="Enimy/fantasma"]
-position = Vector2(1181, 166)
-collision_layer = 2
-script = ExtResource("6_7etw3")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enimy/fantasma/Fantasma"]
-texture = ExtResource("7_r348q")
-hframes = 10
-
-[node name="Body" type="CollisionShape2D" parent="Enimy/fantasma/Fantasma"]
-shape = SubResource("CapsuleShape2D_js87q")
-
-[node name="AnimEnimy" type="AnimationPlayer" parent="Enimy/fantasma/Fantasma"]
-libraries = {
-"": SubResource("AnimationLibrary_if7lc")
-}
-
-[node name="Fantasma2" type="CharacterBody2D" parent="Enimy/fantasma"]
-position = Vector2(498, 158)
-collision_layer = 2
-script = ExtResource("6_7etw3")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enimy/fantasma/Fantasma2"]
-texture = ExtResource("7_r348q")
-hframes = 10
-
-[node name="Body" type="CollisionShape2D" parent="Enimy/fantasma/Fantasma2"]
-shape = SubResource("CapsuleShape2D_js87q")
-
-[node name="AnimEnimy" type="AnimationPlayer" parent="Enimy/fantasma/Fantasma2"]
-libraries = {
-"": SubResource("AnimationLibrary_if7lc")
-}
-
 [node name="FantasmaVoando" parent="Enimy/fantasma" instance=ExtResource("7_2cour")]
+position = Vector2(396, 12)
 
-[node name="FantasmaVoando2" type="CharacterBody2D" parent="Enimy/fantasma"]
-position = Vector2(1136, 90)
-collision_layer = 2
-script = ExtResource("8_lofd6")
+[node name="FantasmaVoando2" parent="Enimy/fantasma" instance=ExtResource("7_2cour")]
+position = Vector2(126, 48)
 
-[node name="Sprite2D" type="Sprite2D" parent="Enimy/fantasma/FantasmaVoando2"]
-texture = ExtResource("7_r348q")
-hframes = 10
-
-[node name="Body" type="CollisionShape2D" parent="Enimy/fantasma/FantasmaVoando2"]
-shape = SubResource("CapsuleShape2D_js87q")
-
-[node name="AnimEnimy" type="AnimationPlayer" parent="Enimy/fantasma/FantasmaVoando2"]
-libraries = {
-"": SubResource("AnimationLibrary_if7lc")
-}
-
-[node name="FantasmaVoando3" type="CharacterBody2D" parent="Enimy/fantasma"]
-position = Vector2(1215, -3)
-collision_layer = 2
-script = ExtResource("8_lofd6")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enimy/fantasma/FantasmaVoando3"]
-texture = ExtResource("7_r348q")
-hframes = 10
-
-[node name="Body" type="CollisionShape2D" parent="Enimy/fantasma/FantasmaVoando3"]
-shape = SubResource("CapsuleShape2D_js87q")
-
-[node name="AnimEnimy" type="AnimationPlayer" parent="Enimy/fantasma/FantasmaVoando3"]
-libraries = {
-"": SubResource("AnimationLibrary_if7lc")
-}
+[node name="FantasmaVoando3" parent="Enimy/fantasma" instance=ExtResource("7_2cour")]
+position = Vector2(1124, -24)
 
 [node name="galinha" type="Node" parent="Enimy"]
 
-[node name="Galinha" type="CharacterBody2D" parent="Enimy/galinha"]
-position = Vector2(410, 279)
-collision_layer = 2
-script = ExtResource("9_d6u0o")
+[node name="Galinha" parent="Enimy/galinha" instance=ExtResource("6_jp2k1")]
 
-[node name="Sprite2D" type="Sprite2D" parent="Enimy/galinha/Galinha"]
-texture = ExtResource("9_deesi")
-hframes = 14
+[node name="Galinha2" parent="Enimy/galinha" instance=ExtResource("6_jp2k1")]
+position = Vector2(-549, 281)
 
-[node name="Body" type="CollisionShape2D" parent="Enimy/galinha/Galinha"]
-shape = SubResource("CapsuleShape2D_js87q")
-
-[node name="AnimEnimy" type="AnimationPlayer" parent="Enimy/galinha/Galinha"]
-libraries = {
-"": SubResource("AnimationLibrary_if7lc")
-}
-
-[node name="Galinha2" type="CharacterBody2D" parent="Enimy/galinha"]
-position = Vector2(-313, 277)
-collision_layer = 2
-script = ExtResource("9_d6u0o")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enimy/galinha/Galinha2"]
-texture = ExtResource("9_deesi")
-hframes = 14
-
-[node name="Body" type="CollisionShape2D" parent="Enimy/galinha/Galinha2"]
-shape = SubResource("CapsuleShape2D_js87q")
-
-[node name="AnimEnimy" type="AnimationPlayer" parent="Enimy/galinha/Galinha2"]
-libraries = {
-"": SubResource("AnimationLibrary_if7lc")
-}
-
-[node name="Galinha3" type="CharacterBody2D" parent="Enimy/galinha"]
-position = Vector2(-890, 276)
-collision_layer = 2
-script = ExtResource("9_d6u0o")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enimy/galinha/Galinha3"]
-texture = ExtResource("9_deesi")
-hframes = 14
-
-[node name="Body" type="CollisionShape2D" parent="Enimy/galinha/Galinha3"]
-shape = SubResource("CapsuleShape2D_js87q")
-
-[node name="AnimEnimy" type="AnimationPlayer" parent="Enimy/galinha/Galinha3"]
-libraries = {
-"": SubResource("AnimationLibrary_if7lc")
-}
-
-[node name="Galinha4" type="CharacterBody2D" parent="Enimy/galinha"]
-position = Vector2(-480, 277)
-collision_layer = 2
-script = ExtResource("9_d6u0o")
-
-[node name="Sprite2D" type="Sprite2D" parent="Enimy/galinha/Galinha4"]
-texture = ExtResource("9_deesi")
-hframes = 14
-
-[node name="Body" type="CollisionShape2D" parent="Enimy/galinha/Galinha4"]
-shape = SubResource("CapsuleShape2D_js87q")
-
-[node name="AnimEnimy" type="AnimationPlayer" parent="Enimy/galinha/Galinha4"]
-libraries = {
-"": SubResource("AnimationLibrary_if7lc")
-}
+[node name="Galinha3" parent="Enimy/galinha" instance=ExtResource("6_jp2k1")]
+position = Vector2(-835, 281)

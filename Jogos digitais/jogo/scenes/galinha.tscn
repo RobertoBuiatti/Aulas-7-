@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/galinha.gd" id="1_kddj5"]
 [ext_resource type="Texture2D" uid="uid://c2kip8886daum" path="res://assets/Pixel Adventure 2 - Inimigos/Enemies/Chicken/Run (32x34).png" id="2_4302d"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_708ti"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_js87q"]
 radius = 14.0
 
 [sub_resource type="Animation" id="Animation_miqvb"]
@@ -46,21 +46,19 @@ _data = {
 "andar": SubResource("Animation_b3yjj")
 }
 
-[node name="Galinha" type="Node2D"]
-
-[node name="Galinha" type="CharacterBody2D" parent="."]
+[node name="Galinha" type="CharacterBody2D"]
 position = Vector2(410, 279)
 collision_layer = 2
 script = ExtResource("1_kddj5")
 
-[node name="Sprite2D" type="Sprite2D" parent="Galinha"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_4302d")
 hframes = 14
 
-[node name="Body" type="CollisionShape2D" parent="Galinha"]
-shape = SubResource("CapsuleShape2D_708ti")
+[node name="Body" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_js87q")
 
-[node name="AnimEnimy" type="AnimationPlayer" parent="Galinha"]
+[node name="AnimEnimy" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_if7lc")
 }
