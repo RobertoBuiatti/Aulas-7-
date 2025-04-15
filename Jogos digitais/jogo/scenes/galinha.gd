@@ -1,14 +1,15 @@
 extends CharacterBody2D
-@onready var sprite_2d: Sprite2D = $Sprite2D
 
+@onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var anim: AnimationPlayer = $AnimEnimy
+
 const SPEED := 50.0
 var direction := -1
 const JUMP_VELOCITY = -400.0
-
+var GRAVITY = 980
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	velocity.y += GRAVITY * delta
 		
 		
 	velocity.x = direction * SPEED
@@ -25,3 +26,13 @@ func _physics_process(delta: float) -> void:
 		sprite_2d.flip_h = true
 
 	move_and_slide()
+
+
+#func _on_area_2d_body_entered(body: Node2D) -> void:
+	#if body.name == "Player" or body.is_in_group("player"):
+		#emit_signal("hit_by_player")
+		#recuar()
+#
+#func recuar():
+	#global_position.x += -direction * 10
+	#anim.play("hit") 

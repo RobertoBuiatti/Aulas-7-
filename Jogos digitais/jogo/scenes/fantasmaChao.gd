@@ -1,15 +1,17 @@
 extends CharacterBody2D
-@onready var sprite_2d: Sprite2D = $Sprite2D
 
+class_name fantasmaChao
+
+@onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var anim: AnimationPlayer = $AnimEnimy
+
 const SPEED := 50.0
 var direction := -1
 const JUMP_VELOCITY = -400.0
-
+var GRAVITY = 980
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-		
+	velocity.y += GRAVITY * delta
 		
 	velocity.x = direction * SPEED
 	if is_on_wall():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://bljbxnjql32hc"]
+[gd_scene load_steps=10 format=4 uid="uid://bljbxnjql32hc"]
 
 [ext_resource type="Script" path="res://scenes/level_0.gd" id="1_yurem"]
 [ext_resource type="PackedScene" uid="uid://hloo3wx41y70" path="res://scenes/player.tscn" id="3_aiavm"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bnai3wrujwfqd" path="res://scenes/fruit.tscn" id="5_xi8df"]
 [ext_resource type="PackedScene" uid="uid://ea5y8euunu8h" path="res://scenes/galinha.tscn" id="6_jp2k1"]
 [ext_resource type="PackedScene" uid="uid://6b2wvtbnfkrg" path="res://scenes/fantasma_voando.tscn" id="7_2cour"]
+[ext_resource type="PackedScene" uid="uid://cc1opxrxb5cew" path="res://scenes/checkpoint.tscn" id="9_5t4kv"]
+
+[sub_resource type="GDScript" id="GDScript_x4jpx"]
 
 [node name="Level_0" type="Node2D"]
 script = ExtResource("1_yurem")
@@ -39,15 +42,15 @@ position = Vector2(1117, 171)
 
 [node name="Enimy" type="Node2D" parent="."]
 
-[node name="fantasma" type="Node" parent="Enimy"]
+[node name="fantasmaVoando" type="Node" parent="Enimy"]
 
-[node name="FantasmaVoando" parent="Enimy/fantasma" instance=ExtResource("7_2cour")]
+[node name="FantasmaVoando" parent="Enimy/fantasmaVoando" instance=ExtResource("7_2cour")]
 position = Vector2(396, 12)
 
-[node name="FantasmaVoando2" parent="Enimy/fantasma" instance=ExtResource("7_2cour")]
+[node name="FantasmaVoando2" parent="Enimy/fantasmaVoando" instance=ExtResource("7_2cour")]
 position = Vector2(126, 48)
 
-[node name="FantasmaVoando3" parent="Enimy/fantasma" instance=ExtResource("7_2cour")]
+[node name="FantasmaVoando3" parent="Enimy/fantasmaVoando" instance=ExtResource("7_2cour")]
 position = Vector2(1124, -24)
 
 [node name="galinha" type="Node" parent="Enimy"]
@@ -59,3 +62,18 @@ position = Vector2(-549, 281)
 
 [node name="Galinha3" parent="Enimy/galinha" instance=ExtResource("6_jp2k1")]
 position = Vector2(-835, 281)
+
+[node name="Checkpoint" type="Node2D" parent="."]
+script = SubResource("GDScript_x4jpx")
+
+[node name="Checkpoint" parent="Checkpoint" instance=ExtResource("9_5t4kv")]
+position = Vector2(1268, 154)
+scale = Vector2(0.8, 0.8)
+
+[node name="Checkpoint2" parent="Checkpoint" instance=ExtResource("9_5t4kv")]
+position = Vector2(210, 266)
+scale = Vector2(0.8, 0.8)
+
+[node name="Checkpoint3" parent="Checkpoint" instance=ExtResource("9_5t4kv")]
+position = Vector2(-794, 266)
+scale = Vector2(0.8, 0.8)

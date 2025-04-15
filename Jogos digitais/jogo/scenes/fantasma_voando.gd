@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name fantasmaVoando
+
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var anim: AnimationPlayer = $AnimEnimy
 
