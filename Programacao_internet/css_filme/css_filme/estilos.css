@@ -121,7 +121,71 @@ body {
 }
 
 .filme-topo{
-  background: linear-gradient(32deg, white,#a7afad);
+  /* background: linear-gradient(32deg, white,#a7afad); */
+  background: linear-gradient(to bottom,rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 1)), url("./images/gigantao.webp");
+  background-size: cover;
+  background-position: center center;
   padding: 20px;
   border-radius: 12px;
+}
+
+.streaming-icones {
+  float: left;
+}
+.streaming{
+  margin-top: 40px;
+}
+
+.streaming-icone img{
+  width: 70px;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.streaming-icone img:hover{
+  transform: scale(1.15);
+}
+
+/*filme corpo*/
+
+.filme-corpo{
+  padding: 20px;
+}
+
+
+/*elenco*/
+
+.elenco{
+  
+}
+
+.elenco_membro{
+  float: left;
+  width: calc(100% / 4 - 20px);
+  margin: 10px;
+  text-align: center; /* alinha o conteudo ao centro */
+}
+
+.elenco_membro img{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover; /* garante que a imagem preencha o espaço */
+  box-shadow: 0 5px 10px rgba(0,0,0, 0.3);
+  transition: transform 0.8s ease;
+}
+
+.elenco_membro:hover img{
+  transform: scale(1.15) rotate(360deg) translateY(-10px); /* animação de rotação e translação */
+}
+
+.elenco_membro p {
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.elenco_membro span{
+  font-size: 14px;
+  color: #7f8c8d;
 }
