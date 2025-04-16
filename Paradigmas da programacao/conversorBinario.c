@@ -40,11 +40,42 @@ void decimal_para_binario(int decimal) {
     printf("\n");
 }
 
+void decimal_para_octal(int decimal) {
+    int octal[32];
+    int i = 0;
+
+    if (decimal == 0) {
+        printf("Octal: 0\n");
+        return;
+    }
+
+    while (decimal > 0) {
+        octal[i] = decimal % 8;
+        decimal = decimal / 8;
+        i++;
+    }
+
+    printf("Octal: ");
+    while (i > 0) {
+        i--;
+        printf("%d", octal[i]);
+    }
+    printf("\n");
+}
+
+void octal_para_binario(int octal) {
+    int decimal = octal_para_decimal(octal);
+    printf("Decimal intermediario: %d\n", decimal);
+    decimal_para_binario(decimal);
+}
+
 int main() {
     int opcao;
     printf("Escolha a conversao:\n");
     printf("1 - Binario para Decimal\n");
     printf("2 - Decimal para Binario\n");
+    printf("3 - Decimal para Octal\n");
+    printf("4 - Octal para Binario\n");
     printf("Opcao: ");
     scanf("%d", &opcao);
 
@@ -93,7 +124,19 @@ int main() {
 
         decimal_para_binario(decimal);
 
-    } else {
+    } else if (opcao == 3) {
+        int decimal;
+        printf("Digite o numero decimal: ");
+        scanf("%d", &decimal);
+        decimal_para_octal(decimal); 
+
+    } else if (opcao == 4) {
+        int octal;
+        printf("Digite o numero octal: ");
+        scanf("%d", &octal);
+        octal_para_binario(octal);
+        
+    } else {        
         printf("Opcao Invalida!\n");
     }
 
