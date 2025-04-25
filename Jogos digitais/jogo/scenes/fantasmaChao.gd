@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name fantasmaChao
 
+signal enimy
+
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var anim: AnimationPlayer = $AnimEnimy
 
@@ -27,3 +29,7 @@ func _physics_process(delta: float) -> void:
 		sprite_2d.flip_h = true
 
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	enimy.emit()
