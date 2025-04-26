@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name fantasmaVoando
 
+signal take_damage
+
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var anim: AnimationPlayer = $AnimEnimy
 
@@ -31,3 +33,8 @@ func _physics_process(delta: float) -> void:
 
 	# Move o inimigo com a velocidade calculada
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("FASTASMA")
+	take_damage.emit()

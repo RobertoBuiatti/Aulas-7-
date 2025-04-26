@@ -4,7 +4,7 @@ class_name Fruit
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 #Fruta comida
-signal fruit_eaten
+signal fruit_eaten(quantity)
 
 func _ready() -> void:
 	pass
@@ -14,5 +14,5 @@ func _process(delta: float) -> void:
 		animation_player.play("idle")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	fruit_eaten.emit()#emitindo o sinal
+	fruit_eaten.emit(1)#emitindo o sinal
 	queue_free() #remove a fruta

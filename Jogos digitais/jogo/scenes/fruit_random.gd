@@ -3,7 +3,7 @@ extends Node2D
 class_name Fruit_Random
 
 #Fruta comida
-signal fruit_eaten
+signal fruit_eaten(quantity)
 
 @export var list_fruits: Array[Texture2D]
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -20,5 +20,5 @@ func _process(delta: float) -> void:
 		animation_player.play("idle")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	fruit_eaten.emit()#emitindo o sinal
+	fruit_eaten.emit(2)#emitindo o sinal
 	queue_free() #remove a fruta

@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://bljbxnjql32hc"]
+[gd_scene load_steps=11 format=4 uid="uid://bljbxnjql32hc"]
 
 [ext_resource type="Script" path="res://scenes/level_0.gd" id="1_yurem"]
+[ext_resource type="PackedScene" uid="uid://c72udykjmlsy2" path="res://scenes/hud.tscn" id="2_jrawy"]
 [ext_resource type="PackedScene" uid="uid://hloo3wx41y70" path="res://scenes/player.tscn" id="3_aiavm"]
 [ext_resource type="TileSet" uid="uid://7e3j2eajjwm5" path="res://tileset_level.tres" id="4_6c4ei"]
 [ext_resource type="PackedScene" uid="uid://drgjckwexxcan" path="res://scenes/fruit_random.tscn" id="5_qfw2q"]
@@ -13,6 +14,8 @@
 
 [node name="Level_0" type="Node2D"]
 script = ExtResource("1_yurem")
+
+[node name="HUD" parent="." instance=ExtResource("2_jrawy")]
 
 [node name="Map" type="Node2D" parent="."]
 

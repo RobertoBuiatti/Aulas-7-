@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal take_damage
+
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var anim: AnimationPlayer = $AnimEnimy
 
@@ -28,7 +30,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-#func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("GALNHA")
+	#take_damage.emit()
 	#if body.name == "Player" or body.is_in_group("player"):
 		#emit_signal("hit_by_player")
 		#recuar()

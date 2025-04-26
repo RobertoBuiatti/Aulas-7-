@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://6b2wvtbnfkrg"]
+[gd_scene load_steps=8 format=3 uid="uid://6b2wvtbnfkrg"]
 
 [ext_resource type="Script" path="res://scenes/fantasma_voando.gd" id="1_5h024"]
 [ext_resource type="Texture2D" uid="uid://bnwuvn305pvqg" path="res://assets/Pixel Adventure 2 - Inimigos/Enemies/Ghost/Idle (44x30).png" id="2_s6qta"]
@@ -46,8 +46,12 @@ _data = {
 "andar": SubResource("Animation_b3yjj")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_u1fx5"]
+radius = 17.0294
+
 [node name="FantasmaVoando" type="CharacterBody2D"]
-collision_layer = 2
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_5h024")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -61,3 +65,13 @@ shape = SubResource("CapsuleShape2D_js87q")
 libraries = {
 "": SubResource("AnimationLibrary_if7lc")
 }
+
+[node name="Areadano" type="Area2D" parent="." groups=["Damage"]]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areadano"]
+shape = SubResource("CircleShape2D_u1fx5")
+debug_color = Color(0.914981, 0.271627, 0.266892, 0.42)
+
+[connection signal="body_entered" from="Areadano" to="." method="_on_area_2d_body_entered"]
