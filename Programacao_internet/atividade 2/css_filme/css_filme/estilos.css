@@ -122,8 +122,8 @@ body {
 }
 
 .musica .coracao:hover {
-    transform: scale(1.2) rotate(20deg);
-    transition: transform 0.3s ease;
+    transform: scale(1.4) rotate(3600deg);
+    transition: transform 4.3s ease;
 }
 
 .musica .nome {
