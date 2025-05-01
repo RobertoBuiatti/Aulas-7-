@@ -1,0 +1,19 @@
+body {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+    font-family: Roboto;
+    color: aliceblue;
+}
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.container-right {
+    width: 100%;
+    max-width: 1200px;
+    margin-right: 0 auto;
+    margin-left: 60% auto;
+    padding: 20px;
+}
