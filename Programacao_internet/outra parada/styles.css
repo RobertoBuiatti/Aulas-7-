@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    background-color: #142f43;
+    font-family: Arial;
+    color: #ffffff;
+}
+
+.tela {
+    padding: 0;
+    border: 5px solid white;
+    width: 100vw;
+    height: 100vh;
+}
+/* px: Tamanho fixo.
+%: Proporcional ao pai.
+vh/vw: Proporcional à tela.
+em: Relativo ao pai.
+rem: Relativo ao <html>.*/
+.card {
+    border: 2px solid yellow;
+    width: 80%;
+    height: 75%;
+    text-align: center;
+    padding: 20px;
+}
+
+.card img {
+    width: 100%;
+    max-width: 400px;
+}
