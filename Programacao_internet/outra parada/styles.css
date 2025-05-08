@@ -1,6 +1,4 @@
 *{
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
@@ -9,6 +7,7 @@ body{
     background-color: #142f43;
     font-family: Arial;
     color: #ffffff;
+    font-size: 16px;
 }
 
 .tela {
@@ -24,8 +23,8 @@ em: Relativo ao pai.
 rem: Relativo ao <html>.*/
 .card {
     border: 2px solid yellow;
-    width: 80%;
-    height: 75%;
+    width: 25%;
+    height: 25%;
     text-align: center;
     padding: 20px;
 }
@@ -33,4 +32,33 @@ rem: Relativo ao <html>.*/
 .card img {
     width: 100%;
     max-width: 400px;
+    height: 100%;
+}
+
+.conteudo {
+    padding-left: 20px;
+    font-size: 32px;
+}
+
+/* textos */
+.normal {
+    font-size: 1em;
+}
+
+.duplo {
+    font-size: 2em;
+}
+
+.triplo {
+    font-size: 3em;
+}
+
+.botao {
+    background-color: #ffcc00;
+    color: #990000;
+    font-size: 30px;
+    border-radius: 0.3em;
+    padding: 0.3em 0.6em; /* 10px em cima e embaixo, 20px nas laterais */;
+    margin-left: 20px;
+
 }
