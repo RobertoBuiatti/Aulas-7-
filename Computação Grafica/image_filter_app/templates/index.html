@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processamento de Imagens</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Processamento de Imagens</h1>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="uploadForm" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="imagem" class="form-label">Selecione uma imagem:</label>
+                                <input type="file" class="form-control" id="imagem" name="imagem" accept=".jpg,.jpeg,.png" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="filtro" class="form-label">Selecione o filtro:</label>
+                                <select class="form-select" id="filtro" name="filtro">
+                                    <option value="negativo">Negativo</option>
+                                    <option value="mediana">Mediana</option>
+                                    <option value="gaussiano">Gaussiano</option>
+                                    <option value="sobel">Sobel</option>
+                                    <option value="prewitt">Prewitt</option>
+                                    <option value="laplaciano">Laplaciano</option>
+                                    <option value="cinza">Escala de Cinza</option>
+                                    <option value="preto_branco">Preto e Branco</option>
+                                    <option value="gamma">Correção Gamma</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Parâmetros específicos dos filtros -->
+                            <div id="params-kernel" class="parameters mb-3">
+                                <label for="tamanho_kernel" class="form-label">Tamanho do Kernel:</label>
+                                <select class="form-select" id="tamanho_kernel" name="tamanho_kernel">
+                                    <option value="3">3x3</option>
+                                    <option value="5">5x5</option>
+                                    <option value="7">7x7</option>
+                                </select>
+                            </div>
+                            
+                            <div id="params-direcao" class="parameters mb-3">
+                                <label for="direcao" class="form-label">Direção:</label>
+                                <select class="form-select" id="direcao" name="direcao">
+                                    <option value="ambos">Ambos</option>
+                                    <option value="x">Horizontal (X)</option>
+                                    <option value="y">Vertical (Y)</option>
+                                </select>
+                            </div>
+                            
+                            <div id="params-laplaciano" class="parameters mb-3">
+                                <label for="tipo_laplaciano" class="form-label">Tipo do Laplaciano:</label>
+                                <select class="form-select" id="tipo_laplaciano" name="tipo_laplaciano">
+                                    <option value="1">Tipo 1</option>
+                                    <option value="2">Tipo 2</option>
+                                </select>
+                            </div>
+                            
+                            <div id="params-gamma" class="parameters mb-3">
+                                <label for="gamma" class="form-label">Valor Gamma:</label>
+                                <input type="range" class="form-range" id="gamma" name="gamma"
+                                       min="0.1" max="3.0" step="0.1" value="1.0">
+                                <div class="text-center" id="gamma-value">1.0</div>
+                            </div>
+
+                            <div id="params-threshold" class="parameters mb-3">
+                                <label for="threshold" class="form-label">Limiar (Threshold):</label>
+                                <input type="range" class="form-range" id="threshold" name="threshold"
+                                       min="0" max="255" step="1" value="128">
+                                <div class="text-center" id="threshold-value">128</div>
+                            </div>
+
+                            <div id="params-pre-processamento" class="parameters mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="pre_processamento" name="pre_processamento">
+                                    <label class="form-check-label" for="pre_processamento">
+                                        Pré-processar em escala de cinza
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div id="params-realce" class="parameters mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="realce_bordas" name="realce_bordas">
+                                    <label class="form-check-label" for="realce_bordas">
+                                        Realçar bordas na imagem original
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Processar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="loading" class="text-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Processando...</span>
+            </div>
+            <p>Processando imagem...</p>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h3 class="text-center">Imagem Original</h3>
+                <div class="image-container">
+                    <img id="imagemOriginal" src="" alt="Imagem Original" style="display: none;">
+                </div>
+                <div class="histogram-container">
+                    <img id="histogramaOriginal" src="" alt="Histograma Original" style="display: none;">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3 class="text-center">Imagem Processada</h3>
+                <div class="image-container">
+                    <img id="imagemProcessada" src="" alt="Imagem Processada" style="display: none;">
+                </div>
+                <div class="histogram-container">
+                    <img id="histogramaProcessado" src="" alt="Histograma Processado" style="display: none;">
+                </div>
+                <div class="text-center" id="downloadContainer" style="display: none;">
+                    <a id="downloadBtn" href="#" class="btn btn-success" download>Download Imagem Processada</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Controle de exibição dos parâmetros específicos
+        document.getElementById('filtro').addEventListener('change', function() {
+            const filtro = this.value;
+            const paramsKernel = document.getElementById('params-kernel');
+            const paramsDirecao = document.getElementById('params-direcao');
+            const paramsLaplaciano = document.getElementById('params-laplaciano');
+            
+            // Esconder todos os parâmetros
+            paramsKernel.style.display = 'none';
+            paramsDirecao.style.display = 'none';
+            paramsLaplaciano.style.display = 'none';
+            
+            // Mostrar parâmetros relevantes
+            const paramsGamma = document.getElementById('params-gamma');
+            const paramsThreshold = document.getElementById('params-threshold');
+            const paramsPreProcessamento = document.getElementById('params-pre-processamento');
+            const paramsRealce = document.getElementById('params-realce');
+            
+            // Esconder todos os parâmetros
+            paramsKernel.style.display = 'none';
+            paramsDirecao.style.display = 'none';
+            paramsLaplaciano.style.display = 'none';
+            paramsGamma.style.display = 'none';
+            paramsThreshold.style.display = 'none';
+            paramsPreProcessamento.style.display = 'none';
+            paramsRealce.style.display = 'none';
+            
+            // Mostrar parâmetros relevantes
+            if (filtro === 'mediana' || filtro === 'gaussiano') {
+                paramsKernel.style.display = 'block';
+            } else if (filtro === 'sobel' || filtro === 'prewitt') {
+                paramsDirecao.style.display = 'block';
+                paramsPreProcessamento.style.display = 'block';
+            } else if (filtro === 'laplaciano') {
+                paramsLaplaciano.style.display = 'block';
+                paramsPreProcessamento.style.display = 'block';
+                paramsRealce.style.display = 'block';
+            } else if (filtro === 'gamma') {
+                paramsGamma.style.display = 'block';
+            } else if (filtro === 'preto_branco') {
+                paramsThreshold.style.display = 'block';
+            }
+        });
+
+        // Processamento do formulário
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const loading = document.getElementById('loading');
+            loading.style.display = 'block';
+            
+            const formData = new FormData(this);
+            
+            try {
+                const response = await fetch('/processar', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Atualizar imagens
+                    const imgOriginal = document.getElementById('imagemOriginal');
+                    const imgProcessada = document.getElementById('imagemProcessada');
+                    imgOriginal.src = data.imagem_original;
+                    imgProcessada.src = data.imagem_processada;
+                    imgOriginal.style.display = 'inline';
+                    imgProcessada.style.display = 'inline';
+                    
+                    // Atualizar histogramas
+                    const histOriginal = document.getElementById('histogramaOriginal');
+                    const histProcessado = document.getElementById('histogramaProcessado');
+                    histOriginal.src = 'data:image/png;base64,' + data.histograma_original;
+                    histProcessado.src = 'data:image/png;base64,' + data.histograma_processado;
+                    histOriginal.style.display = 'inline';
+                    histProcessado.style.display = 'inline';
+                    
+                    // Configurar botão de download
+                    const downloadBtn = document.getElementById('downloadBtn');
+                    downloadBtn.href = data.imagem_processada;
+                    document.getElementById('downloadContainer').style.display = 'block';
+                } else {
+                    alert('Erro: ' + data.erro);
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro ao processar a imagem');
+            } finally {
+                loading.style.display = 'none';
+            }
+        });
+    </script>
+    <script>
+        // Atualizar valores dos controles deslizantes
+        document.getElementById('gamma').addEventListener('input', function() {
+            document.getElementById('gamma-value').textContent = this.value;
+        });
+        
+        document.getElementById('threshold').addEventListener('input', function() {
+            document.getElementById('threshold-value').textContent = this.value;
+        });
+    </script>
+</body>
+</html>

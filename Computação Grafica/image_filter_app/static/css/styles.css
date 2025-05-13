@@ -1,0 +1,163 @@
+/* Variáveis */
+:root {
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
+  --success-color: #198754;
+  --background-color: #f8f9fa;
+  --card-background: #ffffff;
+  --text-color: #212529;
+  --border-radius: 0.375rem;
+  --transition-speed: 0.3s;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset e estilos base */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Containers de imagem */
+.image-container {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background-color: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-speed);
+}
+
+.image-container:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: calc(var(--border-radius) - 2px);
+  object-fit: contain;
+}
+
+/* Container do histograma */
+.histogram-container {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background-color: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.histogram-container img {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+/* Formulário e controles */
+.card {
+  background-color: var(--card-background);
+  border: none;
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--transition-speed);
+}
+
+.card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.form-control, .form-select {
+  border-color: #dee2e6;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border: none;
+  padding: 0.5rem 1.5rem;
+  transition: background-color var(--transition-speed);
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+}
+
+.btn-success {
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  transition: all var(--transition-speed);
+}
+
+/* Loading spinner */
+#loading {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+}
+
+#loading .spinner-border {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+/* Parâmetros específicos */
+.parameters {
+  display: none;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: var(--border-radius);
+}
+
+/* Range inputs */
+.form-range {
+  height: 1.5rem;
+  padding: 0;
+}
+
+.form-range::-webkit-slider-thumb {
+  background: var(--primary-color);
+  transition: transform var(--transition-speed);
+}
+
+.form-range::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.image-container img, .histogram-container img {
+  animation: fadeIn var(--transition-speed);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .image-container img {
+    max-height: 300px;
+  }
+  
+  .histogram-container img {
+    max-height: 200px;
+  }
+}
