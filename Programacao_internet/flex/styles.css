@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #142f43;
+    
+}
+
+.container {
+    background-color: #4c6895;
+    width: 70vw;
+    height: 50vh;
+    margin: 25vh auto;
+    padding: 0.5em;
+
+    /* flexbox e direcionamento dos itens um abaixo do outro*/
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+
+    /* alinhamento no eixo principal */
+    justify-content: flex-start;
+    /* alinhamento no eixo secundario */
+    align-items: stretch;
+}
+
+.item {
+    background-color: #9bc4f5;
+    margin: 0.5em;
+}
+
+.item1 {
+    flex-grow: 0;
+    flex-shrink: 1; /* não encolhe */
+    flex-basis: 200px; /* largura inicial */
+
+}
+.item2 {
+    flex-grow: 1; /* ocupa o espaço restante */
+    flex-shrink: 1; /* encolhe se necessário */
+    flex-basis: 200px; /* largura inicial */
+}
+.item3 {
+    flex-grow: 1;
+}
