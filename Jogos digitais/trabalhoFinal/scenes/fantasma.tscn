@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://buht8one4ux78"]
+
+[ext_resource type="Script" path="res://scenes/fantasmaChao.gd" id="1_b2jii"]
+[ext_resource type="Texture2D" uid="uid://bnwuvn305pvqg" path="res://assets/Pixel Adventure 2 - Inimigos/Enemies/Ghost/Idle (44x30).png" id="2_gk7l0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evm6d"]
+radius = 14.0
+
+[sub_resource type="Animation" id="Animation_miqvb"]
+length = 0.001
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_b3yjj"]
+resource_name = "andar"
+length = 0.625006
+loop_mode = 1
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375, 0.5, 0.5625),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_if7lc"]
+_data = {
+"RESET": SubResource("Animation_miqvb"),
+"andar": SubResource("Animation_b3yjj")
+}
+
+[node name="fantasma" type="Node2D"]
+
+[node name="Fantasma" type="CharacterBody2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_b2jii")
+
+[node name="Sprite2D" type="Sprite2D" parent="Fantasma"]
+texture = ExtResource("2_gk7l0")
+hframes = 10
+
+[node name="Body" type="CollisionShape2D" parent="Fantasma"]
+shape = SubResource("CapsuleShape2D_evm6d")
+
+[node name="AnimEnimy" type="AnimationPlayer" parent="Fantasma"]
+libraries = {
+"": SubResource("AnimationLibrary_if7lc")
+}
+
+[node name="Area2D" type="Area2D" parent="Fantasma" groups=["Damage"]]
+
+[node name="Body" type="CollisionShape2D" parent="Fantasma/Area2D"]
+shape = SubResource("CapsuleShape2D_evm6d")
+
+[connection signal="body_entered" from="Fantasma/Area2D" to="Fantasma" method="_on_area_2d_body_entered"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://c72udykjmlsy2"]
+
+[ext_resource type="Script" path="res://scenes/hud.gd" id="1_vpuo1"]
+[ext_resource type="Texture2D" uid="uid://dmtw5atvvoj2w" path="res://assets/Items/Fruits/Apple.png" id="2_rpg1r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5iyib"]
+atlas = ExtResource("2_rpg1r")
+region = Rect2(8, 8, 16, 16)
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_vpuo1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5iyib")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
