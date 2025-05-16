@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://h6pyprqovoom"]
+
+[ext_resource type="TileSet" uid="uid://cejjcobstg7qw" path="res://resources/tileset_farm.tres" id="1_2k620"]
+
+[node name="Farm" type="Node2D"]
+
+[node name="Map" type="Node2D" parent="."]
+
+[node name="Ground" type="TileMapLayer" parent="Map"]
+tile_set = ExtResource("1_2k620")
