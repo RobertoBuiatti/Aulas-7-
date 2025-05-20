@@ -95,16 +95,85 @@ def aplicar_negativo(imagem: Image.Image) -> Image.Image:
     return processar_em_lotes(imagem, negativo_lote)
 
 def aplicar_mediana(imagem: Image.Image, tamanho: int = 3) -> Image.Image:
-    """Aplica o filtro da mediana na imagem."""
-    imagem = validar_e_preparar_imagem(imagem)
-    return imagem.filter(ImageFilter.MedianFilter(size=tamanho))
-
-def aplicar_gaussiano(imagem: Image.Image, tamanho: int = 3) -> Image.Image:
-    """Aplica o filtro gaussiano na imagem."""
+    """
+    Aplica o filtro da mediana na imagem usando implementação manual.
+    
+    Args:
+        imagem: Imagem de entrada
+        tamanho: Tamanho da janela do filtro (deve ser ímpar)
+    """
     imagem = validar_e_preparar_imagem(imagem)
     
-    # Otimização: Usar filtro gaussiano nativo do PIL para melhor performance
-    return imagem.filter(ImageFilter.GaussianBlur(radius=tamanho/2))
+    # Converter para array numpy
+    img_array = np.array(imagem)
+    resultado = np.zeros_like(img_array)
+    
+    # Garantir que o tamanho seja ímpar
+    if tamanho % 2 == 0:
+        tamanho += 1
+    
+    padding = tamanho // 2
+    altura, largura = img_array.shape[:2]
+    
+    # Aplicar filtro de mediana manualmente
+    for i in range(padding, altura - padding):
+        for j in range(padding, largura - padding):
+            # Para cada canal de cor
+            for c in range(3):
+                # Extrair a vizinhança
+                vizinhanca = img_array[i-padding:i+padding+1, j-padding:j+padding+1, c]
+                # Calcular a mediana
+                resultado[i, j, c] = np.median(vizinhanca)
+    
+    return Image.fromarray(resultado)
+
+def aplicar_gaussiano(imagem: Image.Image, tamanho: int = 3, sigma: float = 1.0) -> Image.Image:
+    """
+    Aplica o filtro gaussiano na imagem usando implementação manual.
+    
+    Args:
+        imagem: Imagem de entrada
+        tamanho: Tamanho da janela do filtro (deve ser ímpar)
+        sigma: Desvio padrão do kernel gaussiano
+    """
+    imagem = validar_e_preparar_imagem(imagem)
+    
+    # Garantir que o tamanho seja ímpar
+    if tamanho % 2 == 0:
+        tamanho += 1
+    
+    # Criar kernel gaussiano
+    kernel = np.zeros((tamanho, tamanho))
+    centro = tamanho // 2
+    
+    # Gerar valores para o kernel gaussiano
+    for i in range(tamanho):
+        for j in range(tamanho):
+            x, y = i - centro, j - centro
+            kernel[i, j] = (1/(2*np.pi*sigma**2)) * np.exp(-(x**2 + y**2)/(2*sigma**2))
+    
+    # Normalizar o kernel para que a soma seja 1
+    kernel = kernel / np.sum(kernel)
+    
+    # Converter para array numpy
+    img_array = np.array(imagem)
+    resultado = np.zeros_like(img_array)
+    
+    padding = tamanho // 2
+    altura, largura = img_array.shape[:2]
+    
+    # Aplicar convolução com o kernel gaussiano
+    for i in range(padding, altura - padding):
+        for j in range(padding, largura - padding):
+            # Para cada canal de cor
+            for c in range(3):
+                # Extrair a vizinhança
+                vizinhanca = img_array[i-padding:i+padding+1, j-padding:j+padding+1, c]
+                # Aplicar convolução
+                valor = np.sum(vizinhanca * kernel)
+                resultado[i, j, c] = np.clip(valor, 0, 255)
+    
+    return Image.fromarray(resultado.astype(np.uint8))
 
 def aplicar_sobel(imagem: Image.Image, direcao: str = 'ambos') -> Image.Image:
     """
