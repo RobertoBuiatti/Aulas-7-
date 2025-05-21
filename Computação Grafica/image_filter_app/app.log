@@ -218,3 +218,53 @@
 2025-05-13 16:19:45,893 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 16:19:45] "POST /processar HTTP/1.1" 200 -
 2025-05-13 16:19:45,899 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 16:19:45] "GET /static/uploads/original_Captura_de_tela_2024-07-23_143725_20250513_161945.jpg HTTP/1.1" 200 -
 2025-05-13 16:19:45,908 - werkzeug - INFO - 127.0.0.1 - - [13/May/2025 16:19:45] "GET /static/processed/processado_Captura_de_tela_2024-07-23_143725_20250513_161945.jpg HTTP/1.1" 200 -
+2025-05-20 18:28:47,007 - __main__ - INFO - Diretórios criados/verificados com sucesso
+2025-05-20 18:28:48,316 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.2:5000
+2025-05-20 18:28:48,316 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-20 18:28:55,168 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:28:55] "GET / HTTP/1.1" 200 -
+2025-05-20 18:28:55,252 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:28:55] "GET /static/css/styles.css HTTP/1.1" 200 -
+2025-05-20 18:28:55,437 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:28:55] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-20 18:29:13,944 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:29:13] "POST /processar HTTP/1.1" 200 -
+2025-05-20 18:29:13,950 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:29:13] "GET /static/uploads/original_Captura_de_tela_2024-07-23_143725_20250520_182913.jpg HTTP/1.1" 200 -
+2025-05-20 18:29:13,964 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:29:13] "GET /static/processed/processado_Captura_de_tela_2024-07-23_143725_20250520_182913.jpg HTTP/1.1" 200 -
+2025-05-20 18:29:25,953 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:29:25] "POST /processar HTTP/1.1" 200 -
+2025-05-20 18:29:25,961 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:29:25] "GET /static/uploads/original_Captura_de_tela_2024-07-23_143725_20250520_182925.jpg HTTP/1.1" 200 -
+2025-05-20 18:29:25,970 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:29:25] "GET /static/processed/processado_Captura_de_tela_2024-07-23_143725_20250520_182925.jpg HTTP/1.1" 200 -
+2025-05-20 18:29:31,022 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:29:31] "POST /processar HTTP/1.1" 200 -
+2025-05-20 18:29:31,029 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:29:31] "GET /static/uploads/original_Captura_de_tela_2024-07-23_143725_20250520_182930.jpg HTTP/1.1" 200 -
+2025-05-20 18:29:31,039 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:29:31] "GET /static/processed/processado_Captura_de_tela_2024-07-23_143725_20250520_182930.jpg HTTP/1.1" 200 -
+2025-05-20 18:29:37,320 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:29:37] "POST /processar HTTP/1.1" 200 -
+2025-05-20 18:29:37,326 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:29:37] "GET /static/uploads/original_Captura_de_tela_2024-07-23_143725_20250520_182937.jpg HTTP/1.1" 200 -
+2025-05-20 18:29:37,336 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:29:37] "GET /static/processed/processado_Captura_de_tela_2024-07-23_143725_20250520_182937.jpg HTTP/1.1" 200 -
+2025-05-20 18:29:43,672 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:29:43] "POST /processar HTTP/1.1" 200 -
+2025-05-20 18:29:43,678 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:29:43] "GET /static/uploads/original_Captura_de_tela_2024-07-23_143725_20250520_182943.jpg HTTP/1.1" 200 -
+2025-05-20 18:29:43,688 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:29:43] "GET /static/processed/processado_Captura_de_tela_2024-07-23_143725_20250520_182943.jpg HTTP/1.1" 200 -
+2025-05-20 18:30:31,152 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:30:31] "POST /processar HTTP/1.1" 200 -
+2025-05-20 18:30:31,158 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:30:31] "GET /static/uploads/original_Captura_de_tela_2024-07-23_143725_20250520_183030.jpg HTTP/1.1" 200 -
+2025-05-20 18:30:31,168 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:30:31] "GET /static/processed/processado_Captura_de_tela_2024-07-23_143725_20250520_183030.jpg HTTP/1.1" 200 -
+2025-05-20 18:47:06,902 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:47:06] "GET / HTTP/1.1" 200 -
+2025-05-20 18:47:06,932 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:47:06] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-05-20 18:47:13,079 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:47:13] "POST /processar HTTP/1.1" 200 -
+2025-05-20 18:47:13,086 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:47:13] "GET /static/uploads/original_Captura_de_tela_2024-07-23_143725_20250520_184712.jpg HTTP/1.1" 200 -
+2025-05-20 18:47:13,096 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:47:13] "GET /static/processed/processado_Captura_de_tela_2024-07-23_143725_20250520_184712.jpg HTTP/1.1" 200 -
+2025-05-20 18:47:17,351 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:47:17] "POST /processar HTTP/1.1" 200 -
+2025-05-20 18:47:17,357 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:47:17] "GET /static/uploads/original_Captura_de_tela_2024-07-23_143725_20250520_184717.jpg HTTP/1.1" 200 -
+2025-05-20 18:47:17,367 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:47:17] "GET /static/processed/processado_Captura_de_tela_2024-07-23_143725_20250520_184717.jpg HTTP/1.1" 200 -
+2025-05-20 18:47:20,581 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:47:20] "POST /processar HTTP/1.1" 200 -
+2025-05-20 18:47:20,587 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:47:20] "GET /static/uploads/original_Captura_de_tela_2024-07-23_143725_20250520_184720.jpg HTTP/1.1" 200 -
+2025-05-20 18:47:20,597 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 18:47:20] "GET /static/processed/processado_Captura_de_tela_2024-07-23_143725_20250520_184720.jpg HTTP/1.1" 200 -
+2025-05-21 18:07:23,898 - __main__ - INFO - Diretórios criados/verificados com sucesso
+2025-05-21 18:07:25,211 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.2:5000
+2025-05-21 18:07:25,211 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-21 18:07:27,297 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 18:07:27] "GET / HTTP/1.1" 200 -
+2025-05-21 18:07:27,380 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 18:07:27] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-05-21 18:07:27,731 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 18:07:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-21 18:07:38,137 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 18:07:38] "POST /processar HTTP/1.1" 200 -
+2025-05-21 18:07:38,145 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 18:07:38] "GET /static/uploads/original_Captura_de_tela_2024-07-23_143725_20250521_180737.jpg HTTP/1.1" 200 -
+2025-05-21 18:07:38,154 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 18:07:38] "GET /static/processed/processado_Captura_de_tela_2024-07-23_143725_20250521_180737.jpg HTTP/1.1" 200 -
