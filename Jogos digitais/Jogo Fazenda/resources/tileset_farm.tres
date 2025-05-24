@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://cejjcobstg7qw"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://cejjcobstg7qw"]
 
 [ext_resource type="Texture2D" uid="uid://wqqyfhq6wj6y" path="res://Assets/Tilesets/Water.png" id="1_acqmh"]
 [ext_resource type="Texture2D" uid="uid://c4of7ecef808f" path="res://Assets/Tilesets/Tileset_general.png" id="1_ccwu8"]
+[ext_resource type="PackedScene" uid="uid://bvhjpb6qe5wxu" path="res://scenes/door/door.tscn" id="3_y8hoi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dxtxe"]
 texture = ExtResource("1_acqmh")
@@ -751,11 +752,15 @@ texture = ExtResource("1_ccwu8")
 4:15/0 = 0
 3:15/0 = 0
 3:16/0 = 0
+3:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.66667, -8, 6.66667, -8, 6.66667, 8, -6.66667, 8)
 4:16/0 = 0
+4:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -6.66667, -1.33333, -6.66667, -1.33333, -2.66667, 4, -2.66667, 4, 5.33333, -4, 5.33333)
 5:16/0 = 0
+5:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -6.66667, 1.33333, -6.66667, 1.33333, -2.66667, -4, -2.66667, -4, 5.33333, 4, 5.33333)
 5:17/0 = 0
 4:17/0 = 0
 3:17/0 = 0
+3:17/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.66667, -6.66667, 6.66667, -6.66667, 6.66667, 6.66667, -6.66667, 6.66667)
 4:18/0 = 0
 2:18/size_in_atlas = Vector2i(2, 1)
 2:18/0 = 0
@@ -930,6 +935,10 @@ texture = ExtResource("1_ccwu8")
 5:12/0 = 0
 0:15/size_in_atlas = Vector2i(1, 2)
 0:15/0 = 0
+0:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.33333, -4, 5.33333, -4, 6.66667, 14.6667, -6.66667, 14.6667)
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_43y50"]
+scenes/1/scene = ExtResource("3_y8hoi")
 
 [resource]
 physics_layer_0/collision_layer = 1
@@ -940,3 +949,4 @@ terrain_set_0/terrain_1/name = "Grass"
 terrain_set_0/terrain_1/color = Color(0.822375, 0, 0.247906, 1)
 sources/1 = SubResource("TileSetAtlasSource_0sas0")
 sources/0 = SubResource("TileSetAtlasSource_dxtxe")
+sources/2 = SubResource("TileSetScenesCollectionSource_43y50")
