@@ -1,0 +1,168 @@
+.heroi-producoes {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('../img/background/producoes-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 8vw 2vw;
+    margin-bottom: 8vw;
+}
+
+.heroi-producoes h1 {
+    color: #FFFFFF;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.heroi-producoes p {
+    color: #FFFFFF;
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.comparacao {
+    padding: 8vw 2vw;
+}
+
+.grade-anime {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8vw;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.cartao-anime {
+    background: linear-gradient(145deg, #333333, #1A1A1A);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.cartao-anime:hover {
+    transform: translateY(-10px);
+}
+
+.cabecalho-anime {
+    padding: 2vw;
+    background-color: #CC0000;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cabecalho-anime h2 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.ano {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.imagem-anime {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.imagem-anime img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.cartao-anime:hover .imagem-anime img {
+    transform: scale(1.05);
+}
+
+.info-anime {
+    padding: 2vw;
+}
+
+.item-info {
+    margin-bottom: 2vw;
+}
+
+.item-info:last-child {
+    margin-bottom: 0;
+}
+
+.item-info h3 {
+    color: #CC0000;
+    margin-bottom: 0.5vw;
+    font-size: 1.3rem;
+}
+
+.item-info p {
+    color: #FFFFFF;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.diferencas {
+    padding: 8vw 2vw;
+    background-color: #1A1A1A;
+}
+
+.diferencas h2 {
+    text-align: center;
+    color: #CC0000;
+    margin-bottom: 8vw;
+}
+
+.grade-diferencas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4vw;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.item-diferenca {
+    background: linear-gradient(145deg, #333333, #1A1A1A);
+    border-radius: 12px;
+    padding: 2vw;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.item-diferenca:hover {
+    transform: translateY(-5px);
+}
+
+.item-diferenca h3 {
+    color: #CC0000;
+    margin-bottom: 2vw;
+    text-align: center;
+}
+
+.caixa-comparacao {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2vw;
+}
+
+.versao {
+    padding: 1vw;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.versao h4 {
+    color: #FFFFFF;
+    margin-bottom: 0.5vw;
+    font-size: 1.2rem;
+}
+
+.versao p {
+    color: #FFFFFF;
+    opacity: 0.8;
+    font-size: 1rem;
+    line-height: 1.5;
+}

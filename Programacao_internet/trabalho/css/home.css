@@ -1,0 +1,121 @@
+.heroi {
+    display: grid;
+    place-items: center;
+    min-height: 80vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('../img/background/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 8vw 2vw;
+    text-align: center;
+}
+
+.conteudo-heroi {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.heroi h1 {
+    color: #FFFFFF;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2vw;
+}
+
+.heroi p {
+    font-size: 1.3rem;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 4vw;
+}
+
+.recursos {
+    padding: 8vw 0;
+}
+
+.recursos .container-grade {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4vw;
+}
+
+.cartao-recurso {
+    background-color: #333333;
+    padding: 2vw;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.cartao-recurso:hover {
+    transform: translateY(-5px);
+}
+
+.cartao-recurso h2 {
+    color: #CC0000;
+    margin-bottom: 1vw;
+}
+
+.cartao-recurso p {
+    color: #FFFFFF;
+    opacity: 0.9;
+}
+
+.destaques {
+    padding: 8vw 0;
+    background-color: #1A1A1A;
+}
+
+.destaques h2 {
+    text-align: center;
+    margin-bottom: 4vw;
+    color: #CC0000;
+}
+
+.grid-destaques {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4vw;
+}
+
+.destaque-item {
+    background: linear-gradient(145deg, #333333, #1A1A1A);
+    padding: 2vw;
+    border-radius: 8px;
+    border-left: 4px solid #CC0000;
+    transition: transform 0.3s ease;
+}
+
+.destaque-item:hover {
+    transform: scale(1.02);
+}
+
+.destaque-item h3 {
+    color: #FFFFFF;
+    margin-bottom: 1vw;
+}
+
+.destaque-item p {
+    color: #FFFFFF;
+    opacity: 0.8;
+}
+
+.link-oculto {
+    text-decoration: none;
+    color: inherit;
+    cursor: default;
+}
+
+.link-oculto:hover {
+    color: #cc0000;
+}
+
+.link-oculto:hover::before {
+    content: "Não abra";
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #cc0000;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    transform: translateY(-25px);
+}

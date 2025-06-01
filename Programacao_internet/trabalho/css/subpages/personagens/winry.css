@@ -1,0 +1,95 @@
+.detalhes-personagem {
+    padding: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.detalhes-personagem h1 {
+    color: #4d9fff;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 32px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.info-personagem {
+    display: flex;
+    gap: 32px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(77, 159, 255, 0.3);
+    border: 1px solid rgba(192, 192, 192, 0.3);
+}
+
+.info-personagem img {
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(77, 159, 255, 0.3);
+    border: 2px solid #4d9fff;
+}
+
+.descricao {
+    flex: 1;
+    color: #ffffff;
+}
+
+.descricao h2 {
+    color: #4d9fff;
+    font-size: 28px;
+    margin-bottom: 16px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.descricao h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #4d9fff, #c0c0c0);
+    border-radius: 2px;
+}
+
+.descricao p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+.caracteristicas {
+    background-color: rgba(77, 159, 255, 0.1);
+    padding: 24px;
+    border-radius: 8px;
+    border: 1px solid rgba(77, 159, 255, 0.2);
+    position: relative;
+}
+
+.caracteristicas h3 {
+    color: #4d9fff;
+    font-size: 22px;
+    margin-bottom: 16px;
+}
+
+.caracteristicas ul {
+    list-style: none;
+    padding: 0;
+}
+
+.caracteristicas li {
+    margin-bottom: 8px;
+    font-size: 18px;
+    padding-left: 24px;
+    position: relative;
+}
+
+.caracteristicas li::before {
+    content: "⚙️";
+    position: absolute;
+    left: 0;
+    font-size: 16px;
+}

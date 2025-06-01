@@ -1,0 +1,78 @@
+.detalhes-personagem {
+    padding: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.detalhes-personagem h1 {
+    color: #ffd700;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 32px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.info-personagem {
+    display: flex;
+    gap: 32px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.info-personagem img {
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+.descricao {
+    flex: 1;
+    color: #ffffff;
+}
+
+.descricao h2 {
+    color: #ffd700;
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+.descricao p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+.caracteristicas {
+    background-color: rgba(255, 215, 0, 0.1);
+    padding: 24px;
+    border-radius: 8px;
+}
+
+.caracteristicas h3 {
+    color: #ffd700;
+    font-size: 22px;
+    margin-bottom: 16px;
+}
+
+.caracteristicas ul {
+    list-style: none;
+    padding: 0;
+}
+
+.caracteristicas li {
+    margin-bottom: 8px;
+    font-size: 18px;
+    padding-left: 24px;
+    position: relative;
+}
+
+.caracteristicas li::before {
+    content: "•";
+    color: #ffd700;
+    position: absolute;
+    left: 0;
+    font-size: 20px;
+}

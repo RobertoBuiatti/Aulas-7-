@@ -1,0 +1,161 @@
+.heroi-curiosidades {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('../img/background/curiosidades-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 8vw 2vw;
+    margin-bottom: 8vw;
+}
+
+.heroi-curiosidades h1 {
+    color: #FFFFFF;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.heroi-curiosidades p {
+    color: #FFFFFF;
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.grade-curiosidades {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4vw;
+    padding: 0 2vw;
+    max-width: 1400px;
+    margin: 0 auto 8vw;
+}
+
+.cartao-curiosidade {
+    background: linear-gradient(145deg, #333333, #1A1A1A);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.cartao-curiosidade:hover {
+    transform: translateY(-10px);
+}
+
+.cabecalho-cartao {
+    background-color: #CC0000;
+    padding: 2vw;
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+}
+
+.numero {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #FFFFFF;
+    opacity: 0.8;
+}
+
+.cabecalho-cartao h2 {
+    color: #FFFFFF;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.conteudo-cartao {
+    padding: 2vw;
+}
+
+.conteudo-cartao p {
+    color: #FFFFFF;
+    opacity: 0.9;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.secao-trivia {
+    padding: 8vw 2vw;
+    background-color: #1A1A1A;
+}
+
+.secao-trivia h2 {
+    text-align: center;
+    color: #CC0000;
+    margin-bottom: 8vw;
+}
+
+.grade-trivia {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4vw;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.item-trivia {
+    background: linear-gradient(145deg, #333333, #1A1A1A);
+    padding: 2vw;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    border-left: 4px solid #CC0000;
+}
+
+.item-trivia:hover {
+    transform: translateY(-5px);
+}
+
+.item-trivia h3 {
+    color: #CC0000;
+    margin-bottom: 1vw;
+}
+
+.item-trivia p {
+    color: #FFFFFF;
+    opacity: 0.9;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.ovos-pascoa {
+    padding: 8vw 2vw;
+}
+
+.ovos-pascoa h2 {
+    text-align: center;
+    color: #CC0000;
+    margin-bottom: 8vw;
+}
+
+.lista-ovos-pascoa {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4vw;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.ovo-pascoa {
+    background: linear-gradient(145deg, #333333, #1A1A1A);
+    padding: 2vw;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.ovo-pascoa:hover {
+    transform: translateY(-5px);
+}
+
+.ovo-pascoa h3 {
+    color: #CC0000;
+    margin-bottom: 1vw;
+}
+
+.ovo-pascoa p {
+    color: #FFFFFF;
+    opacity: 0.9;
+    line-height: 1.6;
+    margin: 0;
+}

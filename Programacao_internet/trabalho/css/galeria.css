@@ -1,0 +1,165 @@
+.heroi-galeria {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('../img/background/galeria-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 8vw 2vw;
+    margin-bottom: 8vw;
+}
+
+.heroi-galeria h1 {
+    color: #FFFFFF;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.heroi-galeria p {
+    color: #FFFFFF;
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.filtros-galeria {
+    display: flex;
+    justify-content: center;
+    gap: 1vw;
+    margin-bottom: 8vw;
+    flex-wrap: wrap;
+    padding: 0 2vw;
+}
+
+.botao-filtro {
+    background-color: #333333;
+    color: #FFFFFF;
+    border: none;
+    padding: 1vw 2vw;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.botao-filtro:hover {
+    background-color: #CC0000;
+    transform: translateY(-2px);
+}
+
+.botao-filtro.active {
+    background-color: #CC0000;
+}
+
+.grade-galeria {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
+    padding: 0 2vw;
+    max-width: 1400px;
+    margin: 0 auto 8vw;
+}
+
+.item-galeria {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    cursor: pointer;
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.item-galeria img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.sobreposicao-galeria {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+    color: #FFFFFF;
+    padding: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.item-galeria:hover {
+    transform: scale(1.02);
+}
+
+.item-galeria:hover img {
+    transform: scale(1.1);
+}
+
+.item-galeria:hover .sobreposicao-galeria {
+    opacity: 1;
+}
+
+.sobreposicao-galeria h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5vw;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.sobreposicao-galeria p {
+    font-size: 1rem;
+    opacity: 0.9;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.caixa-luz {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    padding: 2vw;
+}
+
+.caixa-luz.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudo-caixa-luz {
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.fechar-caixa-luz {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #FFFFFF;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.fechar-caixa-luz:hover {
+    transform: scale(1.1);
+}
+
+.legenda-caixa-luz {
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: 2vw;
+    font-size: 1.2rem;
+    max-width: 600px;
+}

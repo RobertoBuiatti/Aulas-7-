@@ -1,0 +1,159 @@
+.heroi-historia {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('../img/background/historia-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 8vw 2vw;
+    margin-bottom: 8vw;
+}
+
+.heroi-historia h1 {
+    color: #FFFFFF;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.heroi-historia p {
+    color: #FFFFFF;
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.linha-tempo {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8vw 2vw;
+}
+
+.linha-tempo::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: #CC0000;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+    border-radius: 3px;
+}
+
+.item-linha-tempo {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+    margin-bottom: 8vw;
+}
+
+.item-linha-tempo::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -12px;
+    background-color: #1A1A1A;
+    border: 4px solid #CC0000;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.item-linha-tempo.right::after {
+    left: -12px;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    left: 50%;
+}
+
+.conteudo-linha-tempo {
+    padding: 2vw;
+    background: linear-gradient(145deg, #333333, #1A1A1A);
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.conteudo-linha-tempo:hover {
+    transform: translateY(-5px);
+}
+
+.conteudo-linha-tempo h2 {
+    color: #CC0000;
+    margin-bottom: 1vw;
+}
+
+.conteudo-linha-tempo p {
+    color: #FFFFFF;
+    margin-bottom: 2vw;
+    line-height: 1.6;
+}
+
+.imagem-linha-tempo {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.imagem-linha-tempo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.conteudo-linha-tempo:hover .imagem-linha-tempo img {
+    transform: scale(1.05);
+}
+
+.mundo-alquimia {
+    padding: 8vw 2vw;
+    background-color: #1A1A1A;
+}
+
+.mundo-alquimia h2 {
+    color: #CC0000;
+    text-align: center;
+    margin-bottom: 4vw;
+}
+
+.grade-alquimia {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4vw;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.item-alquimia {
+    background: linear-gradient(145deg, #333333, #1A1A1A);
+    padding: 2vw;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    border-left: 4px solid #CC0000;
+}
+
+.item-alquimia:hover {
+    transform: translateY(-5px);
+}
+
+.item-alquimia h3 {
+    color: #FFFFFF;
+    margin-bottom: 1vw;
+}
+
+.item-alquimia p {
+    color: #FFFFFF;
+    opacity: 0.8;
+    line-height: 1.6;
+}
