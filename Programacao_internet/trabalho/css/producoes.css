@@ -25,7 +25,7 @@
     padding: 8vw 2vw;
 }
 
-.grade-anime {
+.grade-animes {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 8vw;
@@ -85,7 +85,7 @@
     padding: 2vw;
 }
 
-.item-info {
+.item-informacao {
     margin-bottom: 2vw;
 }
 
