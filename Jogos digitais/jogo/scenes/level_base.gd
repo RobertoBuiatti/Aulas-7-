@@ -8,6 +8,7 @@ extends Node2D
 @export var next_level: PackedScene
 
 var num_fruit:int = 0
+var total_fruits:int = 0
 var initial_position = Vector2(238, 157)
 var checkpoints_num:int = 0
 
@@ -19,8 +20,9 @@ func _ready() -> void:
 	# percorrer todas as frutas
 	for item in itens.get_children():
 		if item is Fruit or Fruit_Random:
+			total_fruits += 1
 			item.fruit_eaten.connect(_on_fruit_eaten)
-			
+	print("Total de frutas no nível: ", total_fruits)
 	
 	for Checkpoint in checkpoints.get_children():
 		if Checkpoint is checkpoint:
@@ -33,16 +35,21 @@ func _ready() -> void:
 			
 
 func _on_win():
-	#get_tree().change_scene_to_file("res://Levels/level_two.tscn")
-	if next_level:
-		get_tree().change_scene_to_packed(next_level)
+	if total_fruits == 0:
+		print("todas as frutas coletadas!")
+		if next_level:
+			get_tree().change_scene_to_packed(next_level)
+	else:
+		print("colete todas as frutas!")
+			
 
 func _process(delta: float) -> void:
 	pass
 
 func _on_fruit_eaten(quantity):
 	hud.eat_fruit(quantity)
-	print("Frutas: ", num_fruit)
+	total_fruits -= 1
+	print(total_fruits)
 	#player.global_position = initial_position
 
 	

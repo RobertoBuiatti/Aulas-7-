@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://bmiw4aoll3llw"]
+[gd_scene load_steps=7 format=4 uid="uid://bmiw4aoll3llw"]
 
 [ext_resource type="Script" path="res://scenes/level_base.gd" id="1_qicx6"]
 [ext_resource type="PackedScene" uid="uid://c72udykjmlsy2" path="res://scenes/hud.tscn" id="2_tv6to"]
 [ext_resource type="TileSet" uid="uid://7e3j2eajjwm5" path="res://tileset_level.tres" id="3_ckat2"]
 [ext_resource type="PackedScene" uid="uid://hloo3wx41y70" path="res://scenes/player.tscn" id="4_0uana"]
+[ext_resource type="PackedScene" uid="uid://drgjckwexxcan" path="res://scenes/fruit_random.tscn" id="5_1vy1b"]
 
 [sub_resource type="GDScript" id="GDScript_x4jpx"]
 
@@ -28,6 +29,21 @@ tile_set = ExtResource("3_ckat2")
 position = Vector2(238, 157)
 
 [node name="Itens" type="Node2D" parent="."]
+
+[node name="Fruit Random" parent="Itens" instance=ExtResource("5_1vy1b")]
+position = Vector2(-398, 219)
+
+[node name="Fruit Random4" parent="Itens" instance=ExtResource("5_1vy1b")]
+position = Vector2(394, 154)
+
+[node name="Fruit Random5" parent="Itens" instance=ExtResource("5_1vy1b")]
+position = Vector2(360, 277)
+
+[node name="Fruit Random2" parent="Itens" instance=ExtResource("5_1vy1b")]
+position = Vector2(-545, 283)
+
+[node name="Fruit Random3" parent="Itens" instance=ExtResource("5_1vy1b")]
+position = Vector2(-644, 281)
 
 [node name="Enimy" type="Node2D" parent="."]
 

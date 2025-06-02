@@ -3,11 +3,11 @@ extends CharacterBody2D
 @onready var anim: AnimationPlayer = $Anim
 @onready var respawn_point: Vector2 = global_position
 
-@export var speed_player: float = 1.5
+@export var speed_player: float = 1
 
 
 var SPEED = 300
-var GRAVITY = 980
+var GRAVITY = 800
 var JUMP_VELOCITY = -400
 var jumps = 0
 var max_jumps = 1
