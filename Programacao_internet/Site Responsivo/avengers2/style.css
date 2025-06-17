@@ -1,0 +1,392 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,700,900");
+
+* {
+	box-sizing: border-box;
+	transition: all 300ms linear;
+}
+
+body {
+	margin: 0;
+	font-family: "Raleway", sans-serif;
+	text-align: center;
+	font-size: 16px;
+}
+
+.container {
+	padding: 1em 1em;
+}
+
+/* TIPOGRAFIA */
+h1 {
+	margin-top: 0;
+	font-weight: 400;
+}
+
+h1.title {
+	font-size: 1.6em;
+	font-weight: 700;
+	color: #fff;
+	margin-bottom: 1.5em;
+}
+h1.title span {
+	font-size: 0.9em;
+	font-weight: 300;
+	display: block;
+}
+
+p {
+	margin-top: 0;
+}
+p:last-of-type {
+	margin-bottom: 0;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.button {
+	display: inline-block;
+	font-size: 1.3rem;
+	text-decoration: none;
+	padding: 0.35em 1.5em;
+	color: #6d939c;
+	border: 2px solid #6d939c;
+	text-transform: uppercase;
+}
+.button:hover {
+	color: #fff;
+	border: 2px solid #fff;
+	background-color: #6d939c;
+}
+
+.button-small {
+	font-size: 0.8em;
+}
+
+.list-clean {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* CABEÇALHO */
+header {
+position: absolute;
+top: 0px;
+left: 0px;
+right: 0px;
+padding: 1em;
+z-index: 1000;
+background-color: #000000;
+}
+
+img.logo {
+	width: 100px;
+	height: auto;
+	margin-bottom: 0.5em;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+}
+nav li {
+	list-style: none;
+	display: inline;
+	padding: 1em;
+}
+nav a {
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #fff;
+	padding: 0;
+	font-size: 0.9rem;
+	font-weight: 700;
+}
+nav a:hover {
+	color: #6d939c;
+}
+
+/* HOME COVER */
+.home-cover {
+	background-image: url("img/cover.jpg");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.home-cover::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.home-cover .container {
+	position: relative;
+	z-index: 100;
+}
+
+/* SOBRE */
+.home-about {
+background-color: #232323;
+width: 100%;
+}
+
+.home-about-box {
+position: relative;
+color: #fff;
+font-size: 1.1em;
+line-height: 1.3;
+padding: 3em 1em;
+border-top: 2px solid #6d939c;
+border-bottom: 2px solid #6d939c;
+}
+.home-about-box h1 {
+	position: absolute;
+	top: 0.65em;
+	left: 50%;
+	transform: translateX(-50%);
+	text-transform: uppercase;
+	font-weight: 400;
+	color: #6d939c;
+	background-color: #232323;
+	padding: 0 0.5em;
+}
+
+/* EQUIPE */
+.home-team {
+	padding: 2em 0;
+}
+
+.home-team h1 {
+	margin-bottom: 2em;
+	font-size: 2em;
+	color: #232323;
+}
+
+figure.team-item {
+position: relative;
+margin: 0;
+padding: 0;
+overflow: hidden;
+}
+figure.team-item img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+figcaption.team-info {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 1em;
+	z-index: 100;
+}
+
+/* PÔSTERES */
+.home-posters {
+	background-color: #f5f5f5;
+	padding: 2em 0;
+}
+
+.home-posters h1 {
+	margin-bottom: 2em;
+	font-size: 2em;
+	color: #232323;
+}
+
+.posters-container {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 0;
+padding: 0;
+}
+
+.poster-item img {
+	width: 100%;
+	height: auto;
+	border-radius: 5px;
+}
+
+/* FOOTER */
+footer {
+	background-color: #232323;
+	padding: 2em;
+	color: #fff;
+	text-align: left;
+}
+
+.col-3,
+.col-1 {
+	padding: 0 0.5em;
+	margin-bottom: 1em;
+}
+.col-3 {
+	width: 100%;
+}
+
+.col-1 {
+	width: 100%;
+}
+
+footer ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+footer li {
+	margin-bottom: 0.5em;
+}
+
+footer strong {
+	color: #6d939c;
+}
+
+/* MEDIA QUERIES */
+
+/* Tablet - 640px+ */
+@media (min-width: 640px) {
+	/* Header */
+	header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	img.logo {
+		margin-bottom: 0;
+	}
+
+	nav ul {
+		display: flex;
+	}
+
+	/* Home Cover */
+	h1.title {
+		font-size: 2.5em;
+	}
+
+	/* Equipe - 2 colunas */
+	.home-team {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0;
+		padding: 2em 0;
+	}
+
+	.home-team h1 {
+		grid-column: 1 / -1;
+	}
+
+	/* Footer */
+	footer {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2em;
+	}
+
+	.col-3 {
+		margin-bottom: 0;
+	}
+
+	.col-1 {
+		margin-bottom: 0;
+	}
+}
+
+/* Desktop - 960px+ */
+@media (min-width: 960px) {
+/* Header */
+img.logo {
+float: left;
+}
+nav {
+float: right;
+margin-top: 1.7em;
+}
+
+/* Home Cover */
+h1.title {
+font-size: 3.5em;
+}
+
+.button {
+font-size: 1.5rem;
+padding: 0.5em 2em;
+}
+
+/* Sobre */
+.home-about-box {
+padding: 4em 1em;
+}
+
+	/* Equipe - 3 colunas */
+	.home-team {
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0;
+		padding: 3em 0;
+	}
+
+	/* Hover effect na equipe */
+	figcaption.team-info {
+		bottom: -7em;
+		transition: bottom 300ms ease;
+	}
+	figure.team-item:hover figcaption.team-info {
+		bottom: 0;
+	}
+
+	/* Pôsteres - 4 colunas */
+	.posters-container {
+		grid-template-columns: repeat(4, 1fr);
+		gap: 0;
+		padding: 0;
+	}
+
+	/* Footer */
+	footer {
+		grid-template-columns: 2fr 1fr 1fr 1fr;
+		gap: 3em;
+		padding: 3em;
+	}
+
+	.col-3 {
+		grid-column: 1;
+	}
+}
+
+/* Muito Grande - 1200px+ */
+@media (min-width: 1200px) {
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	/* Pôsteres - 6 colunas em telas muito grandes */
+	.posters-container {
+		grid-template-columns: repeat(6, 1fr);
+		gap: 0;
+	}
+}
+
+/* Utilidades */
+.clearfix::after {
+	content: "";
+	display: table;
+	clear: both;
+}
