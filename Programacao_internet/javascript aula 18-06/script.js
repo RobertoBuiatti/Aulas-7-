@@ -106,11 +106,73 @@ if (numero > 0 || numero === 0 && numero !== null) {
 }
 
 numero > 0 ? imprime("Número positivo") : imprime("Número não é positivo")
+
+// array
+imprime("")
+imprime("Estruturas de dados")
+let frutas = ["maçã", "banana", "laranja", "uva"]
+imprime("Frutas: " + frutas.join(", ")) // join para transformar o array em string
+imprime("Frutas: " + frutas) // imprime o array como string
+let numeros = [1, 2, 3, 4, 5]
+imprime("Números: " + numeros[0]) // acessa o primeiro elemento do array
+imprime("Números: " + numeros[(numeros.length)-1]) // acessa o último elemento do array
+
+//objeto
+imprime("")
+imprime("Objetos")
+let pessoa = {
+    nome: "Maria",
+    idade: 25,
+    profissao: "Desenvolvedora"
+}
+
+let pessoa1 = new Object() // outra forma de criar um objeto
+pessoa1.nome = "Carlos"
+pessoa1.idade = 28
+pessoa1.profissao = "Designer"
+pessoa1["nome"] = "Ana" // acessa a propriedade do objeto usando colchetes
+pessoa1["idade"] = 22
+pessoa1["profissao"] = "Gerente de Projetos"
+
+imprime(`Nome: ${pessoa1.nome}, Idade: ${pessoa1.idade}, Profissão: ${pessoa1.profissao}`) // acessa as propriedades do objeto
+
+
+imprime(`Nome: ${pessoa.nome}, Idade: ${pessoa.idade}, Profissão: ${pessoa.profissao}`) // acessa as propriedades do objeto
+imprime(`Nome: ${pessoa["nome"]}, Idade: ${pessoa["idade"]}, Profissão: ${pessoa["profissao"]}`) // acessa as propriedades do objeto usando colchetes
+
+// new objeto e constructor
+imprime("Criando objetos com constructor")
+function Carro(marca, modelo, ano) {
+    this.marca = marca;
+    this.modelo = modelo;
+    this.ano = ano;
+}
+Carro.prototype.exibirInfo = function() {
+    return `Marca: ${this.marca}, Modelo: ${this.modelo}, Ano: ${this.ano}`;
+}
+let carro1 = new Carro("Toyota", "Corolla", 2020);
+let carro2 = new Carro("Honda", "Civic", 2021);
+
+
 imprime("")
 imprime("Estruturas de repetição")
 // estrutura de repetição: for, while, do while
 for (let i = 0; i < 5; i++) {
     imprime(`For: ${i}`)
+}
+
+for ( let i = 0; i < frutas.length; i++ ) {
+    imprime(`For com array: ${frutas[i]}`)
+}
+
+imprime("For of e For in")
+// for of e for in a diferença é que o for of itera sobre os valores do array, enquanto o for in itera sobre os índices do array
+for (let fruta of frutas) {
+    imprime(`For of: ${fruta}`)
+}
+
+for (let indice in frutas) {
+    imprime(`For in: ${indice} - ${frutas[indice]}`)
 }
 
 let j = 0
