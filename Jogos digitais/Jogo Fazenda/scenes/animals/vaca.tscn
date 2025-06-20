@@ -162,3 +162,5 @@ sprite_frames = SubResource("SpriteFrames_2pa51")
 animation = &"walk"
 autoplay = "Idle"
 frame_progress = 0.344504
+
+[node name="Timer" type="Timer" parent="."]
