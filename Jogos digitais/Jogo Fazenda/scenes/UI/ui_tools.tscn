@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://catoqm3dl5dbk"]
+
+[ext_resource type="Theme" uid="uid://bmrya0nep77yg" path="res://resources/farm_theme.tres" id="1_cvgoy"]
+[ext_resource type="Texture2D" uid="uid://k61ah1vn77gp" path="res://Assets/Objects/Items/items-spritesheet.png" id="1_dw80n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nv6n"]
+atlas = ExtResource("1_dw80n")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fw2gt"]
+atlas = ExtResource("1_dw80n")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ym0y4"]
+atlas = ExtResource("1_dw80n")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eooak"]
+atlas = ExtResource("1_dw80n")
+region = Rect2(0, 32, 16, 16)
+
+[node name="UITools" type="PanelContainer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -48.0
+offset_right = 22.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme = ExtResource("1_cvgoy")
+theme_type_variation = &"PainelWood"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="HoeTool" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_type_variation = &"ButtonTool"
+icon = SubResource("AtlasTexture_5nv6n")
+
+[node name="Axe" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_type_variation = &"ButtonTool"
+icon = SubResource("AtlasTexture_fw2gt")
+
+[node name="WateringCan" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_type_variation = &"ButtonTool"
+icon = SubResource("AtlasTexture_ym0y4")
+
+[node name="CarrotSeed" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_type_variation = &"ButtonTool"
+icon = SubResource("AtlasTexture_eooak")
