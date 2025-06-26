@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=4 uid="uid://h6pyprqovoom"]
+[gd_scene load_steps=8 format=4 uid="uid://h6pyprqovoom"]
 
 [ext_resource type="TileSet" uid="uid://cejjcobstg7qw" path="res://resources/tileset_farm.tres" id="1_2k620"]
 [ext_resource type="Script" path="res://scenes/farm/farm.gd" id="1_v6r2s"]
 [ext_resource type="PackedScene" uid="uid://ctjr5a5pavg0a" path="res://scenes/Player/player.tscn" id="2_7iqms"]
 [ext_resource type="PackedScene" uid="uid://g6ygm3as6ey2" path="res://scenes/plant/plant.tscn" id="4_1o0mm"]
+[ext_resource type="PackedScene" uid="uid://c4o6yu0vf227l" path="res://scenes/animals/chicken.tscn" id="5_3asst"]
+[ext_resource type="PackedScene" uid="uid://catoqm3dl5dbk" path="res://scenes/UI/ui_tools.tscn" id="5_mfayk"]
+[ext_resource type="PackedScene" uid="uid://xaw8vcb1aaxe" path="res://scenes/animals/vaca.tscn" id="7_6gjgk"]
 
 [node name="Farm" type="Node2D"]
 y_sort_enabled = true
@@ -40,6 +43,50 @@ tile_set = ExtResource("1_2k620")
 [node name="Player" parent="." instance=ExtResource("2_7iqms")]
 y_sort_enabled = true
 position = Vector2(53, 49)
+collision_mask = 13
 
 [node name="Plant" parent="." instance=ExtResource("4_1o0mm")]
 position = Vector2(92, 52)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UITools" parent="CanvasLayer" instance=ExtResource("5_mfayk")]
+
+[node name="animal" type="Node2D" parent="."]
+
+[node name="Galinhas" type="Node2D" parent="animal"]
+
+[node name="chicken" parent="animal/Galinhas" instance=ExtResource("5_3asst")]
+position = Vector2(338, 206)
+scale = Vector2(0.879997, 0.879997)
+collision_layer = 8
+collision_mask = 15
+
+[node name="chicken2" parent="animal/Galinhas" instance=ExtResource("5_3asst")]
+position = Vector2(605, 254)
+scale = Vector2(0.879997, 0.879997)
+collision_layer = 8
+collision_mask = 15
+
+[node name="chicken3" parent="animal/Galinhas" instance=ExtResource("5_3asst")]
+position = Vector2(1608, 408)
+scale = Vector2(0.879997, 0.879997)
+collision_layer = 8
+collision_mask = 15
+
+[node name="chicken4" parent="animal/Galinhas" instance=ExtResource("5_3asst")]
+position = Vector2(1121, 313)
+scale = Vector2(0.879997, 0.879997)
+collision_layer = 8
+collision_mask = 15
+
+[node name="Vacarias" type="Node2D" parent="animal"]
+
+[node name="vaca" parent="animal/Vacarias" instance=ExtResource("7_6gjgk")]
+position = Vector2(420, 202)
+
+[node name="vaca2" parent="animal/Vacarias" instance=ExtResource("7_6gjgk")]
+position = Vector2(1119, 407)
+
+[node name="vaca3" parent="animal/Vacarias" instance=ExtResource("7_6gjgk")]
+position = Vector2(1564, 265)
