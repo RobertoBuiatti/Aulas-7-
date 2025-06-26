@@ -152,6 +152,8 @@ Carro.prototype.exibirInfo = function() {
 }
 let carro1 = new Carro("Toyota", "Corolla", 2020);
 let carro2 = new Carro("Honda", "Civic", 2021);
+// imprimir objeto
+imprime(`Carro: ${carro1.exibirInfo()}`); // chama o método do objeto
 
 
 imprime("")
@@ -233,4 +235,22 @@ switch (dia) {
         break
     default:
         imprime("Dia inválido")
+}
+
+// funçao calculadora
+imprime("")
+imprime("Função Calculadora")
+function calculadora(num1, num2, operacao) {
+    switch (operacao) {
+        case "soma":
+            return num1 + num2;
+        case "subtracao":
+            return num1 - num2;
+        case "multiplicacao":
+            return num1 * num2;
+        case "divisao":
+            return num1 / num2;
+        default:
+            return "Operação inválida";
+    }
 }
