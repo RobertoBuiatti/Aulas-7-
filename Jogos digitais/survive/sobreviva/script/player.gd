@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var marker_2d: Marker2D = $Marker2D
 
+var victory_label: Label
 var speed = 100
 var player_state
 @export var inv: Inv
@@ -15,28 +16,30 @@ var is_attacking = false
 
 func _ready():
 	animated_sprite_2d.animation_finished.connect(_on_animation_finished)
+	victory_label = get_node("/root/world/CanvasLayer/VictoryLabel")
+	victory_label.visible = false
 
 func _physics_process(delta):
 	mouse_loc_from_player = get_global_mouse_position() - self.position
 	var direction = Input.get_vector("left", "right", "up", "down")
 
-	# Player pode andar mesmo durante ataque
+	
 	velocity = direction * speed
 	move_and_slide()
 
-	# Define estado (usado só se quiser animar movimento fora do ataque)
+	
 	if direction.length() == 0:
 		player_state = "idle"
 	else:
 		player_state = "walking"
 
-	# Alterna o arco
+	
 	if Input.is_action_just_pressed("e"):
 		bow_equiped = !bow_equiped
 
 	marker_2d.look_at(get_global_mouse_position())
 
-	# Inicia ataque (mas não bloqueia movimento)
+	
 	if Input.is_action_just_pressed("left_mouse") and bow_equiped and bow_cooldown and !is_attacking:
 		is_attacking = true
 		bow_cooldown = false
@@ -45,7 +48,7 @@ func _physics_process(delta):
 
 	play_anim(direction)
 
-# Função que solta a flecha 0.2s após início do ataque
+
 func shoot_arrow_later():
 	await get_tree().create_timer(0.2).timeout
 	var arrow_instance = arrow.instantiate()
@@ -72,14 +75,14 @@ func play_attack_animation():
 		animated_sprite_2d.play("nw-attack")
 
 func _on_animation_finished():
-	# Libera novo ataque apenas quando animação terminar
+	
 	if is_attacking:
-		await get_tree().create_timer(0.1).timeout  # leve delay antes de permitir novo
+		await get_tree().create_timer(0.1).timeout  
 		is_attacking = false
 		bow_cooldown = true
 
 func play_anim(dir):
-	# Se estiver atacando, mantém a animação de ataque atual até ela acabar
+	
 	if is_attacking:
 		return
 
@@ -89,7 +92,7 @@ func play_anim(dir):
 		elif player_state == "walking":
 			play_walk_animation(dir)
 	else:
-		# Arco equipado mas não atacando
+		
 		if player_state == "idle":
 			animated_sprite_2d.play("idle")
 		elif player_state == "walking":
@@ -116,5 +119,19 @@ func play_walk_animation(dir):
 func player():
 	pass
 
+var apple_count: int = 0
+var slime_count: int = 0
+
 func collect(item):
 	inv.insert(item)
+	if item.name == "apple":
+		apple_count += 1
+	elif item.name == "slime":
+		slime_count += 1
+	check_goal()
+
+func check_goal():
+	if apple_count >= 5 and slime_count >= 5:  
+		victory_label.visible = true
+		await get_tree().create_timer(3).timeout  
+		get_tree().reload_current_scene()  

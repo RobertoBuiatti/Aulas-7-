@@ -4,12 +4,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const foto = document.querySelector('.foto img');
     const formularioComentario = document.querySelector('.formulario');
     const inputComentario = document.getElementById('txtComentario');
-    const botaoComentar = document.getElementById('btnComentar');
-    const listaComentarios = document.querySelector('.comentarios');
+    const botãoComentar = document.getElementById('btnComentar');
+    const listaComentários = document.querySelector('.comentarios');
 
     let curtido = false;
 
     formularioComentario.style.display = 'none';
+    listaComentários.style.display = 'none';
 
     function alternarCurtir() {
         curtido = !curtido;
@@ -18,18 +19,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     iconeCurtir.addEventListener('click', alternarCurtir);
 
-    foto.addEventListener('dblclick', function () {
-        if (!curtido) {
-            alternarCurtir();
-        }
+    foto.addEventListener('click', function () {
+        alternarCurtir();
     });
 
     iconeComentar.addEventListener('click', function () {
-        if (formularioComentario.style.display === 'none') {
+        const comentariosVisiveis = listaComentários.style.display !== 'none';
+        if (comentariosVisiveis) {
+            listaComentários.style.display = 'none';
+            formularioComentario.style.display = 'none';
+        } else {
+            listaComentários.style.display = '';
             formularioComentario.style.display = 'flex';
             inputComentario.focus();
-        } else {
-            formularioComentario.style.display = 'none';
         }
     });
 
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         divComentario.className = 'comentario';
 
         const spanAutor = document.createElement('span');
-        spanAutor.textContent = 'Seu Nome';
+        spanAutor.textContent = 'Roberto Buiatti';
 
         const pComentario = document.createElement('p');
         pComentario.textContent = texto;
@@ -47,10 +49,10 @@ document.addEventListener('DOMContentLoaded', function () {
         divComentario.appendChild(spanAutor);
         divComentario.appendChild(pComentario);
 
-        listaComentarios.appendChild(divComentario);
+        listaComentários.appendChild(divComentario);
     }
 
-    botaoComentar.addEventListener('click', function () {
+    botãoComentar.addEventListener('click', function () {
         adicionarComentario(inputComentario.value);
         inputComentario.value = '';
         inputComentario.focus();
@@ -58,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     inputComentario.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') {
-            botaoComentar.click();
+            botãoComentar.click();
         }
     });
 });

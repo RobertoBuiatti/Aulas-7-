@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bubx54epnb3tt"]
+[gd_scene load_steps=15 format=3 uid="uid://bubx54epnb3tt"]
 
 [ext_resource type="PackedScene" uid="uid://2sg2v8gmxiw0" path="res://scene/player.tscn" id="1_van1i"]
 [ext_resource type="Texture2D" uid="uid://bkxjheyypvfau" path="res://art/survive/survivalgame-terrian-defult.png" id="2_w0lr0"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dvburedy2t0ag" path="res://scene/apple_tree.tscn" id="6_gpufa"]
 [ext_resource type="PackedScene" uid="uid://v0s64tud62tc" path="res://scene/stick_collectable.tscn" id="7_usfnk"]
 [ext_resource type="PackedScene" uid="uid://c5ggo46af176r" path="res://scene/slime.tscn" id="8_my8ny"]
+[ext_resource type="PackedScene" uid="uid://xdl2indf2dpa" path="res://scene/galinha.tscn" id="9_l1bvt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4he28"]
 texture = ExtResource("2_w0lr0")
@@ -1920,3 +1921,31 @@ position = Vector2(-1358, 436)
 
 [node name="slime15" parent="enimys" instance=ExtResource("8_my8ny")]
 position = Vector2(-1291, 423)
+
+[node name="galinha" parent="enimys" instance=ExtResource("9_l1bvt")]
+position = Vector2(-1156, 289)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOverLabel" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.5
+offset_top = -11.5
+offset_right = 73.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over Vacilão"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VictoryLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Boa jogador!
+Você venceu!"
