@@ -207,6 +207,7 @@ func enemy_attack():
 		# Dano
 		health -= 10
 		update_health()
+		flash_hit()
 
 		# Empurrão leve
 		var direction = (position - last_enemy_body.position).normalized()
@@ -228,3 +229,9 @@ func dead():
 	knockback_timer = 0
 	update_health()
 	print("Player resetado para posição inicial e vida cheia")
+
+# Feedback visual ao ser atingido
+func flash_hit():
+	animated_sprite_2d.modulate = Color(1, 0.2, 0.2)
+	await get_tree().create_timer(0.12).timeout
+	animated_sprite_2d.modulate = Color(1, 1, 1)
