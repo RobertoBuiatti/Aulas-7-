@@ -1,0 +1,134 @@
+[gd_scene load_steps=4 format=3 uid="uid://clhs1v2icn8qc"]
+
+[ext_resource type="TileSet" uid="uid://dhqpteey721e1" path="res://script/world_2.tres" id="1_bhhw0"]
+[ext_resource type="PackedScene" uid="uid://2sg2v8gmxiw0" path="res://scene/player.tscn" id="7_f4uum"]
+
+[sub_resource type="GDScript" id="GDScript_ehet2"]
+script/source = "extends Node2D
+
+@onready var tilemap_layer: TileMap = TileMap.new()
+
+const LAYER = 0
+const TILESET_SOURCE_ID = 0
+
+# Tamanho do mapa
+const MAP_WIDTH = 120
+const MAP_HEIGHT = 80
+
+# IDs dos terrenos (ordem conforme o TileSet)
+const TERRAIN_GROUND = 0
+const TERRAIN_CLIFFS = 1
+const TERRAIN_TREES = 2
+const TERRAIN_WATER = 3
+const TERRAIN_SAND = 4
+const TERRAIN_GRASS = 5
+
+# Noise procedural
+var terrain_noise: FastNoiseLite
+var biome_noise: FastNoiseLite
+
+func _ready():
+	randomize()
+	setup_tilemap()
+	setup_noise()
+	generate_full_biome_map()
+	add_child(tilemap_layer) # Adiciona o TileMap à cena dinamicamente
+
+func setup_tilemap():
+	tilemap_layer.tile_set = preload(\"res://script/world_2.tres\") # Substitua com seu tileset
+	tilemap_layer.name = \"GeneratedTileMap\"
+	
+
+
+func setup_noise():
+	terrain_noise = FastNoiseLite.new()
+	terrain_noise.seed = randi()
+	terrain_noise.frequency = 0.01
+	terrain_noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
+	terrain_noise.fractal_octaves = 4
+
+	biome_noise = FastNoiseLite.new()
+	biome_noise.seed = randi()
+	biome_noise.frequency = 0.02
+	biome_noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
+	biome_noise.fractal_octaves = 3
+
+# Geração procedural inteligente
+func generate_full_biome_map():
+	tilemap_layer.clear()
+
+	var terrain_positions := {
+		TERRAIN_WATER: [],
+		TERRAIN_SAND: [],
+		TERRAIN_GRASS: [],
+		TERRAIN_GROUND: [],
+		TERRAIN_CLIFFS: [],
+		TERRAIN_TREES: []
+	}
+
+	for x in MAP_WIDTH:
+		for y in MAP_HEIGHT:
+			var pos = Vector2i(x, y)
+
+			var elevation = terrain_noise.get_noise_2d(x, y)
+			var biome_val = biome_noise.get_noise_2d(x, y)
+
+			# Borda suavizada
+			var border_distance = min(x, y, MAP_WIDTH - x, MAP_HEIGHT - y)
+			if border_distance < 10:
+				elevation = lerp(-1.0, elevation, float(border_distance) / 10.0)
+
+			var terrain_id = choose_terrain(elevation, biome_val)
+			terrain_positions[terrain_id].append(pos)
+
+	for terrain_id in terrain_positions.keys():
+		var positions = PackedVector2Array(terrain_positions[terrain_id])
+		tilemap_layer.set_cells_terrain_connect(LAYER, positions, TILESET_SOURCE_ID, 0, terrain_id)
+
+# Decide o tipo de terreno com base na altura e bioma
+func choose_terrain(elevation: float, biome_val: float) -> int:
+	if elevation < -0.4:
+		return TERRAIN_WATER
+	elif elevation < -0.2:
+		return TERRAIN_SAND
+	elif elevation < 0.1:
+		return TERRAIN_GRASS if biome_val < 0 else TERRAIN_GROUND
+	elif elevation < 0.4:
+		return TERRAIN_TREES if biome_val < 0 else TERRAIN_GROUND
+	else:
+		return TERRAIN_CLIFFS
+"
+
+[node name="world-2" type="Node2D"]
+y_sort_enabled = true
+script = SubResource("GDScript_ehet2")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_bhhw0")
+
+[node name="player" parent="." instance=ExtResource("7_f4uum")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOverLabel" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.5
+offset_top = -11.5
+offset_right = 73.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over Vacilão"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VictoryLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Boa jogador!
+Você venceu!"

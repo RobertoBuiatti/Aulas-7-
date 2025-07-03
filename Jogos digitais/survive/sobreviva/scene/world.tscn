@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c5ggo46af176r" path="res://scene/slime.tscn" id="8_my8ny"]
 [ext_resource type="PackedScene" uid="uid://xdl2indf2dpa" path="res://scene/galinha.tscn" id="9_l1bvt"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4he28"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_77v67"]
 texture = ExtResource("2_w0lr0")
 texture_region_size = Vector2i(40, 40)
 0:0/0 = 0
@@ -577,7 +577,7 @@ texture_region_size = Vector2i(40, 40)
 18:3/0/terrain = 4
 18:3/0/terrains_peering_bit/left_side = 4
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7g0qy"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qii1u"]
 texture = ExtResource("3_y32p6")
 texture_region_size = Vector2i(40, 40)
 0:0/0 = 0
@@ -887,7 +887,7 @@ texture_region_size = Vector2i(40, 40)
 18:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20, 20, 20, 20, 20, -20, -20, -20, -20, -3.53554)
 18:2/0/terrains_peering_bit/left_side = 3
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_07qpg"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pxne7"]
 texture = ExtResource("4_tbmvx")
 texture_region_size = Vector2i(40, 40)
 0:0/0 = 0
@@ -1059,7 +1059,7 @@ texture_region_size = Vector2i(40, 40)
 15:2/0/terrains_peering_bit/top_right_corner = 1
 17:2/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0y47l"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_movkq"]
 texture = ExtResource("5_qbn0u")
 texture_region_size = Vector2i(40, 40)
 0:0/0 = 0
@@ -1354,10 +1354,10 @@ terrain_set_0/terrain_4/name = "sand"
 terrain_set_0/terrain_4/color = Color(0, 0.511709, 0.418009, 1)
 terrain_set_0/terrain_5/name = "grass"
 terrain_set_0/terrain_5/color = Color(0.637162, 0.35855, 0, 1)
-sources/0 = SubResource("TileSetAtlasSource_4he28")
-sources/1 = SubResource("TileSetAtlasSource_7g0qy")
-sources/2 = SubResource("TileSetAtlasSource_07qpg")
-sources/3 = SubResource("TileSetAtlasSource_0y47l")
+sources/0 = SubResource("TileSetAtlasSource_77v67")
+sources/1 = SubResource("TileSetAtlasSource_qii1u")
+sources/2 = SubResource("TileSetAtlasSource_pxne7")
+sources/3 = SubResource("TileSetAtlasSource_movkq")
 
 [node name="world" type="Node2D"]
 y_sort_enabled = true

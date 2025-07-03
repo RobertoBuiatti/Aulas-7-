@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var marker_2d: Marker2D = $Marker2D
 
 var victory_label: Label
-var speed = 100
+var speed = 120
 var player_state
 var health = 100
 var enemy_inattack_range = false
@@ -26,7 +26,7 @@ var is_attacking = false
 
 func _ready():
 	animated_sprite_2d.animation_finished.connect(_on_animation_finished)
-	victory_label = get_node("/root/world/CanvasLayer/VictoryLabel")
+	victory_label = get_node("../CanvasLayer/VictoryLabel")
 	victory_label.visible = false
 	start_position = position
 
