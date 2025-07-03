@@ -10,7 +10,13 @@ var health = 100
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
 var player_alive = true
+var last_enemy_body = null
+var enemy_cooldowns = {}
 @export var inv: Inv
+
+var knockback_timer := 0.0
+var start_position := Vector2.ZERO
+var knockback_duration := 0.2
 
 var bow_equiped = false
 var bow_cooldown = true
@@ -22,8 +28,29 @@ func _ready():
 	animated_sprite_2d.animation_finished.connect(_on_animation_finished)
 	victory_label = get_node("/root/world/CanvasLayer/VictoryLabel")
 	victory_label.visible = false
+	start_position = position
 
 func _physics_process(delta):
+	if !player_alive:
+		return
+
+	if knockback_timer > 0:
+		knockback_timer -= delta
+		move_and_slide()
+		return
+
+	if enemy_inattack_range and last_enemy_body != null:
+		var enemy_id = str(last_enemy_body.get_instance_id())
+		if !enemy_cooldowns.has(enemy_id) or enemy_cooldowns[enemy_id] <= 0:
+			enemy_attack()
+			enemy_cooldowns[enemy_id] = 0.5
+
+	# Atualiza cooldowns dos inimigos
+	for id in enemy_cooldowns.keys():
+		enemy_cooldowns[id] -= delta
+		if enemy_cooldowns[id] <= 0:
+			enemy_cooldowns.erase(id)
+
 	mouse_loc_from_player = get_global_mouse_position() - self.position
 	var direction = Input.get_vector("left", "right", "up", "down")
 
@@ -49,7 +76,6 @@ func _physics_process(delta):
 		play_attack_animation()
 		shoot_arrow_later()
 	
-	enemy_attack()
 	update_health()
 	play_anim(direction)
 
@@ -151,6 +177,9 @@ func update_health():
 	else:
 		healthbar.visible = true
 
+	if health <= 0:
+		dead()
+
 func _on_regin_timer_timeout() -> void:
 	if health < 100:
 		health = health + 20
@@ -163,14 +192,39 @@ func _on_regin_timer_timeout() -> void:
 func _on_player_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy_inattack_range = true
+		last_enemy_body = body
 
 
 func _on_player_hitbox_body_exited(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy_inattack_range = false
+		last_enemy_body = null
 
 
 func enemy_attack():
-	if enemy_inattack_range:
-		print("player")
-	pass
+	print("enemy_attack chamada: in_range=", enemy_inattack_range, ", body=", last_enemy_body)
+	if enemy_inattack_range and last_enemy_body != null and last_enemy_body.has_method("get_position"):
+		# Dano
+		health -= 10
+		update_health()
+
+		# Empurrão leve
+		var direction = (position - last_enemy_body.position).normalized()
+		var push_strength = 400
+		apply_knockback(direction * push_strength)
+		if last_enemy_body.has_method("apply_knockback"):
+			last_enemy_body.apply_knockback(-direction * push_strength)
+		elif last_enemy_body.has_variable("velocity"):
+			last_enemy_body.velocity += -direction * push_strength
+
+func apply_knockback(new_velocity: Vector2):
+	velocity = new_velocity
+func dead():
+	# Reseta player para posição inicial e vida cheia
+	player_alive = true
+	health = 100
+	position = start_position
+	velocity = Vector2.ZERO
+	knockback_timer = 0
+	update_health()
+	print("Player resetado para posição inicial e vida cheia")

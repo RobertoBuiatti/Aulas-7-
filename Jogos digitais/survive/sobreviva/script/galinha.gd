@@ -7,6 +7,8 @@ var game_over_label: Label
 
 
 var speed = 50.0
+var knockback_timer = 0.0
+var knockback_duration = 0.2
 var health = 200
 
 var dead = false
@@ -21,6 +23,11 @@ func _ready():
 	game_over_label.visible = false
 
 func _physics_process(delta):
+	if knockback_timer > 0:
+		knockback_timer -= delta
+		move_and_slide()
+		return
+		
 	if !dead:
 		detection_area.disabled = false
 		if player_in_area:
@@ -43,7 +50,7 @@ func _physics_process(delta):
 			move_and_slide()
 			animated_sprite_2d.play("idle")
 	else:
-		detection_area.disabled = true
+		detection_area.set_deferred("disabled", true)
 		velocity = Vector2.ZERO
 		move_and_slide()
 		animated_sprite_2d.play("death")
@@ -73,9 +80,12 @@ func take_damage(damage):
 func death():
 	dead = true
 	animated_sprite_2d.play("death")
-	hitbox.disabled = true
-	detection_area.disabled = true
+	hitbox.set_deferred("disabled", true)
+	detection_area.set_deferred("disabled", true)
 	game_over_label.visible = true
 	
 	await get_tree().create_timer(2.0).timeout 
 	get_tree().quit()
+
+func apply_knockback(new_velocity: Vector2):
+	velocity = new_velocity

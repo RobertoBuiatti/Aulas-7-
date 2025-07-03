@@ -550,7 +550,6 @@ animations = [{
 radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tdw8j"]
-radius = 8.06226
 
 [node name="player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -595,6 +594,7 @@ wait_time = 5.0
 autostart = true
 
 [node name="player_hitbox" type="Area2D" parent="."]
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
 shape = SubResource("CircleShape2D_tdw8j")

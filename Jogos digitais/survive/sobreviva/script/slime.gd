@@ -7,6 +7,8 @@ extends CharacterBody2D
 
 var speed = 50.0
 var health = 100
+var knockback_timer = 0.0
+var knockback_duration = 0.2
 
 var dead = false
 var player_in_area = false
@@ -17,19 +19,27 @@ var player
 
 func _ready():
 	dead = false
+	# Garante que push_area está conectada
+	if has_node("push_area"):
+		$push_area.body_entered.connect(_on_push_area_body_entered)
 
 func _physics_process(delta):
+	if knockback_timer > 0:
+		knockback_timer -= delta
+		move_and_slide()
+		return
+
 	if !dead:
 		detection_area.disabled = false
-		if player_in_area:
-			var direction = (player.position - position).normalized()
-			velocity = direction * speed
-			move_and_slide()
-			animated_sprite_2d.play("move")
-		else:
-			velocity = Vector2.ZERO
-			move_and_slide()
-			animated_sprite_2d.play("idle")
+		if knockback_timer <= 0:
+			if player_in_area:
+				var direction = (player.position - position).normalized()
+				velocity = direction * speed
+				animated_sprite_2d.play("move")
+			else:
+				velocity = Vector2.ZERO
+				animated_sprite_2d.play("idle")
+		move_and_slide()
 	else:
 		detection_area.disabled = true
 		velocity = Vector2.ZERO
@@ -86,3 +96,44 @@ func _on_slime_collect_area_body_entered(body: Node2D) -> void:
 
 func enemy():
 	pass
+
+func apply_knockback(new_velocity: Vector2):
+	velocity = new_velocity
+	knockback_timer = knockback_duration
+
+# Empurrão individual entre slimes e player
+var push_cooldown := {}
+
+func _on_push_area_body_entered(body: Node2D) -> void:
+	if dead:
+		return
+	var now = Time.get_ticks_msec()
+	var id = str(body.get_instance_id())
+	if push_cooldown.has(id) and now - push_cooldown[id] < 300:
+		return # evita empurrão contínuo
+	push_cooldown[id] = now
+
+	if body == null or not body.has_method("get_position"):
+		return
+	var direction = (body.position - position).normalized()
+	var push_strength = 400
+
+	# Se for outro slime
+	if body.has_method("enemy"):
+		apply_knockback(-direction * push_strength)
+		if body.has_method("apply_knockback"):
+			body.apply_knockback(direction * push_strength)
+		elif body.has_variable("velocity"):
+			body.velocity += direction * push_strength
+	# Se for player
+	elif body.has_method("player"):
+		# Aplica knockback
+		if body.has_method("apply_knockback"):
+			body.apply_knockback(direction * push_strength)
+		elif body.has_variable("velocity"):
+			body.velocity += direction * push_strength
+		# Aplica dano ao player
+		if body.has_method("take_damage"):
+			body.take_damage(10)
+		elif body.has_variable("health"):
+			body.health -= 10
