@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://2sg2v8gmxiw0"]
+[gd_scene load_steps=72 format=3 uid="uid://2sg2v8gmxiw0"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_6l5wy"]
 [ext_resource type="Texture2D" uid="uid://d1v7m7c1rlmh7" path="res://art/Puny-Characters/Puny-Characters/Archer-Green.png" id="2_1cn2a"]
@@ -549,6 +549,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7ct1"]
 radius = 4.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdw8j"]
+radius = 8.06226
+
 [node name="player" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_6l5wy")
@@ -577,3 +580,25 @@ offset_right = 199.0
 offset_bottom = -39.0
 
 [node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="healthbar" type="ProgressBar" parent="."]
+modulate = Color(0.0135581, 0.320192, 0, 1)
+offset_left = -6.0
+offset_top = -13.0
+offset_right = 114.0
+offset_bottom = 14.0
+scale = Vector2(0.1, 0.1)
+show_percentage = false
+
+[node name="regin_timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="player_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
+shape = SubResource("CircleShape2D_tdw8j")
+
+[connection signal="timeout" from="regin_timer" to="." method="_on_regin_timer_timeout"]
+[connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]

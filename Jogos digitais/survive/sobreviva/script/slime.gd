@@ -83,3 +83,6 @@ func slime_collect():
 func _on_slime_collect_area_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
 		player = body
+
+func enemy():
+	pass

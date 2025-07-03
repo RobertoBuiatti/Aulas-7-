@@ -6,6 +6,10 @@ extends CharacterBody2D
 var victory_label: Label
 var speed = 100
 var player_state
+var health = 100
+var enemy_inattack_range = false
+var enemy_attack_cooldown = true
+var player_alive = true
 @export var inv: Inv
 
 var bow_equiped = false
@@ -23,7 +27,6 @@ func _physics_process(delta):
 	mouse_loc_from_player = get_global_mouse_position() - self.position
 	var direction = Input.get_vector("left", "right", "up", "down")
 
-	
 	velocity = direction * speed
 	move_and_slide()
 
@@ -45,7 +48,9 @@ func _physics_process(delta):
 		bow_cooldown = false
 		play_attack_animation()
 		shoot_arrow_later()
-
+	
+	enemy_attack()
+	update_health()
 	play_anim(direction)
 
 
@@ -135,3 +140,37 @@ func check_goal():
 		victory_label.visible = true
 		await get_tree().create_timer(3).timeout  
 		get_tree().reload_current_scene()  
+
+
+func update_health():
+	var healthbar = $healthbar
+	healthbar.value = health
+	
+	if health >= 100:
+		healthbar.visible = false
+	else:
+		healthbar.visible = true
+
+func _on_regin_timer_timeout() -> void:
+	if health < 100:
+		health = health + 20
+		if health > 100:
+			health = 100
+	if health <= 0:
+		health = 0
+
+
+func _on_player_hitbox_body_entered(body: Node2D) -> void:
+	if body.has_method("enemy"):
+		enemy_inattack_range = true
+
+
+func _on_player_hitbox_body_exited(body: Node2D) -> void:
+	if body.has_method("enemy"):
+		enemy_inattack_range = false
+
+
+func enemy_attack():
+	if enemy_inattack_range:
+		print("player")
+	pass
