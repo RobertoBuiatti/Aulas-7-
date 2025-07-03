@@ -18,7 +18,7 @@ func _ready() -> void:
 		gorwth_timer.start()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	if state == "no apples":
 		animated_sprite_2d.play("no apples")

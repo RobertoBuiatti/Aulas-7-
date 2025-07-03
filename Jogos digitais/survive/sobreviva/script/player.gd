@@ -45,7 +45,7 @@ func _physics_process(delta):
 			enemy_attack()
 			enemy_cooldowns[enemy_id] = 0.5
 
-	# Atualiza cooldowns dos inimigos
+	
 	for id in enemy_cooldowns.keys():
 		enemy_cooldowns[id] -= delta
 		if enemy_cooldowns[id] <= 0:
@@ -204,12 +204,12 @@ func _on_player_hitbox_body_exited(body: Node2D) -> void:
 func enemy_attack():
 	print("enemy_attack chamada: in_range=", enemy_inattack_range, ", body=", last_enemy_body)
 	if enemy_inattack_range and last_enemy_body != null and last_enemy_body.has_method("get_position"):
-		# Dano
+		
 		health -= 10
 		update_health()
 		flash_hit()
 
-		# Empurrão leve
+		
 		var direction = (position - last_enemy_body.position).normalized()
 		var push_strength = 400
 		apply_knockback(direction * push_strength)
@@ -221,7 +221,7 @@ func enemy_attack():
 func apply_knockback(new_velocity: Vector2):
 	velocity = new_velocity
 func dead():
-	# Reseta player para posição inicial e vida cheia
+	
 	player_alive = true
 	health = 100
 	position = start_position
@@ -230,7 +230,7 @@ func dead():
 	update_health()
 	print("Player resetado para posição inicial e vida cheia")
 
-# Feedback visual ao ser atingido
+
 func flash_hit():
 	animated_sprite_2d.modulate = Color(1, 0.2, 0.2)
 	await get_tree().create_timer(0.12).timeout
